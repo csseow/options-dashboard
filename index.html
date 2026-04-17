@@ -168,7 +168,7 @@
 
 <header>
   <h1>Options Tracker</h1>
-  <span>Generated: 2026-04-17 23:30 &nbsp;|&nbsp; 33 symbols &nbsp;|&nbsp;
+  <span>Generated: 2026-04-17 23:49 &nbsp;|&nbsp; 33 symbols &nbsp;|&nbsp;
     Click any symbol for history</span>
 </header>
 
@@ -420,6 +420,132 @@
             <b style="color:#c9d1d9">Decision rule:</b> Gap holding above opening range high = sell call above premarket high.
             Gap fading back into yesterday's range = skip, direction is unclear, no trade.
           </p>
+        </div>
+
+        <div class="ref-card">
+          <h4>Strategy — Cash-Secured Put (CSP)</h4>
+          <p>Sell a put below the current price and collect premium. If the stock drops to your strike, you buy 100 shares at that price. If it stays above, the put expires worthless and you keep the premium. Only use on stocks you genuinely want to own.</p>
+          <table>
+            <tr><th>Indicator</th><th>What to look for</th></tr>
+            <tr><td>IV Rank</td><td>Above 50 — premium is rich enough to be worth the risk</td></tr>
+            <tr><td>RSI</td><td>Between 40–60 — stock not in freefall</td></tr>
+            <tr><td>Strike</td><td>1–2 ATR below current price, or at a strong support level</td></tr>
+          </table>
+          <p style="margin-top:8px; color:#58a6ff">
+            Example: HOOD at $22, ATR $1.20, IV Rank 62. You are happy to own HOOD at $19.
+            Sell the $19 put, collect $0.60 premium ($60 per contract).
+            If HOOD stays above $19 — keep $60, do nothing.
+            If HOOD drops to $18 — you buy 100 shares at $19, but effective cost is $18.40 after premium. You own a stock you wanted at a discount.
+          </p>
+        </div>
+
+        <div class="ref-card">
+          <h4>Strategy — Covered Call</h4>
+          <p>You already own 100 shares. Sell a call above the current price to collect monthly income. If the stock stays below the strike, the call expires worthless and you keep the premium. If it rises above, your shares get called away at the strike — you still profit, just capped.</p>
+          <table>
+            <tr><th>Indicator</th><th>What to look for</th></tr>
+            <tr><td>IV Rank</td><td>Above 40 — collect decent premium</td></tr>
+            <tr><td>RSI</td><td>Above 60 — stock has already run up, less likely to push much higher</td></tr>
+            <tr><td>Strike</td><td>1–1.5 ATR above current price, or at a clear resistance level</td></tr>
+          </table>
+          <p style="margin-top:8px; color:#58a6ff">
+            Example: You own 100 shares of MARA at $18, now at $22. RSI is 71, ATR is $3.
+            Sell a call at $25 (1.3 ATR above), collect $0.90 premium ($90 per contract).
+            MARA consolidates at $23 — call expires worthless, you keep $90.
+            Sell again next month. Each month of selling calls lowers your effective cost basis.
+          </p>
+        </div>
+
+        <div class="ref-card">
+          <h4>Strategy — The Wheel</h4>
+          <p>A repeating income loop combining CSP and Covered Call. You are paid to wait at every step — whether the stock goes up, down, or sideways.</p>
+          <table>
+            <tr><th>Step</th><th>Action</th></tr>
+            <tr><td>1. Sell CSP</td><td>Collect premium. Wait for expiry.</td></tr>
+            <tr><td>2. If assigned</td><td>You now own 100 shares. Move to step 3.</td></tr>
+            <tr><td>3. Sell Covered Call</td><td>Collect more premium on your shares.</td></tr>
+            <tr><td>4. If called away</td><td>Shares sold at strike. Go back to step 1.</td></tr>
+          </table>
+          <p style="margin-top:8px; color:#58a6ff">
+            Example: SOFI at $14. Sell $12 put, collect $0.35. SOFI drops to $11.80, assigned at $12.
+            Effective cost: $12 − $0.35 = $11.65. Now sell a $13 covered call, collect $0.40.
+            SOFI rallies to $13.20, shares called away at $13.
+            Total made: ($13 − $11.65) + $0.40 = $1.75 per share — even though the stock went from $14 down to $13.20.
+          </p>
+          <p style="margin-top:8px; color:#8b949e">Best stocks for the Wheel: liquid options, IV Rank consistently above 40, stocks you are comfortable holding long term. Avoid stocks that can gap 30% overnight.</p>
+        </div>
+
+        <div class="ref-card">
+          <h4>Strategy — Bull Put Spread</h4>
+          <p>Sell a put at a higher strike and buy a put at a lower strike. You collect the difference in premium. Your maximum loss is fixed — you cannot lose more than the spread width regardless of how far the stock falls.</p>
+          <table>
+            <tr><th>Indicator</th><th>What to look for</th></tr>
+            <tr><td>Direction</td><td>Mildly bullish or neutral — stock above a key support level</td></tr>
+            <tr><td>RSI</td><td>Above 45 — not in a downtrend</td></tr>
+            <tr><td>IV Rank</td><td>Above 50 — collect enough premium to make the spread worthwhile</td></tr>
+          </table>
+          <p style="margin-top:8px; color:#58a6ff">
+            Example: GRAB at $4.50, ATR $0.22, RSI 53, IV Rank 58.
+            Sell the $4.00 put, buy the $3.50 put. Collect $0.18 net premium.
+            Max profit: $18 per contract if GRAB stays above $4.00 at expiry.
+            Max loss: $50 − $18 = $32 per contract if GRAB drops below $3.50.
+            Breakeven: $4.00 − $0.18 = $3.82.
+          </p>
+        </div>
+
+        <div class="ref-card">
+          <h4>Strategy — Bear Call Spread</h4>
+          <p>Sell a call at a lower strike and buy a call at a higher strike. Mirror image of the bull put spread. You profit if the stock stays below your sold strike. Maximum loss is fixed at the spread width minus premium collected.</p>
+          <table>
+            <tr><th>Indicator</th><th>What to look for</th></tr>
+            <tr><td>Direction</td><td>Mildly bearish or neutral — stock below a key resistance level</td></tr>
+            <tr><td>RSI</td><td>Above 65 — stock has already run up, less likely to push through resistance</td></tr>
+            <tr><td>IV Rank</td><td>Above 50 — collect decent premium on both legs</td></tr>
+          </table>
+          <p style="margin-top:8px; color:#58a6ff">
+            Example: COIN at $185, RSI 72, clear resistance at $200, IV Rank 74.
+            Sell the $200 call, buy the $210 call. Collect $1.50 net premium.
+            Max profit: $150 per contract if COIN stays below $200 at expiry.
+            Max loss: $1,000 − $150 = $850 per contract if COIN blasts above $210.
+            Best case: COIN consolidates after a big run and the calls expire worthless.
+          </p>
+        </div>
+
+        <div class="ref-card">
+          <h4>Strategy — Iron Condor</h4>
+          <p>Combine a bull put spread (below current price) and a bear call spread (above current price). You collect premium from both sides and profit if the stock stays inside the range between the two short strikes. Best used on calm, range-bound stocks with high IV.</p>
+          <table>
+            <tr><th>Indicator</th><th>What to look for</th></tr>
+            <tr><td>IV Rank</td><td>Above 60 — both sides pay well, making the condor worthwhile</td></tr>
+            <tr><td>RSI</td><td>Between 45–60 — no strong directional trend</td></tr>
+            <tr><td>ATR</td><td>Relatively low — stock is in a calm consolidation phase, not trending hard</td></tr>
+          </table>
+          <p style="margin-top:8px; color:#58a6ff">
+            Example: MSFT at $380, IV Rank 68, RSI 52, ATR $8.
+            Sell put at $355, buy put at $345 — collect $1.20.
+            Sell call at $405, buy call at $415 — collect $1.10.
+            Total premium: $2.30. Max loss on either side: $10 − $2.30 = $7.70.
+            MSFT stays between $355–$405 through expiry — you keep the full $230 per condor.
+          </p>
+          <p style="margin-top:8px; color:#f85149">Avoid iron condors when a stock is in a strong trend or near a catalyst like earnings — one side will get run over.</p>
+        </div>
+
+        <div class="ref-card">
+          <h4>Strategy — Diagonal Spread (Poor Man's Covered Call)</h4>
+          <p>Buy a deep in-the-money (ITM) call with a long expiry (6–12 months) — this acts like owning 100 shares but at a fraction of the cost. Then sell a short-dated out-of-the-money (OTM) call against it each month to collect premium. Same income as a covered call with much less capital tied up.</p>
+          <table>
+            <tr><th>Component</th><th>What to buy/sell</th></tr>
+            <tr><td>Long leg (buy once)</td><td>Deep ITM call, 6–12 months expiry (LEAPS). Delta above 0.80.</td></tr>
+            <tr><td>Short leg (sell monthly)</td><td>OTM call, 30 days out, 1–1.5 ATR above current price</td></tr>
+          </table>
+          <p style="margin-top:8px; color:#58a6ff">
+            Example: MSFT at $380. Buying 100 shares costs $38,000.
+            Instead: buy a Jan 2026 $320 call (deep ITM) for $72 per share ($7,200 total).
+            Each month sell a 30-day $400 call for $3.50 ($350 per month).
+            After 6 months of selling calls: $2,100 collected, reducing your effective cost to $5,100.
+            You control the same 100-share exposure with 80% less capital.
+          </p>
+          <p style="margin-top:8px; color:#8b949e">Best for: stocks with expensive shares (MSFT, NVDA, GOOGL) where buying 100 shares outright is too capital intensive. Requires understanding of delta and time decay on the long leg.</p>
         </div>
 
       </div>
