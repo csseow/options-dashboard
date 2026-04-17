@@ -77,6 +77,7 @@
     font-size: 14px; font-weight: 600; letter-spacing: 0.3px;
   }
   .buy-call  { background: #1f6feb44; color: #58a6ff; border: 1px solid #1f6feb; }
+  .buy-put   { background: #8957e522; color: #d2a8ff; border: 1px solid #8957e566; }
   .cheap-iv  { background: #1f6feb22; color: #79c0ff; border: 1px solid #1f6feb66; }
   .sell-call { background: #f8514922; color: #f85149; border: 1px solid #f8514966; }
   .sell-put  { background: #3fb95022; color: #3fb950; border: 1px solid #3fb95066; }
@@ -124,23 +125,52 @@
   .hist-table tr:hover td { background: #1c2128; }
 
   .note { color: #8b949e; font-size: 14px; margin-top: 12px; }
+
+  .legend {
+    background: #161b22; border: 1px solid #30363d; border-radius: 8px;
+    padding: 14px 18px; margin-bottom: 14px;
+  }
+  .legend-title {
+    color: #8b949e; font-size: 13px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px;
+  }
+  .legend-grid {
+    display: flex; flex-wrap: wrap; gap: 8px 24px;
+  }
+  .legend-item {
+    font-size: 14px; white-space: nowrap;
+  }
 </style>
 </head>
 <body>
 
 <header>
   <h1>Options Tracker</h1>
-  <span>Generated: 2026-04-17 22:44 &nbsp;|&nbsp; 33 symbols &nbsp;|&nbsp;
+  <span>Generated: 2026-04-17 22:48 &nbsp;|&nbsp; 33 symbols &nbsp;|&nbsp;
     Click any symbol for history</span>
 </header>
 
 <div class="container">
   <div class="cards" id="cards"></div>
 
+  <!-- Signal Legend -->
+  <div class="legend">
+    <div class="legend-title">Signal Logic</div>
+    <div class="legend-grid">
+      <div class="legend-item"><span class="badge buy-call">BUY CALL</span> &nbsp; IV/HV less than 1.0 + RSI less than 60</div>
+      <div class="legend-item"><span class="badge buy-put">BUY PUT</span> &nbsp; IV/HV less than 1.0 + RSI more than 70</div>
+      <div class="legend-item"><span class="badge sell-call">SELL CALL</span> &nbsp; IV/HV more than 1.3 + RSI more than 65</div>
+      <div class="legend-item"><span class="badge sell-put">SELL PUT</span> &nbsp; IV/HV more than 1.3 + RSI less than 45</div>
+      <div class="legend-item"><span class="badge rich-iv">RICH IV</span> &nbsp; IV/HV more than 1.3 (RSI neutral)</div>
+      <div class="legend-item"><span class="badge cheap-iv">CHEAP IV</span> &nbsp; IV/HV less than 1.0 + RSI 60 to 70</div>
+    </div>
+  </div>
+
   <div class="toolbar">
     <input type="text" id="search" placeholder="Search symbol..." onkeyup="filterTable()">
     <button class="filter-btn" onclick="filterSignal('')">All</button>
     <button class="filter-btn" onclick="filterSignal('BUY CALL')">Buy Call</button>
+    <button class="filter-btn" onclick="filterSignal('BUY PUT')">Buy Put</button>
     <button class="filter-btn" onclick="filterSignal('SELL CALL')">Sell Call</button>
     <button class="filter-btn" onclick="filterSignal('SELL PUT')">Sell Put</button>
     <button class="filter-btn" onclick="filterSignal('RICH IV')">Rich IV</button>
@@ -760,7 +790,7 @@
             <td>0.754</td>
             <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,23.0 L 80.0,1.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="1.0" r="2" fill="#3fb950"/></svg></td>
             <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,23.0 L 80.0,1.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="1.0" r="2" fill="#3fb950"/></svg></td>
-            <td><span class="badge cheap-iv">CHEAP IV</span></td>
+            <td><span class="badge buy-put">BUY PUT</span></td>
         </tr></tbody>
     </table>
   </div>
@@ -769,10 +799,7 @@
     Trend arrows compare vs previous day. &nbsp;|&nbsp;
     Sparklines show last 7 days. &nbsp;|&nbsp;
     IV Rank &amp; Percentile need 10+ days. &nbsp;|&nbsp;
-    Click a symbol row to view full history. &nbsp;|&nbsp;
-    Signal logic: IV/HV less than 1.0 + RSI less than 60 = Buy Call &nbsp;|&nbsp;
-    IV/HV more than 1.3 + RSI more than 65 = Sell Call &nbsp;|&nbsp;
-    IV/HV more than 1.3 + RSI less than 45 = Sell Put
+    Click any symbol row to view full history.
   </p>
 </div>
 
