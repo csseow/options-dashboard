@@ -168,7 +168,7 @@
 
 <header>
   <h1>Options Tracker</h1>
-  <span>Generated: 2026-04-17 23:15 &nbsp;|&nbsp; 33 symbols &nbsp;|&nbsp;
+  <span>Generated: 2026-04-17 23:18 &nbsp;|&nbsp; 33 symbols &nbsp;|&nbsp;
     Click any symbol for history</span>
 </header>
 
@@ -200,8 +200,9 @@
             <tr><td>Position size</td><td>High ATR stocks need smaller position size to control risk</td></tr>
           </table>
           <p style="margin-top:8px; color:#58a6ff">
-            Example: AAOI price $157, ATR $14. That means it can swing $14 in a single day.
-            If you sell a call, pick a strike at least $28 above current price (2 ATR away) to avoid being hit.
+            Example: AAOI price $157, ATR $14. ATR $14 is the <b>average</b> daily swing — on volatile days it can move $20+.
+            Selling a call at $157 + $14 = $171 puts you right at the average, meaning it gets breached on roughly half of big-move days.
+            Going 2 ATR out ($157 + $28 = $185) gives you a buffer for above-average swings, so you are not just safe on normal days but also on wilder ones.
             A stock like LMT with ATR $15 on a $607 price is actually calmer in percentage terms (2.5%) vs AAOI ATR $14 on $157 (8.9%).
           </p>
         </div>
