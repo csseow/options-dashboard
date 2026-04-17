@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Options Tracker Dashboard</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0d1117; color: #c9d1d9;
+    font-family: 'Segoe UI', sans-serif; font-size: 13px;
+  }
+  header {
+    background: #161b22; padding: 16px 24px;
+    border-bottom: 1px solid #30363d;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  header h1 { font-size: 18px; color: #f0f6fc; }
+  header span { color: #8b949e; font-size: 12px; }
+  .container { padding: 16px 24px; }
+
+  /* Summary cards */
+  .cards { display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+  .card {
+    background: #161b22; border: 1px solid #30363d;
+    border-radius: 8px; padding: 12px 18px; min-width: 130px;
+  }
+  .card .label { color: #8b949e; font-size: 11px; margin-bottom: 4px; }
+  .card .value { font-size: 20px; font-weight: 600; color: #f0f6fc; }
+
+  /* Search */
+  .toolbar { margin-bottom: 12px; display: flex; gap: 10px; align-items: center; }
+  input[type=text] {
+    background: #161b22; border: 1px solid #30363d; color: #c9d1d9;
+    padding: 6px 12px; border-radius: 6px; font-size: 13px; width: 200px;
+  }
+  input[type=text]:focus { outline: none; border-color: #58a6ff; }
+  .filter-btn {
+    background: #21262d; border: 1px solid #30363d; color: #c9d1d9;
+    padding: 5px 12px; border-radius: 6px; cursor: pointer; font-size: 12px;
+  }
+  .filter-btn:hover, .filter-btn.active { background: #388bfd22; border-color: #388bfd; color: #58a6ff; }
+
+  /* Table */
+  .table-wrap { overflow-x: auto; border-radius: 8px; border: 1px solid #30363d; }
+  table { width: 100%; border-collapse: collapse; }
+  thead th {
+    background: #161b22; color: #8b949e; font-weight: 600;
+    padding: 10px 12px; text-align: right; white-space: nowrap;
+    cursor: pointer; user-select: none; font-size: 12px;
+    border-bottom: 1px solid #30363d;
+  }
+  thead th:first-child, thead th:nth-child(2) { text-align: left; }
+  thead th:hover { color: #f0f6fc; }
+  thead th.sort-asc::after  { content: " ▲"; }
+  thead th.sort-desc::after { content: " ▼"; }
+
+  tbody tr { border-bottom: 1px solid #21262d; }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: #161b22; }
+  td { padding: 8px 12px; text-align: right; white-space: nowrap; }
+  td:first-child, td:nth-child(2) { text-align: left; }
+
+  .symbol { font-weight: 700; color: #f0f6fc; font-size: 13px; }
+
+  /* Colour classes */
+  .green-strong { color: #3fb950; font-weight: 600; }
+  .green        { color: #56d364; }
+  .orange       { color: #d29922; }
+  .red          { color: #f85149; }
+
+  /* Signal badges */
+  .badge {
+    display: inline-block; padding: 2px 8px; border-radius: 12px;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.3px;
+  }
+  .buy-call  { background: #1f6feb44; color: #58a6ff; border: 1px solid #1f6feb; }
+  .cheap-iv  { background: #1f6feb22; color: #79c0ff; border: 1px solid #1f6feb66; }
+  .sell-call { background: #f8514922; color: #f85149; border: 1px solid #f8514966; }
+  .sell-put  { background: #3fb95022; color: #3fb950; border: 1px solid #3fb95066; }
+  .rich-iv   { background: #d2992222; color: #d29922; border: 1px solid #d2992266; }
+  .neutral   { background: #30363d; color: #8b949e; border: 1px solid #30363d; }
+
+  .note { color: #8b949e; font-size: 11px; margin-top: 12px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Options Tracker</h1>
+  <span>Generated: 2026-04-17 22:22 &nbsp;|&nbsp; 33 symbols</span>
+</header>
+
+<div class="container">
+
+  <!-- Summary cards -->
+  <div class="cards" id="cards"></div>
+
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <input type="text" id="search" placeholder="Search symbol..." onkeyup="filterTable()">
+    <button class="filter-btn" onclick="filterSignal('')">All</button>
+    <button class="filter-btn" onclick="filterSignal('BUY CALL')">Buy Call</button>
+    <button class="filter-btn" onclick="filterSignal('SELL CALL')">Sell Call</button>
+    <button class="filter-btn" onclick="filterSignal('SELL PUT')">Sell Put</button>
+    <button class="filter-btn" onclick="filterSignal('RICH IV')">Rich IV</button>
+    <button class="filter-btn" onclick="filterSignal('CHEAP IV')">Cheap IV</button>
+  </div>
+
+  <!-- Table -->
+  <div class="table-wrap">
+    <table id="main-table">
+      <thead>
+        <tr>
+          <th onclick="sortTable(0)">Symbol</th>
+          <th onclick="sortTable(1)">Date</th>
+          <th onclick="sortTable(2)">Price</th>
+          <th onclick="sortTable(3)">Volume</th>
+          <th onclick="sortTable(4)">IV%</th>
+          <th onclick="sortTable(5)">HV%</th>
+          <th onclick="sortTable(6)">IV/HV</th>
+          <th onclick="sortTable(7)">IV Rank</th>
+          <th onclick="sortTable(8)">IV Pctile</th>
+          <th onclick="sortTable(9)">RSI</th>
+          <th onclick="sortTable(10)">ATR</th>
+          <th onclick="sortTable(11)">P/C Vol</th>
+          <th onclick="sortTable(12)">P/C OI</th>
+          <th onclick="sortTable(13)">Signal</th>
+        </tr>
+      </thead>
+      <tbody id="table-body">
+        
+        <tr>
+            <td class="symbol">AAOI</td>
+            <td>2026-04-17</td>
+            <td>$157.74</td>
+            <td>2,330,514</td>
+            <td class="">169.8%</td>
+            <td>156.3%</td>
+            <td class="">1.086</td>
+            <td>—</td>
+            <td>—</td>
+            <td class="red">70.1</td>
+            <td>14.04</td>
+            <td>0.602</td>
+            <td>1.199</td>
+            <td><span class="badge neutral">NEUTRAL</span></td>
+        </tr>
+        <tr>
+            <td class="symbol">ASTS</td>
+            <td>2026-04-17</td>
+            <td>$88.27</td>
+            <td>3,651,259</td>
+            <td class="">107.3%</td>
+            <td>105.3%</td>
+            <td class="">1.019</td>
+            <td>—</td>
+            <td>—</td>
+            <td class="">48.3</td>
+            <td>8.08</td>
+            <td>0.711</td>
+            <td>0.647</td>
+            <td><span class="badge neutral">NEUTRAL</span></td>
+        </tr>
+        <tr>
+            <td class="symbol">AXTI</td>
+            <td>2026-04-17</td>
+            <td>$77.11</td>
+            <td>3,075,848</td>
+            <td class="">206.4%</td>
+            <td>206.4%</td>
+            <td class="">1.000</td>
+            <td>—</td>
+            <td>—</td>
+            <td class="orange">63.7</td>
+            <td>9.56</td>
+            <td>0.706</td>
+            <td>1.009</td>
+            <td><span class="badge neutral">NEUTRAL</span></td>
+        </tr>
+        <tr>
+            <td class="symbol">BABA</td>
+            <td>2026-04-17</td>
+            <td>$141.86</td>
+            <td>3,313,334</td>
+            <td class="">45.4%</td>
+            <td>37.2%</td>
+            <td class="">1.219</td>
+            <td>—</td>
+            <td>—</td>
+            <td class="orange">64.7</td>
+            <td>4.37</td>
+            <td>0.349</td>
+            <td>0.450</td>
+            <td><span class="badge neutral">NEUTRAL</span></td>
+        </tr>
+        <tr>
+            <td class="symbol">BBAI</td>
+            <td>2026-04-17</td>
+            <td>$3.91</td>
+            <td>7,380,800</td>
+            <td class="">100.0%</td>
+            <td>82.8%</td>
+            <td class="">1.208</td>
+            <td>—</td>
+            <td>—</td>
+            <td class="">57.0</td>
+            <td>0.25</td>
+            <td>0.319</td>
+            <td>0.243</td>
+            <td><span class="badge neutral">NEUTRAL</span></td>
+        </tr>
+        <tr>
+            <td class="symbol">BMNR</td>
+            <td>2026-04-17</td>
+            <td>$23.92</td>
+            <td>13,919,315</td>
+            <td class="orange">91.7%</td>
+            <td>64.9%</td>
+            <td class="orange">1.413</td>
+            <td>—</td>
+            <td>—</td>
+            <td class="orange">64.8</td>
+            <td>1.42</td>
+            <td>2.357</td>
+            <td>0.656</td>
+            <td><span class="badge rich-iv">RICH IV</span></td>
+        </tr>
+        <tr>
+            <td class="symbol">CF</td>
+            <td>2026-04-17</td>
+            <td>$111.93</td>
+            <td>1,363,604</td>
+            <td class="">74.5%</td>
+            <td>63.6%</td>
+            <td class="">1.172</td>
+            <td>—</td>
+            <td>—</td>
+            <td class="green">40.9</td>
+            <td>7.58</td>
+            <td>1.292</td>
+            <td>0.705</td>
+            <td><span class="badge neutral">NEUTRAL</span></td>
+        </tr>
+        <tr>
+            <td class="symbol">CLSK</td>
+            <td>2026-04-17</td>
+            <td>$11.93</td>
+            <td>3,981,094</td>
+            <td class="orange">101.4%</td>
+            <td>74.1%</td>
+            <td class="orange">1.367</td>
+            <td>—</td>
+            <td>—</td>
+            <td class="orange">68.9</td>
+            <td>0.77</td>
+            <td>0.694</td>
+            <td>0.985</td>
+            <td><span class="badge sell-call">SELL CALL</span></td>
+        </tr>
+        <tr>
+            <td class="symbol">COIN</td>
+            <td>2026-04-17</td>
+            <td>$207.10</td>
+            <td>2,596,899</td>
+            <td class="">85.3%</td>
+            <td>70.3%</td>
+            <td class="">1.213</td>
+            <td>—</td>
+            <td>—</td>
+            <td class="orange">64.9</td>
+            <td>11.20</td>
+            <td>0.919</td>
+            <td>0.497</td>
+            <td><span class="badge neutral">NEUTRAL</span></td>
+        </tr>
+        <tr>
+            <td class="symbol">CRM</td>
+            <td>2026-04-17</td>
+            <td>$185.95</td>
+            <td>3,442,255</td>
+            <td class="green">41.9%</td>
+            <td>44.7%</td>
+            <td class="green">0.937</td>
+            <td>—</td>
+            <td>—</td>
+            <td class="">52.3</td>
+            <td>7.48</td>
+            <td>1.703</td>
+            <td>0.628</td>
+            <td><span class="badge buy-call">BUY CALL</span></td>
+        </tr>
+        <tr>
+            <td class="symbol">DDOG</td>
+            <td>2026-04-17</td>
+            <td>$126.05</td>
+            <td>625,628</td>
+            <td class="">80.8%</td>
+            <td>63.6%</td>
+            <td class="">1.271</td>
+            <td>—</td>
+            <td>—</td>
+            <td class="">58.1</td>
+            <td>7.07</td>
+            <td>0.709</td>
+            <td>0.950</td>
+            <td><span class="badge neutral">NEUTRAL</span></td>
+        </tr>
+        <tr>
+            <td class="symbol">ENPH</td>
+            <td>2026-04-17</td>
+            <td>$32.40</td>
+            <td>670,884</td>
+            <td class="orange">101.0%</td>
+            <td>64.7%</td>
+            <td class="orange">1.561</td>
+            <td>—</td>
+            <td>—</td>
+            <td class="green">36.5</td>
+            <td>2.19</td>
+            <td>1.572</td>
+            <td>0.691</td>
+            <td><span class="badge sell-put">SELL PUT</span></td>
+        </tr>
+        <tr>
+            <td class="symbol">GRAB</td>
+            <td>2026-04-17</td>
+            <td>$4.21</td>
+            <td>9,777,302</td>
+            <td class="red">67.5%</td>
+            <td>38.4%</td>
+            <td class="red">1.758</td>
+            <td>—</td>
+            <td>—</td>
+            <td class="orange">69.2</td>
+            <td>0.17</td>
+            <td>0.080</td>
+            <td>0.112</td>
+            <td><span class="badge sell-call">SELL CALL</span></td>
+        </tr>
+        <tr>
+            <td class="symbol">HOOD</td>
+            <td>2026-04-17</td>
+            <td>$90.24</td>
+            <td>11,216,997</td>
+            <td class="">79.0%</td>
+            <td>71.7%</td>
+            <td class="">1.101</td>
+            <td>—</td>
+            <td>—</td>
+            <td class="orange">69.7</td>
+            <td>4.75</td>
+            <td>0.855</td>
+            <td>0.621</td>
+            <td><span class="badge neutral">NEUTRAL</span></td>
+        </tr>
+        <tr>
+            <td class="symbol">IREN</td>
+            <td>2026-04-17</td>
+            <td>$47.83</td>
+            <td>6,327,580</td>
+            <td class="">109.6%</td>
+            <td>86.3%</td>
+            <td class="">1.271</td>
+            <td>—</td>
+            <td>—</td>
+            <td class="orange">64.6</td>
+            <td>3.39</td>
+            <td>1.295</td>
+            <td>0.950</td>
+            <td><span class="badge neutral">NEUTRAL</span></td>
+        </tr>
+        <tr>
+            <td class="symbol">KTOS</td>
+            <td>2026-04-17</td>
+            <td>$74.21</td>
+            <td>402,293</td>
+            <td class="green">83.6%</td>
+            <td>87.2%</td>
+            <td class="green">0.958</td>
+            <td>—</td>
+            <td>—</td>
+            <td class="green">45.0</td>
+            <td>5.27</td>
+            <td>0.528</td>
+            <td>0.714</td>
+            <td><span class="badge buy-call">BUY CALL</span></td>
+        </tr>
+        <tr>
+            <td class="symbol">LMT</td>
+            <td>2026-04-17</td>
+            <td>$606.12</td>
+            <td>188,676</td>
+            <td class="orange">35.4%</td>
+            <td>24.0%</td>
+            <td class="orange">1.474</td>
+            <td>—</td>
+            <td>—</td>
+            <td class="green">41.0</td>
+            <td>14.46</td>
+            <td>0.733</td>
+            <td>0.711</td>
+            <td><span class="badge sell-put">SELL PUT</span></td>
+        </tr>
+        <tr>
+            <td class="symbol">MARA</td>
+            <td>2026-04-17</td>
+            <td>$11.78</td>
+            <td>11,498,416</td>
+            <td class="">99.7%</td>
+            <td>81.1%</td>
+            <td class="">1.229</td>
+            <td>—</td>
+            <td>—</td>
+            <td class="red">74.4</td>
+            <td>0.76</td>
+            <td>0.459</td>
+            <td>0.447</td>
+            <td><span class="badge neutral">NEUTRAL</span></td>
+        </tr>
+        <tr>
+            <td class="symbol">MP</td>
+            <td>2026-04-17</td>
+            <td>$63.08</td>
+            <td>1,016,987</td>
+            <td class="">82.9%</td>
+            <td>74.2%</td>
+            <td class="">1.117</td>
+            <td>—</td>
+            <td>—</td>
+            <td class="orange">65.1</td>
+            <td>3.32</td>
+            <td>0.458</td>
+            <td>0.661</td>
+            <td><span class="badge neutral">NEUTRAL</span></td>
+        </tr>
+        <tr>
+            <td class="symbol">MSFT</td>
+            <td>2026-04-17</td>
+            <td>$424.96</td>
+            <td>9,097,505</td>
+            <td class="">39.0%</td>
+            <td>30.8%</td>
+            <td class="">1.265</td>
+            <td>—</td>
+            <td>—</td>
+            <td class="red">72.8</td>
+            <td>9.54</td>
+            <td>1.668</td>
+            <td>0.467</td>
+            <td><span class="badge neutral">NEUTRAL</span></td>
+        </tr>
+        <tr>
+            <td class="symbol">MSTR</td>
+            <td>2026-04-17</td>
+            <td>$166.08</td>
+            <td>9,794,215</td>
+            <td class="">69.8%</td>
+            <td>64.4%</td>
+            <td class="">1.084</td>
+            <td>—</td>
+            <td>—</td>
+            <td class="red">72.2</td>
+            <td>8.80</td>
+            <td>1.395</td>
+            <td>0.936</td>
+            <td><span class="badge neutral">NEUTRAL</span></td>
+        </tr>
+        <tr>
+            <td class="symbol">NOW</td>
+            <td>2026-04-17</td>
+            <td>$97.55</td>
+            <td>3,389,076</td>
+            <td class="">72.2%</td>
+            <td>66.6%</td>
+            <td class="">1.085</td>
+            <td>—</td>
+            <td>—</td>
+            <td class="">45.8</td>
+            <td>5.46</td>
+            <td>0.567</td>
+            <td>0.573</td>
+            <td><span class="badge neutral">NEUTRAL</span></td>
+        </tr>
+        <tr>
+            <td class="symbol">NVO</td>
+            <td>2026-04-17</td>
+            <td>$40.85</td>
+            <td>2,748,407</td>
+            <td class="red">53.0%</td>
+            <td>26.0%</td>
+            <td class="red">2.038</td>
+            <td>—</td>
+            <td>—</td>
+            <td class="orange">65.7</td>
+            <td>1.15</td>
+            <td>0.938</td>
+            <td>0.652</td>
+            <td><span class="badge sell-call">SELL CALL</span></td>
+        </tr>
+        <tr>
+            <td class="symbol">OKLO</td>
+            <td>2026-04-17</td>
+            <td>$66.33</td>
+            <td>3,165,324</td>
+            <td class="">102.6%</td>
+            <td>85.8%</td>
+            <td class="">1.196</td>
+            <td>—</td>
+            <td>—</td>
+            <td class="orange">64.5</td>
+            <td>4.84</td>
+            <td>0.477</td>
+            <td>0.933</td>
+            <td><span class="badge neutral">NEUTRAL</span></td>
+        </tr>
+        <tr>
+            <td class="symbol">OPEN</td>
+            <td>2026-04-17</td>
+            <td>$5.34</td>
+            <td>9,183,792</td>
+            <td class="orange">103.3%</td>
+            <td>72.6%</td>
+            <td class="orange">1.423</td>
+            <td>—</td>
+            <td>—</td>
+            <td class="orange">60.4</td>
+            <td>0.33</td>
+            <td>0.482</td>
+            <td>0.300</td>
+            <td><span class="badge rich-iv">RICH IV</span></td>
+        </tr>
+        <tr>
+            <td class="symbol">OSCR</td>
+            <td>2026-04-17</td>
+            <td>$16.03</td>
+            <td>808,969</td>
+            <td class="">86.6%</td>
+            <td>70.3%</td>
+            <td class="">1.231</td>
+            <td>—</td>
+            <td>—</td>
+            <td class="red">70.8</td>
+            <td>0.74</td>
+            <td>0.650</td>
+            <td>0.533</td>
+            <td><span class="badge neutral">NEUTRAL</span></td>
+        </tr>
+        <tr>
+            <td class="symbol">RGTI</td>
+            <td>2026-04-17</td>
+            <td>$19.55</td>
+            <td>9,197,811</td>
+            <td class="">109.4%</td>
+            <td>87.1%</td>
+            <td class="">1.256</td>
+            <td>—</td>
+            <td>—</td>
+            <td class="orange">69.9</td>
+            <td>1.31</td>
+            <td>0.476</td>
+            <td>0.638</td>
+            <td><span class="badge neutral">NEUTRAL</span></td>
+        </tr>
+        <tr>
+            <td class="symbol">RKLB</td>
+            <td>2026-04-17</td>
+            <td>$85.32</td>
+            <td>7,681,046</td>
+            <td class="green">93.5%</td>
+            <td>95.4%</td>
+            <td class="green">0.980</td>
+            <td>—</td>
+            <td>—</td>
+            <td class="orange">67.3</td>
+            <td>5.55</td>
+            <td>0.537</td>
+            <td>0.780</td>
+            <td><span class="badge cheap-iv">CHEAP IV</span></td>
+        </tr>
+        <tr>
+            <td class="symbol">SLV</td>
+            <td>2026-04-17</td>
+            <td>$74.61</td>
+            <td>9,752,918</td>
+            <td class="green">56.2%</td>
+            <td>56.5%</td>
+            <td class="green">0.995</td>
+            <td>—</td>
+            <td>—</td>
+            <td class="">59.6</td>
+            <td>3.18</td>
+            <td>1.000</td>
+            <td>0.642</td>
+            <td><span class="badge buy-call">BUY CALL</span></td>
+        </tr>
+        <tr>
+            <td class="symbol">SMR</td>
+            <td>2026-04-17</td>
+            <td>$12.35</td>
+            <td>16,557,309</td>
+            <td class="">112.2%</td>
+            <td>95.5%</td>
+            <td class="">1.175</td>
+            <td>—</td>
+            <td>—</td>
+            <td class="">58.2</td>
+            <td>0.99</td>
+            <td>0.270</td>
+            <td>0.666</td>
+            <td><span class="badge neutral">NEUTRAL</span></td>
+        </tr>
+        <tr>
+            <td class="symbol">SOFI</td>
+            <td>2026-04-17</td>
+            <td>$19.78</td>
+            <td>14,525,868</td>
+            <td class="red">77.8%</td>
+            <td>47.0%</td>
+            <td class="red">1.657</td>
+            <td>—</td>
+            <td>—</td>
+            <td class="orange">69.5</td>
+            <td>0.89</td>
+            <td>0.787</td>
+            <td>0.636</td>
+            <td><span class="badge sell-call">SELL CALL</span></td>
+        </tr>
+        <tr>
+            <td class="symbol">TSM</td>
+            <td>2026-04-17</td>
+            <td>$372.29</td>
+            <td>4,416,367</td>
+            <td class="green">45.6%</td>
+            <td>48.0%</td>
+            <td class="green">0.950</td>
+            <td>—</td>
+            <td>—</td>
+            <td class="">59.3</td>
+            <td>12.59</td>
+            <td>1.221</td>
+            <td>1.467</td>
+            <td><span class="badge buy-call">BUY CALL</span></td>
+        </tr>
+        <tr>
+            <td class="symbol">UNH</td>
+            <td>2026-04-17</td>
+            <td>$322.30</td>
+            <td>1,370,956</td>
+            <td class="green">38.2%</td>
+            <td>40.4%</td>
+            <td class="green">0.947</td>
+            <td>—</td>
+            <td>—</td>
+            <td class="red">72.6</td>
+            <td>8.23</td>
+            <td>0.671</td>
+            <td>0.754</td>
+            <td><span class="badge cheap-iv">CHEAP IV</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="note">
+    IV Rank &amp; IV Percentile populate after 10+ days of data. &nbsp;|&nbsp;
+    Click any column header to sort. &nbsp;|&nbsp;
+    Signal logic: IV/HV &lt; 1.0 + RSI &lt; 60 = Buy Call &nbsp;|&nbsp; IV/HV &gt; 1.3 + RSI &gt; 65 = Sell Call &nbsp;|&nbsp; IV/HV &gt; 1.3 + RSI &lt; 45 = Sell Put
+  </p>
+
+</div>
+
+<script>
+  // ── Summary cards ──────────────────────────────────────────────────────────
+  const rows = [...document.querySelectorAll('#table-body tr')];
+
+  function countBadge(text) {
+    return rows.filter(r => r.querySelector('.badge')?.textContent.trim() === text).length;
+  }
+
+  const cards = [
+    { label: 'Total Symbols', value: rows.length },
+    { label: 'Buy Call',  value: countBadge('BUY CALL'),  color: '#58a6ff' },
+    { label: 'Cheap IV',  value: countBadge('CHEAP IV'),  color: '#79c0ff' },
+    { label: 'Sell Call', value: countBadge('SELL CALL'), color: '#f85149' },
+    { label: 'Sell Put',  value: countBadge('SELL PUT'),  color: '#3fb950' },
+    { label: 'Rich IV',   value: countBadge('RICH IV'),   color: '#d29922' },
+    { label: 'Neutral',   value: countBadge('NEUTRAL'),   color: '#8b949e' },
+  ];
+
+  const cardEl = document.getElementById('cards');
+  cards.forEach(c => {
+    cardEl.innerHTML += `<div class="card">
+      <div class="label">${c.label}</div>
+      <div class="value" style="color:${c.color || '#f0f6fc'}">${c.value}</div>
+    </div>`;
+  });
+
+  // ── Search ─────────────────────────────────────────────────────────────────
+  let activeSignal = '';
+
+  function filterTable() {
+    const q = document.getElementById('search').value.toLowerCase();
+    rows.forEach(r => {
+      const sym  = r.cells[0].textContent.toLowerCase();
+      const sig  = r.querySelector('.badge')?.textContent.trim() || '';
+      const show = sym.includes(q) && (activeSignal === '' || sig === activeSignal);
+      r.style.display = show ? '' : 'none';
+    });
+  }
+
+  function filterSignal(sig) {
+    activeSignal = sig;
+    document.querySelectorAll('.filter-btn').forEach(b => {
+      b.classList.toggle('active', b.textContent.trim() === (sig || 'All'));
+    });
+    filterTable();
+  }
+
+  filterSignal('');
+
+  // ── Sort ───────────────────────────────────────────────────────────────────
+  let sortCol = -1, sortDir = 1;
+
+  function sortTable(col) {
+    const tbody = document.getElementById('table-body');
+    const allRows = [...tbody.querySelectorAll('tr')];
+
+    if (sortCol === col) sortDir *= -1;
+    else { sortCol = col; sortDir = 1; }
+
+    document.querySelectorAll('thead th').forEach((th, i) => {
+      th.classList.remove('sort-asc', 'sort-desc');
+      if (i === col) th.classList.add(sortDir === 1 ? 'sort-asc' : 'sort-desc');
+    });
+
+    allRows.sort((a, b) => {
+      let av = a.cells[col].textContent.replace(/[$,%,]/g, '').trim();
+      let bv = b.cells[col].textContent.replace(/[$,%,]/g, '').trim();
+      const an = parseFloat(av), bn = parseFloat(bv);
+      if (!isNaN(an) && !isNaN(bn)) return (an - bn) * sortDir;
+      return av.localeCompare(bv) * sortDir;
+    });
+
+    allRows.forEach(r => tbody.appendChild(r));
+  }
+</script>
+
+</body>
+</html>
