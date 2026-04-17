@@ -168,7 +168,7 @@
 
 <header>
   <h1>Options Tracker</h1>
-  <span>Generated: 2026-04-17 23:07 &nbsp;|&nbsp; 33 symbols &nbsp;|&nbsp;
+  <span>Generated: 2026-04-17 23:12 &nbsp;|&nbsp; 33 symbols &nbsp;|&nbsp;
     Click any symbol for history</span>
 </header>
 
@@ -192,36 +192,52 @@
 
         <div class="ref-card">
           <h4>ATR — Average True Range</h4>
-          <p>How much the stock moves in dollars per day on average.</p>
+          <p>How much the stock moves in dollars per day on average. Calculated over the last 14 days.</p>
           <p>Higher ATR = bigger daily swings. Lower ATR = calmer stock.</p>
           <table>
             <tr><th>Use case</th><th>How</th></tr>
-            <tr><td>Pick strike</td><td>Sell options at least 1–2 ATR away from price</td></tr>
-            <tr><td>Position size</td><td>High ATR = smaller size to control risk</td></tr>
+            <tr><td>Pick strike</td><td>Sell options at least 1 to 2 ATR away from current price</td></tr>
+            <tr><td>Position size</td><td>High ATR stocks need smaller position size to control risk</td></tr>
           </table>
+          <p style="margin-top:8px; color:#58a6ff">
+            Example: AAOI price $157, ATR $14. That means it can swing $14 in a single day.
+            If you sell a call, pick a strike at least $28 above current price (2 ATR away) to avoid being hit.
+            A stock like LMT with ATR $15 on a $607 price is actually calmer in percentage terms (2.5%) vs AAOI ATR $14 on $157 (8.9%).
+          </p>
         </div>
 
         <div class="ref-card">
           <h4>P/C Vol — Put/Call Volume Ratio</h4>
-          <p>Total puts traded today divided by total calls traded today.</p>
+          <p>Total puts traded today divided by total calls traded today. Changes every day — reflects short term sentiment.</p>
           <table>
             <tr><th>Value</th><th>Meaning</th></tr>
-            <tr><td>Less than 0.7</td><td>More calls — bullish sentiment</td></tr>
+            <tr><td>Less than 0.5</td><td>Heavy call buying — strongly bullish</td></tr>
+            <tr><td>0.5 to 0.7</td><td>More calls — bullish sentiment</td></tr>
             <tr><td>0.7 to 1.0</td><td>Mild caution, slight put lean</td></tr>
             <tr><td>More than 1.0</td><td>Heavy puts — bearish or hedging</td></tr>
           </table>
+          <p style="margin-top:8px; color:#58a6ff">
+            Example: GRAB P/C Vol 0.08 means for every put traded, 12 calls were traded.
+            Extremely bullish — traders are piling into calls expecting a big move up.
+            MSFT P/C Vol 1.67 means more puts traded than calls today — could be hedging or bearish bets.
+          </p>
         </div>
 
         <div class="ref-card">
           <h4>P/C OI — Put/Call Open Interest</h4>
-          <p>All outstanding put contracts divided by all outstanding call contracts. Moves slowly — reflects positioning built over days or weeks. More reliable than volume.</p>
+          <p>All outstanding put contracts divided by all outstanding call contracts. Moves slowly — reflects positioning built over days or weeks. More reliable than volume for gauging real sentiment.</p>
           <table>
             <tr><th>P/C Vol</th><th>P/C OI</th><th>Reading</th></tr>
-            <tr><td>Less than 0.5</td><td>Less than 0.5</td><td>Strong bullish</td></tr>
-            <tr><td>More than 1.0</td><td>More than 1.0</td><td>Strong bearish</td></tr>
-            <tr><td>More than 1.0</td><td>Less than 0.7</td><td>One-day spike, not a trend</td></tr>
-            <tr><td>Less than 0.5</td><td>More than 1.0</td><td>Conflicting — calls today, puts building</td></tr>
+            <tr><td>Less than 0.5</td><td>Less than 0.5</td><td>Strong bullish — calls dominating</td></tr>
+            <tr><td>More than 1.0</td><td>More than 1.0</td><td>Strong bearish — puts dominating</td></tr>
+            <tr><td>More than 1.0</td><td>Less than 0.7</td><td>One-day put spike, not a real trend</td></tr>
+            <tr><td>Less than 0.5</td><td>More than 1.0</td><td>Calls today but puts building — conflicting</td></tr>
           </table>
+          <p style="margin-top:8px; color:#58a6ff">
+            Example: MSFT P/C Vol 1.67 but P/C OI 0.47. Lots of puts traded today but the overall
+            open interest is still call-heavy. This means today's put volume was likely short term hedging,
+            not a real bearish shift. Trust the OI more than the daily volume.
+          </p>
         </div>
 
         <div class="ref-card">
@@ -237,23 +253,34 @@
             <tr><td>1.3 to 1.6</td><td>Slightly expensive</td><td>Lean towards selling</td></tr>
             <tr><td>More than 1.6</td><td>Options expensive vs actual moves</td><td>Good time to sell</td></tr>
           </table>
-          <p style="margin-top:8px">
-            IV/HV less than 1.0 = market underpricing risk → options are a bargain<br>
-            IV/HV more than 1.0 = market overpricing risk → options are expensive
+          <p style="margin-top:8px; color:#58a6ff">
+            Example: KTOS IV 83%, HV 87%, IV/HV 0.95. Options are pricing in slightly less movement
+            than the stock has actually been making. Slight edge for buyers — you are paying less than
+            what the stock has historically justified.<br><br>
+            Example: NVO IV 53%, HV 26%, IV/HV 2.04. Options are pricing in double the actual movement.
+            Classic sell premium setup — collect the inflated premium and let time decay work for you.
           </p>
         </div>
 
         <div class="ref-card">
           <h4>RSI — Relative Strength Index</h4>
-          <p>Momentum indicator showing if a stock is overbought or oversold. Scale of 0 to 100.</p>
+          <p>Momentum indicator showing if a stock is overbought or oversold. Scale of 0 to 100. Calculated over 14 days.</p>
           <table>
-            <tr><th>Value</th><th>Meaning</th></tr>
-            <tr><td>More than 70</td><td>Overbought — likely to pull back</td></tr>
-            <tr><td>60 to 70</td><td>Strong momentum, watch for reversal</td></tr>
-            <tr><td>40 to 60</td><td>Neutral</td></tr>
-            <tr><td>30 to 40</td><td>Weak, possible bounce</td></tr>
-            <tr><td>Less than 30</td><td>Oversold — likely to bounce</td></tr>
+            <tr><th>Value</th><th>Meaning</th><th>Options signal</th></tr>
+            <tr><td>More than 70</td><td>Overbought — likely to pull back</td><td>Sell calls or buy puts</td></tr>
+            <tr><td>60 to 70</td><td>Strong momentum, watch for reversal</td><td>Caution on buying calls</td></tr>
+            <tr><td>40 to 60</td><td>Neutral</td><td>No strong directional bias</td></tr>
+            <tr><td>30 to 40</td><td>Weak, possible bounce forming</td><td>Watch for buy call entry</td></tr>
+            <tr><td>Less than 30</td><td>Oversold — likely to bounce</td><td>Buy calls or sell puts</td></tr>
           </table>
+          <p style="margin-top:8px; color:#58a6ff">
+            Example: MARA RSI 74. Stock is overbought after a strong run.
+            Pairing this with IV/HV 1.21 (options expensive) gives a strong Sell Call signal —
+            collect rich premium on a stock likely to stall or pull back.<br><br>
+            Example: ENPH RSI 35. Stock is oversold and likely to bounce.
+            Pairing with IV/HV 1.56 (options expensive) gives a strong Sell Put signal —
+            collect premium while expecting the stock to hold or recover.
+          </p>
         </div>
 
         <div class="ref-card">
@@ -268,26 +295,40 @@
             <tr><td>60 to 80</td><td>Above average — getting expensive</td></tr>
             <tr><td>80 to 100</td><td>IV near yearly high — options very expensive</td></tr>
           </table>
-          <p style="margin-top:8px">Example: IV Rank 80 means current IV is in the top 20% of its yearly range.</p>
+          <p style="margin-top:8px; color:#58a6ff">
+            Example: A stock has IV low of 20%, IV high of 80% over the past year.
+            Today IV is 65%. IV Rank = (65 − 20) ÷ (80 − 20) × 100 = 75.
+            IV is in the upper quarter of its yearly range — options are expensive, lean towards selling.<br><br>
+            Example: Same stock with IV at 25% today. IV Rank = (25 − 20) ÷ 60 × 100 = 8.
+            IV is near its yearly low — options are very cheap, lean towards buying.
+          </p>
           <p style="color:#d29922; margin-top:6px">Needs 10 or more days of data to calculate.</p>
         </div>
 
         <div class="ref-card">
           <h4>IV Percentile</h4>
-          <p>Answers: On what percentage of days in the past year was IV lower than today?</p>
+          <p>Answers: On what percentage of past trading days was IV lower than today?</p>
           <table>
             <tr><th>IV Pctile</th><th>Meaning</th></tr>
             <tr><td>Less than 20</td><td>IV very cheap — lower on only 20% of past days</td></tr>
             <tr><td>20 to 40</td><td>Cheap</td></tr>
             <tr><td>40 to 60</td><td>Average</td></tr>
             <tr><td>60 to 80</td><td>Expensive</td></tr>
-            <tr><td>More than 80</td><td>IV higher than almost all days — very expensive</td></tr>
+            <tr><td>More than 80</td><td>IV higher than almost all past days — very expensive</td></tr>
           </table>
-          <p style="margin-top:8px">Example: IV Percentile 85 means IV was lower than today on 85% of past trading days — options are very expensive right now.</p>
+          <p style="margin-top:8px; color:#58a6ff">
+            Example: IV Percentile 85 means that out of the last 252 trading days,
+            IV was lower than today on 214 of them. Options are more expensive than
+            85% of the time over the past year — strong case for selling premium.<br><br>
+            Example: IV Percentile 10 means IV is almost at its cheapest in a year.
+            Only 10% of past days had lower IV — great time to buy options before
+            IV expands back to normal levels.
+          </p>
           <p style="margin-top:8px; color:#8b949e">
-            <b style="color:#c9d1d9">IV Rank vs IV Percentile:</b> IV Rank can be distorted by one extreme spike in the past year.
-            IV Percentile counts actual days so one spike does not skew it.
-            Use both together — if both are above 70, options are genuinely expensive and selling premium is well supported.
+            <b style="color:#c9d1d9">IV Rank vs IV Percentile:</b> If a stock had one extreme spike last year,
+            IV Rank makes everything else look cheap by comparison. IV Percentile counts actual days
+            so one spike does not distort it. Use both — if both are above 70, options are
+            genuinely expensive and selling premium is well supported.
           </p>
           <p style="color:#d29922; margin-top:6px">Needs 10 or more days of data to calculate.</p>
         </div>
