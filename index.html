@@ -168,7 +168,7 @@
 
 <header>
   <h1>Options Tracker</h1>
-  <span>Generated: 2026-04-17 23:03 &nbsp;|&nbsp; 33 symbols &nbsp;|&nbsp;
+  <span>Generated: 2026-04-17 23:07 &nbsp;|&nbsp; 33 symbols &nbsp;|&nbsp;
     Click any symbol for history</span>
 </header>
 
@@ -226,15 +226,21 @@
 
         <div class="ref-card">
           <h4>IV / HV Ratio</h4>
-          <p>Implied volatility divided by historical volatility.</p>
+          <p><b style="color:#c9d1d9">IV</b> = what the options market expects the stock to move in the future.<br>
+          <b style="color:#c9d1d9">HV</b> = what the stock has actually moved in the past 20 days.<br>
+          Dividing them tells you if options are cheap or expensive right now.</p>
           <table>
-            <tr><th>Value</th><th>Meaning</th></tr>
-            <tr><td>Less than 0.85</td><td>Options notably cheap — good to buy</td></tr>
-            <tr><td>0.85 to 1.0</td><td>Slightly cheap — favour buying</td></tr>
-            <tr><td>1.0 to 1.3</td><td>Fair value</td></tr>
-            <tr><td>1.3 to 1.6</td><td>Slightly expensive — favour selling</td></tr>
-            <tr><td>More than 1.6</td><td>Options expensive — strong sell signal</td></tr>
+            <tr><th>Value</th><th>Meaning</th><th>Action</th></tr>
+            <tr><td>Less than 0.85</td><td>Options notably cheap vs actual moves</td><td>Good time to buy</td></tr>
+            <tr><td>0.85 to 1.0</td><td>Slightly cheap</td><td>Lean towards buying</td></tr>
+            <tr><td>1.0 to 1.3</td><td>Fair value</td><td>Neutral</td></tr>
+            <tr><td>1.3 to 1.6</td><td>Slightly expensive</td><td>Lean towards selling</td></tr>
+            <tr><td>More than 1.6</td><td>Options expensive vs actual moves</td><td>Good time to sell</td></tr>
           </table>
+          <p style="margin-top:8px">
+            IV/HV less than 1.0 = market underpricing risk → options are a bargain<br>
+            IV/HV more than 1.0 = market overpricing risk → options are expensive
+          </p>
         </div>
 
         <div class="ref-card">
@@ -251,13 +257,39 @@
         </div>
 
         <div class="ref-card">
-          <h4>IV Rank &amp; IV Percentile</h4>
-          <p>Both measure how expensive IV is relative to its own history.</p>
-          <p><b style="color:#c9d1d9">IV Rank</b> — position between 52-week low and high.<br>
-          50 means IV is in the middle of its yearly range.</p>
-          <p><b style="color:#c9d1d9">IV Percentile</b> — percentage of past days where IV was lower.<br>
-          80 means IV is higher than 80% of days in the past year.</p>
-          <p style="color:#d29922">Needs 10 or more days of data to calculate.</p>
+          <h4>IV Rank</h4>
+          <p>Answers: Is IV high or low compared to the past 52 weeks?<br>
+          Formula: (Current IV − 52w Low) ÷ (52w High − 52w Low) × 100</p>
+          <table>
+            <tr><th>IV Rank</th><th>Meaning</th></tr>
+            <tr><td>0 to 20</td><td>IV near yearly low — options very cheap historically</td></tr>
+            <tr><td>20 to 40</td><td>Below average — still cheap</td></tr>
+            <tr><td>40 to 60</td><td>Middle of the range — neutral</td></tr>
+            <tr><td>60 to 80</td><td>Above average — getting expensive</td></tr>
+            <tr><td>80 to 100</td><td>IV near yearly high — options very expensive</td></tr>
+          </table>
+          <p style="margin-top:8px">Example: IV Rank 80 means current IV is in the top 20% of its yearly range.</p>
+          <p style="color:#d29922; margin-top:6px">Needs 10 or more days of data to calculate.</p>
+        </div>
+
+        <div class="ref-card">
+          <h4>IV Percentile</h4>
+          <p>Answers: On what percentage of days in the past year was IV lower than today?</p>
+          <table>
+            <tr><th>IV Pctile</th><th>Meaning</th></tr>
+            <tr><td>Less than 20</td><td>IV very cheap — lower on only 20% of past days</td></tr>
+            <tr><td>20 to 40</td><td>Cheap</td></tr>
+            <tr><td>40 to 60</td><td>Average</td></tr>
+            <tr><td>60 to 80</td><td>Expensive</td></tr>
+            <tr><td>More than 80</td><td>IV higher than almost all days — very expensive</td></tr>
+          </table>
+          <p style="margin-top:8px">Example: IV Percentile 85 means IV was lower than today on 85% of past trading days — options are very expensive right now.</p>
+          <p style="margin-top:8px; color:#8b949e">
+            <b style="color:#c9d1d9">IV Rank vs IV Percentile:</b> IV Rank can be distorted by one extreme spike in the past year.
+            IV Percentile counts actual days so one spike does not skew it.
+            Use both together — if both are above 70, options are genuinely expensive and selling premium is well supported.
+          </p>
+          <p style="color:#d29922; margin-top:6px">Needs 10 or more days of data to calculate.</p>
         </div>
 
       </div>
