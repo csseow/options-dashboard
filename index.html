@@ -19,7 +19,6 @@
   header span { color: #8b949e; font-size: 12px; }
   .container { padding: 16px 24px; }
 
-  /* Summary cards */
   .cards { display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
   .card {
     background: #161b22; border: 1px solid #30363d;
@@ -28,8 +27,7 @@
   .card .label { color: #8b949e; font-size: 11px; margin-bottom: 4px; }
   .card .value { font-size: 20px; font-weight: 600; color: #f0f6fc; }
 
-  /* Search */
-  .toolbar { margin-bottom: 12px; display: flex; gap: 10px; align-items: center; }
+  .toolbar { margin-bottom: 12px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
   input[type=text] {
     background: #161b22; border: 1px solid #30363d; color: #c9d1d9;
     padding: 6px 12px; border-radius: 6px; font-size: 13px; width: 200px;
@@ -39,9 +37,10 @@
     background: #21262d; border: 1px solid #30363d; color: #c9d1d9;
     padding: 5px 12px; border-radius: 6px; cursor: pointer; font-size: 12px;
   }
-  .filter-btn:hover, .filter-btn.active { background: #388bfd22; border-color: #388bfd; color: #58a6ff; }
+  .filter-btn:hover, .filter-btn.active {
+    background: #388bfd22; border-color: #388bfd; color: #58a6ff;
+  }
 
-  /* Table */
   .table-wrap { overflow-x: auto; border-radius: 8px; border: 1px solid #30363d; }
   table { width: 100%; border-collapse: collapse; }
   thead th {
@@ -55,21 +54,24 @@
   thead th.sort-asc::after  { content: " ▲"; }
   thead th.sort-desc::after { content: " ▼"; }
 
-  tbody tr { border-bottom: 1px solid #21262d; }
+  tbody tr { border-bottom: 1px solid #21262d; transition: background 0.1s; }
   tbody tr:last-child { border-bottom: none; }
-  tbody tr:hover { background: #161b22; }
+  tbody tr:hover { background: #1c2128; }
   td { padding: 8px 12px; text-align: right; white-space: nowrap; }
   td:first-child, td:nth-child(2) { text-align: left; }
 
-  .symbol { font-weight: 700; color: #f0f6fc; font-size: 13px; }
+  .symbol { font-weight: 700; color: #58a6ff; font-size: 13px; text-decoration: underline dotted; }
 
-  /* Colour classes */
   .green-strong { color: #3fb950; font-weight: 600; }
   .green        { color: #56d364; }
   .orange       { color: #d29922; }
   .red          { color: #f85149; }
 
-  /* Signal badges */
+  .trend-up   { color: #3fb950; font-size: 12px; }
+  .trend-dn   { color: #f85149; font-size: 12px; }
+  .trend-flat { color: #8b949e; font-size: 12px; }
+  .trend-na   { color: #444;    font-size: 12px; }
+
   .badge {
     display: inline-block; padding: 2px 8px; border-radius: 12px;
     font-size: 11px; font-weight: 600; letter-spacing: 0.3px;
@@ -79,7 +81,47 @@
   .sell-call { background: #f8514922; color: #f85149; border: 1px solid #f8514966; }
   .sell-put  { background: #3fb95022; color: #3fb950; border: 1px solid #3fb95066; }
   .rich-iv   { background: #d2992222; color: #d29922; border: 1px solid #d2992266; }
-  .neutral   { background: #30363d; color: #8b949e; border: 1px solid #30363d; }
+  .neutral   { background: #30363d;   color: #8b949e; border: 1px solid #30363d; }
+
+  /* ── Modal ── */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.7); z-index: 100;
+    align-items: center; justify-content: center;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: #161b22; border: 1px solid #30363d; border-radius: 10px;
+    width: 95vw; max-width: 900px; max-height: 88vh;
+    overflow: hidden; display: flex; flex-direction: column;
+  }
+  .modal-header {
+    padding: 14px 18px; border-bottom: 1px solid #30363d;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .modal-header h2 { font-size: 16px; color: #f0f6fc; }
+  .modal-close {
+    background: none; border: none; color: #8b949e;
+    font-size: 20px; cursor: pointer; line-height: 1;
+  }
+  .modal-close:hover { color: #f0f6fc; }
+  .modal-body { overflow-y: auto; padding: 16px 18px; }
+
+  /* Mini chart */
+  .chart-wrap { margin-bottom: 16px; }
+  .chart-wrap h3 { font-size: 12px; color: #8b949e; margin-bottom: 6px; }
+
+  /* History table inside modal */
+  .hist-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .hist-table th {
+    background: #0d1117; color: #8b949e; padding: 7px 10px;
+    text-align: right; border-bottom: 1px solid #30363d; white-space: nowrap;
+  }
+  .hist-table th:first-child { text-align: left; }
+  .hist-table td { padding: 6px 10px; text-align: right; border-bottom: 1px solid #21262d; }
+  .hist-table td:first-child { text-align: left; color: #8b949e; }
+  .hist-table tr:last-child td { border-bottom: none; }
+  .hist-table tr:hover td { background: #1c2128; }
 
   .note { color: #8b949e; font-size: 11px; margin-top: 12px; }
 </style>
@@ -88,15 +130,13 @@
 
 <header>
   <h1>Options Tracker</h1>
-  <span>Generated: 2026-04-17 22:30 &nbsp;|&nbsp; 33 symbols</span>
+  <span>Generated: 2026-04-17 22:36 &nbsp;|&nbsp; 33 symbols &nbsp;|&nbsp;
+    Click any symbol for history</span>
 </header>
 
 <div class="container">
-
-  <!-- Summary cards -->
   <div class="cards" id="cards"></div>
 
-  <!-- Toolbar -->
   <div class="toolbar">
     <input type="text" id="search" placeholder="Search symbol..." onkeyup="filterTable()">
     <button class="filter-btn" onclick="filterSignal('')">All</button>
@@ -107,644 +147,778 @@
     <button class="filter-btn" onclick="filterSignal('CHEAP IV')">Cheap IV</button>
   </div>
 
-  <!-- Table -->
   <div class="table-wrap">
     <table id="main-table">
-      <thead>
-        <tr>
-          <th onclick="sortTable(0)">Symbol</th>
-          <th onclick="sortTable(1)">Date</th>
-          <th onclick="sortTable(2)">Price</th>
-          <th onclick="sortTable(3)">Volume</th>
-          <th onclick="sortTable(4)">IV%</th>
-          <th onclick="sortTable(5)">HV%</th>
-          <th onclick="sortTable(6)">IV/HV</th>
-          <th onclick="sortTable(7)">IV Rank</th>
-          <th onclick="sortTable(8)">IV Pctile</th>
-          <th onclick="sortTable(9)">RSI</th>
-          <th onclick="sortTable(10)">ATR</th>
-          <th onclick="sortTable(11)">P/C Vol</th>
-          <th onclick="sortTable(12)">P/C OI</th>
-          <th onclick="sortTable(13)">Signal</th>
-        </tr>
-      </thead>
+      <thead><tr>
+        <th onclick="sortTable(0)">Symbol</th>
+        <th onclick="sortTable(1)">Date</th>
+        <th onclick="sortTable(2)">Price</th>
+        <th onclick="sortTable(3)">Volume</th>
+        <th onclick="sortTable(4)">IV%</th>
+        <th onclick="sortTable(5)">HV%</th>
+        <th onclick="sortTable(6)">IV/HV</th>
+        <th onclick="sortTable(7)">IV Rank</th>
+        <th onclick="sortTable(8)">IV Pctile</th>
+        <th onclick="sortTable(9)">RSI</th>
+        <th onclick="sortTable(10)">ATR</th>
+        <th onclick="sortTable(11)">P/C Vol</th>
+        <th onclick="sortTable(12)">P/C OI</th>
+        <th>IV Trend</th>
+        <th>RSI Trend</th>
+        <th onclick="sortTable(15)">Signal</th>
+      </tr></thead>
       <tbody id="table-body">
-        
-        <tr>
+        <tr class="data-row" data-symbol="AAOI" style="cursor:pointer">
             <td class="symbol">AAOI</td>
             <td>2026-04-17</td>
             <td>$157.74</td>
             <td>2,330,514</td>
-            <td class="">169.8%</td>
-            <td>156.3%</td>
-            <td class="">1.086</td>
+            <td class="">169.8% <span class="trend-up">↑</span></td>
+            <td>156.3% <span class="trend-flat">→</span></td>
+            <td class="">1.086 <span class="trend-up">↑</span></td>
             <td>—</td>
             <td>—</td>
-            <td class="red">70.1</td>
+            <td class="red">70.1 <span class="trend-up">↑</span></td>
             <td>14.04</td>
             <td>0.602</td>
             <td>1.199</td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,23.0 L 80.0,1.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="1.0" r="2" fill="#3fb950"/></svg></td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,23.0 L 80.0,1.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="1.0" r="2" fill="#3fb950"/></svg></td>
             <td><span class="badge neutral">NEUTRAL</span></td>
         </tr>
-        <tr>
+        <tr class="data-row" data-symbol="ASTS" style="cursor:pointer">
             <td class="symbol">ASTS</td>
             <td>2026-04-17</td>
             <td>$88.27</td>
             <td>3,651,259</td>
-            <td class="">107.3%</td>
-            <td>105.3%</td>
-            <td class="">1.019</td>
+            <td class="">107.3% <span class="trend-dn">↓</span></td>
+            <td>105.3% <span class="trend-flat">→</span></td>
+            <td class="">1.019 <span class="trend-dn">↓</span></td>
             <td>—</td>
             <td>—</td>
-            <td class="">48.3</td>
+            <td class="">48.3 <span class="trend-up">↑</span></td>
             <td>8.08</td>
             <td>0.711</td>
             <td>0.647</td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,1.0 L 80.0,23.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="23.0" r="2" fill="#f85149"/></svg></td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,23.0 L 80.0,1.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="1.0" r="2" fill="#3fb950"/></svg></td>
             <td><span class="badge neutral">NEUTRAL</span></td>
         </tr>
-        <tr>
+        <tr class="data-row" data-symbol="AXTI" style="cursor:pointer">
             <td class="symbol">AXTI</td>
             <td>2026-04-17</td>
             <td>$77.11</td>
             <td>3,075,848</td>
-            <td class="">206.4%</td>
-            <td>206.4%</td>
-            <td class="">1.000</td>
+            <td class="">206.4% <span class="trend-up">↑</span></td>
+            <td>206.4% <span class="trend-up">↑</span></td>
+            <td class="">1.000 <span class="trend-dn">↓</span></td>
             <td>—</td>
             <td>—</td>
-            <td class="orange">63.7</td>
+            <td class="orange">63.7 <span class="trend-up">↑</span></td>
             <td>9.56</td>
             <td>0.706</td>
             <td>1.009</td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,23.0 L 80.0,1.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="1.0" r="2" fill="#3fb950"/></svg></td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,23.0 L 80.0,1.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="1.0" r="2" fill="#3fb950"/></svg></td>
             <td><span class="badge neutral">NEUTRAL</span></td>
         </tr>
-        <tr>
+        <tr class="data-row" data-symbol="BABA" style="cursor:pointer">
             <td class="symbol">BABA</td>
             <td>2026-04-17</td>
             <td>$141.86</td>
             <td>3,313,334</td>
-            <td class="">45.4%</td>
-            <td>37.2%</td>
-            <td class="">1.219</td>
+            <td class="">45.4% <span class="trend-flat">→</span></td>
+            <td>37.2% <span class="trend-dn">↓</span></td>
+            <td class="">1.219 <span class="trend-up">↑</span></td>
             <td>—</td>
             <td>—</td>
-            <td class="orange">64.7</td>
+            <td class="orange">64.7 <span class="trend-up">↑</span></td>
             <td>4.37</td>
             <td>0.349</td>
             <td>0.450</td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,1.0 L 80.0,23.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="23.0" r="2" fill="#f85149"/></svg></td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,23.0 L 80.0,1.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="1.0" r="2" fill="#3fb950"/></svg></td>
             <td><span class="badge neutral">NEUTRAL</span></td>
         </tr>
-        <tr>
+        <tr class="data-row" data-symbol="BBAI" style="cursor:pointer">
             <td class="symbol">BBAI</td>
             <td>2026-04-17</td>
             <td>$3.91</td>
             <td>7,380,800</td>
-            <td class="">100.0%</td>
-            <td>82.8%</td>
-            <td class="">1.208</td>
+            <td class="">100.0% <span class="trend-dn">↓</span></td>
+            <td>82.8% <span class="trend-flat">→</span></td>
+            <td class="">1.208 <span class="trend-dn">↓</span></td>
             <td>—</td>
             <td>—</td>
-            <td class="">57.0</td>
+            <td class="">57.0 <span class="trend-up">↑</span></td>
             <td>0.25</td>
             <td>0.319</td>
             <td>0.243</td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,1.0 L 80.0,23.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="23.0" r="2" fill="#f85149"/></svg></td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,23.0 L 80.0,1.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="1.0" r="2" fill="#3fb950"/></svg></td>
             <td><span class="badge neutral">NEUTRAL</span></td>
         </tr>
-        <tr>
+        <tr class="data-row" data-symbol="BMNR" style="cursor:pointer">
             <td class="symbol">BMNR</td>
             <td>2026-04-17</td>
             <td>$23.92</td>
             <td>13,919,315</td>
-            <td class="orange">91.7%</td>
-            <td>64.9%</td>
-            <td class="orange">1.413</td>
+            <td class="orange">91.7% <span class="trend-up">↑</span></td>
+            <td>64.9% <span class="trend-dn">↓</span></td>
+            <td class="orange">1.413 <span class="trend-up">↑</span></td>
             <td>—</td>
             <td>—</td>
-            <td class="orange">64.8</td>
+            <td class="orange">64.8 <span class="trend-up">↑</span></td>
             <td>1.42</td>
             <td>2.357</td>
             <td>0.656</td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,23.0 L 80.0,1.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="1.0" r="2" fill="#3fb950"/></svg></td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,23.0 L 80.0,1.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="1.0" r="2" fill="#3fb950"/></svg></td>
             <td><span class="badge rich-iv">RICH IV</span></td>
         </tr>
-        <tr>
+        <tr class="data-row" data-symbol="CF" style="cursor:pointer">
             <td class="symbol">CF</td>
             <td>2026-04-17</td>
             <td>$111.93</td>
             <td>1,363,604</td>
-            <td class="">74.5%</td>
-            <td>63.6%</td>
-            <td class="">1.172</td>
+            <td class="">74.5% <span class="trend-up">↑</span></td>
+            <td>63.6% <span class="trend-up">↑</span></td>
+            <td class="">1.172 <span class="trend-up">↑</span></td>
             <td>—</td>
             <td>—</td>
-            <td class="green">40.9</td>
+            <td class="green">40.9 <span class="trend-dn">↓</span></td>
             <td>7.58</td>
             <td>1.292</td>
             <td>0.705</td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,23.0 L 80.0,1.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="1.0" r="2" fill="#3fb950"/></svg></td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,1.0 L 80.0,23.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="23.0" r="2" fill="#f85149"/></svg></td>
             <td><span class="badge neutral">NEUTRAL</span></td>
         </tr>
-        <tr>
+        <tr class="data-row" data-symbol="CLSK" style="cursor:pointer">
             <td class="symbol">CLSK</td>
             <td>2026-04-17</td>
             <td>$11.93</td>
             <td>3,981,094</td>
-            <td class="orange">101.4%</td>
-            <td>74.1%</td>
-            <td class="orange">1.367</td>
+            <td class="orange">101.4% <span class="trend-flat">→</span></td>
+            <td>74.1% <span class="trend-flat">→</span></td>
+            <td class="orange">1.367 <span class="trend-flat">→</span></td>
             <td>—</td>
             <td>—</td>
-            <td class="orange">68.9</td>
+            <td class="orange">68.9 <span class="trend-up">↑</span></td>
             <td>0.77</td>
             <td>0.694</td>
             <td>0.985</td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,23.0 L 80.0,1.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="1.0" r="2" fill="#3fb950"/></svg></td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,23.0 L 80.0,1.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="1.0" r="2" fill="#3fb950"/></svg></td>
             <td><span class="badge sell-call">SELL CALL</span></td>
         </tr>
-        <tr>
+        <tr class="data-row" data-symbol="COIN" style="cursor:pointer">
             <td class="symbol">COIN</td>
             <td>2026-04-17</td>
             <td>$207.10</td>
             <td>2,596,899</td>
-            <td class="">85.3%</td>
-            <td>70.3%</td>
-            <td class="">1.213</td>
+            <td class="">85.3% <span class="trend-up">↑</span></td>
+            <td>70.3% <span class="trend-flat">→</span></td>
+            <td class="">1.213 <span class="trend-up">↑</span></td>
             <td>—</td>
             <td>—</td>
-            <td class="orange">64.9</td>
+            <td class="orange">64.9 <span class="trend-up">↑</span></td>
             <td>11.20</td>
             <td>0.919</td>
             <td>0.497</td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,23.0 L 80.0,1.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="1.0" r="2" fill="#3fb950"/></svg></td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,23.0 L 80.0,1.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="1.0" r="2" fill="#3fb950"/></svg></td>
             <td><span class="badge neutral">NEUTRAL</span></td>
         </tr>
-        <tr>
+        <tr class="data-row" data-symbol="CRM" style="cursor:pointer">
             <td class="symbol">CRM</td>
             <td>2026-04-17</td>
             <td>$185.95</td>
             <td>3,442,255</td>
-            <td class="green">41.9%</td>
-            <td>44.7%</td>
-            <td class="green">0.937</td>
+            <td class="green">41.9% <span class="trend-dn">↓</span></td>
+            <td>44.7% <span class="trend-up">↑</span></td>
+            <td class="green">0.937 <span class="trend-dn">↓</span></td>
             <td>—</td>
             <td>—</td>
-            <td class="">52.3</td>
+            <td class="">52.3 <span class="trend-up">↑</span></td>
             <td>7.48</td>
             <td>1.703</td>
             <td>0.628</td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,1.0 L 80.0,23.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="23.0" r="2" fill="#f85149"/></svg></td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,23.0 L 80.0,1.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="1.0" r="2" fill="#3fb950"/></svg></td>
             <td><span class="badge buy-call">BUY CALL</span></td>
         </tr>
-        <tr>
+        <tr class="data-row" data-symbol="DDOG" style="cursor:pointer">
             <td class="symbol">DDOG</td>
             <td>2026-04-17</td>
             <td>$126.05</td>
             <td>625,628</td>
-            <td class="">80.8%</td>
-            <td>63.6%</td>
-            <td class="">1.271</td>
+            <td class="">80.8% <span class="trend-dn">↓</span></td>
+            <td>63.6% <span class="trend-flat">→</span></td>
+            <td class="">1.271 <span class="trend-dn">↓</span></td>
             <td>—</td>
             <td>—</td>
-            <td class="">58.1</td>
+            <td class="">58.1 <span class="trend-up">↑</span></td>
             <td>7.07</td>
             <td>0.709</td>
             <td>0.950</td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,1.0 L 80.0,23.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="23.0" r="2" fill="#f85149"/></svg></td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,23.0 L 80.0,1.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="1.0" r="2" fill="#3fb950"/></svg></td>
             <td><span class="badge neutral">NEUTRAL</span></td>
         </tr>
-        <tr>
+        <tr class="data-row" data-symbol="ENPH" style="cursor:pointer">
             <td class="symbol">ENPH</td>
             <td>2026-04-17</td>
             <td>$32.40</td>
             <td>670,884</td>
-            <td class="orange">101.0%</td>
-            <td>64.7%</td>
-            <td class="orange">1.561</td>
+            <td class="orange">101.0% <span class="trend-up">↑</span></td>
+            <td>64.7% <span class="trend-dn">↓</span></td>
+            <td class="orange">1.561 <span class="trend-up">↑</span></td>
             <td>—</td>
             <td>—</td>
-            <td class="green">36.5</td>
+            <td class="green">36.5 <span class="trend-up">↑</span></td>
             <td>2.19</td>
             <td>1.572</td>
             <td>0.691</td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,23.0 L 80.0,1.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="1.0" r="2" fill="#3fb950"/></svg></td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,23.0 L 80.0,1.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="1.0" r="2" fill="#3fb950"/></svg></td>
             <td><span class="badge sell-put">SELL PUT</span></td>
         </tr>
-        <tr>
+        <tr class="data-row" data-symbol="GRAB" style="cursor:pointer">
             <td class="symbol">GRAB</td>
             <td>2026-04-17</td>
             <td>$4.21</td>
             <td>9,777,302</td>
-            <td class="red">67.5%</td>
-            <td>38.4%</td>
-            <td class="red">1.758</td>
+            <td class="red">67.5% <span class="trend-up">↑</span></td>
+            <td>38.4% <span class="trend-up">↑</span></td>
+            <td class="red">1.758 <span class="trend-flat">→</span></td>
             <td>—</td>
             <td>—</td>
-            <td class="orange">69.2</td>
+            <td class="orange">69.2 <span class="trend-up">↑</span></td>
             <td>0.17</td>
             <td>0.080</td>
             <td>0.112</td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,23.0 L 80.0,1.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="1.0" r="2" fill="#3fb950"/></svg></td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,23.0 L 80.0,1.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="1.0" r="2" fill="#3fb950"/></svg></td>
             <td><span class="badge sell-call">SELL CALL</span></td>
         </tr>
-        <tr>
+        <tr class="data-row" data-symbol="HOOD" style="cursor:pointer">
             <td class="symbol">HOOD</td>
             <td>2026-04-17</td>
             <td>$90.24</td>
             <td>11,216,997</td>
-            <td class="">79.0%</td>
-            <td>71.7%</td>
-            <td class="">1.101</td>
+            <td class="">79.0% <span class="trend-up">↑</span></td>
+            <td>71.7% <span class="trend-flat">→</span></td>
+            <td class="">1.101 <span class="trend-up">↑</span></td>
             <td>—</td>
             <td>—</td>
-            <td class="orange">69.7</td>
+            <td class="orange">69.7 <span class="trend-up">↑</span></td>
             <td>4.75</td>
             <td>0.855</td>
             <td>0.621</td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,23.0 L 80.0,1.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="1.0" r="2" fill="#3fb950"/></svg></td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,23.0 L 80.0,1.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="1.0" r="2" fill="#3fb950"/></svg></td>
             <td><span class="badge neutral">NEUTRAL</span></td>
         </tr>
-        <tr>
+        <tr class="data-row" data-symbol="IREN" style="cursor:pointer">
             <td class="symbol">IREN</td>
             <td>2026-04-17</td>
             <td>$47.83</td>
             <td>6,327,580</td>
-            <td class="">109.6%</td>
-            <td>86.3%</td>
-            <td class="">1.271</td>
+            <td class="">109.6% <span class="trend-dn">↓</span></td>
+            <td>86.3% <span class="trend-flat">→</span></td>
+            <td class="">1.271 <span class="trend-dn">↓</span></td>
             <td>—</td>
             <td>—</td>
-            <td class="orange">64.6</td>
+            <td class="orange">64.6 <span class="trend-dn">↓</span></td>
             <td>3.39</td>
             <td>1.295</td>
             <td>0.950</td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,1.0 L 80.0,23.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="23.0" r="2" fill="#f85149"/></svg></td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,1.0 L 80.0,23.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="23.0" r="2" fill="#f85149"/></svg></td>
             <td><span class="badge neutral">NEUTRAL</span></td>
         </tr>
-        <tr>
+        <tr class="data-row" data-symbol="KTOS" style="cursor:pointer">
             <td class="symbol">KTOS</td>
             <td>2026-04-17</td>
             <td>$74.21</td>
             <td>402,293</td>
-            <td class="green">83.6%</td>
-            <td>87.2%</td>
-            <td class="green">0.958</td>
+            <td class="green">83.6% <span class="trend-flat">→</span></td>
+            <td>87.2% <span class="trend-flat">→</span></td>
+            <td class="green">0.958 <span class="trend-flat">→</span></td>
             <td>—</td>
             <td>—</td>
-            <td class="green">45.0</td>
+            <td class="green">45.0 <span class="trend-flat">→</span></td>
             <td>5.27</td>
             <td>0.528</td>
             <td>0.714</td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,1.0 L 80.0,23.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="23.0" r="2" fill="#f85149"/></svg></td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,1.0 L 80.0,23.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="23.0" r="2" fill="#f85149"/></svg></td>
             <td><span class="badge buy-call">BUY CALL</span></td>
         </tr>
-        <tr>
+        <tr class="data-row" data-symbol="LMT" style="cursor:pointer">
             <td class="symbol">LMT</td>
             <td>2026-04-17</td>
             <td>$606.12</td>
             <td>188,676</td>
-            <td class="orange">35.4%</td>
-            <td>24.0%</td>
-            <td class="orange">1.474</td>
+            <td class="orange">35.4% <span class="trend-flat">→</span></td>
+            <td>24.0% <span class="trend-flat">→</span></td>
+            <td class="orange">1.474 <span class="trend-flat">→</span></td>
             <td>—</td>
             <td>—</td>
-            <td class="green">41.0</td>
+            <td class="green">41.0 <span class="trend-dn">↓</span></td>
             <td>14.46</td>
             <td>0.733</td>
             <td>0.711</td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,23.0 L 80.0,1.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="1.0" r="2" fill="#3fb950"/></svg></td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,1.0 L 80.0,23.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="23.0" r="2" fill="#f85149"/></svg></td>
             <td><span class="badge sell-put">SELL PUT</span></td>
         </tr>
-        <tr>
+        <tr class="data-row" data-symbol="MARA" style="cursor:pointer">
             <td class="symbol">MARA</td>
             <td>2026-04-17</td>
             <td>$11.78</td>
             <td>11,498,416</td>
-            <td class="">99.7%</td>
-            <td>81.1%</td>
-            <td class="">1.229</td>
+            <td class="">99.7% <span class="trend-up">↑</span></td>
+            <td>81.1% <span class="trend-up">↑</span></td>
+            <td class="">1.229 <span class="trend-dn">↓</span></td>
             <td>—</td>
             <td>—</td>
-            <td class="red">74.4</td>
+            <td class="red">74.4 <span class="trend-up">↑</span></td>
             <td>0.76</td>
             <td>0.459</td>
             <td>0.447</td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,23.0 L 80.0,1.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="1.0" r="2" fill="#3fb950"/></svg></td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,23.0 L 80.0,1.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="1.0" r="2" fill="#3fb950"/></svg></td>
             <td><span class="badge neutral">NEUTRAL</span></td>
         </tr>
-        <tr>
+        <tr class="data-row" data-symbol="MP" style="cursor:pointer">
             <td class="symbol">MP</td>
             <td>2026-04-17</td>
             <td>$63.08</td>
             <td>1,016,987</td>
-            <td class="">82.9%</td>
-            <td>74.2%</td>
-            <td class="">1.117</td>
+            <td class="">82.9% <span class="trend-up">↑</span></td>
+            <td>74.2% <span class="trend-dn">↓</span></td>
+            <td class="">1.117 <span class="trend-up">↑</span></td>
             <td>—</td>
             <td>—</td>
-            <td class="orange">65.1</td>
+            <td class="orange">65.1 <span class="trend-up">↑</span></td>
             <td>3.32</td>
             <td>0.458</td>
             <td>0.661</td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,23.0 L 80.0,1.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="1.0" r="2" fill="#3fb950"/></svg></td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,23.0 L 80.0,1.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="1.0" r="2" fill="#3fb950"/></svg></td>
             <td><span class="badge neutral">NEUTRAL</span></td>
         </tr>
-        <tr>
+        <tr class="data-row" data-symbol="MSFT" style="cursor:pointer">
             <td class="symbol">MSFT</td>
             <td>2026-04-17</td>
             <td>$424.96</td>
             <td>9,097,505</td>
-            <td class="">39.0%</td>
-            <td>30.8%</td>
-            <td class="">1.265</td>
+            <td class="">39.0% <span class="trend-dn">↓</span></td>
+            <td>30.8% <span class="trend-flat">→</span></td>
+            <td class="">1.265 <span class="trend-flat">→</span></td>
             <td>—</td>
             <td>—</td>
-            <td class="red">72.8</td>
+            <td class="red">72.8 <span class="trend-up">↑</span></td>
             <td>9.54</td>
             <td>1.668</td>
             <td>0.467</td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,1.0 L 80.0,23.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="23.0" r="2" fill="#f85149"/></svg></td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,23.0 L 80.0,1.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="1.0" r="2" fill="#3fb950"/></svg></td>
             <td><span class="badge neutral">NEUTRAL</span></td>
         </tr>
-        <tr>
+        <tr class="data-row" data-symbol="MSTR" style="cursor:pointer">
             <td class="symbol">MSTR</td>
             <td>2026-04-17</td>
             <td>$166.08</td>
             <td>9,794,215</td>
-            <td class="">69.8%</td>
-            <td>64.4%</td>
-            <td class="">1.084</td>
+            <td class="">69.8% <span class="trend-dn">↓</span></td>
+            <td>64.4% <span class="trend-up">↑</span></td>
+            <td class="">1.084 <span class="trend-dn">↓</span></td>
             <td>—</td>
             <td>—</td>
-            <td class="red">72.2</td>
+            <td class="red">72.2 <span class="trend-up">↑</span></td>
             <td>8.80</td>
             <td>1.395</td>
             <td>0.936</td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,1.0 L 80.0,23.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="23.0" r="2" fill="#f85149"/></svg></td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,23.0 L 80.0,1.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="1.0" r="2" fill="#3fb950"/></svg></td>
             <td><span class="badge neutral">NEUTRAL</span></td>
         </tr>
-        <tr>
+        <tr class="data-row" data-symbol="NOW" style="cursor:pointer">
             <td class="symbol">NOW</td>
             <td>2026-04-17</td>
             <td>$97.55</td>
             <td>3,389,076</td>
-            <td class="">72.2%</td>
-            <td>66.6%</td>
-            <td class="">1.085</td>
+            <td class="">72.2% <span class="trend-flat">→</span></td>
+            <td>66.6% <span class="trend-flat">→</span></td>
+            <td class="">1.085 <span class="trend-flat">→</span></td>
             <td>—</td>
             <td>—</td>
-            <td class="">45.8</td>
+            <td class="">45.8 <span class="trend-up">↑</span></td>
             <td>5.46</td>
             <td>0.567</td>
             <td>0.573</td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,23.0 L 80.0,1.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="1.0" r="2" fill="#3fb950"/></svg></td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,23.0 L 80.0,1.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="1.0" r="2" fill="#3fb950"/></svg></td>
             <td><span class="badge neutral">NEUTRAL</span></td>
         </tr>
-        <tr>
+        <tr class="data-row" data-symbol="NVO" style="cursor:pointer">
             <td class="symbol">NVO</td>
             <td>2026-04-17</td>
             <td>$40.85</td>
             <td>2,748,407</td>
-            <td class="red">53.0%</td>
-            <td>26.0%</td>
-            <td class="red">2.038</td>
+            <td class="red">53.0% <span class="trend-flat">→</span></td>
+            <td>26.0% <span class="trend-dn">↓</span></td>
+            <td class="red">2.038 <span class="trend-up">↑</span></td>
             <td>—</td>
             <td>—</td>
-            <td class="orange">65.7</td>
+            <td class="orange">65.7 <span class="trend-flat">→</span></td>
             <td>1.15</td>
             <td>0.938</td>
             <td>0.652</td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,1.0 L 80.0,23.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="23.0" r="2" fill="#f85149"/></svg></td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,1.0 L 80.0,23.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="23.0" r="2" fill="#f85149"/></svg></td>
             <td><span class="badge sell-call">SELL CALL</span></td>
         </tr>
-        <tr>
+        <tr class="data-row" data-symbol="OKLO" style="cursor:pointer">
             <td class="symbol">OKLO</td>
             <td>2026-04-17</td>
             <td>$66.33</td>
             <td>3,165,324</td>
-            <td class="">102.6%</td>
-            <td>85.8%</td>
-            <td class="">1.196</td>
+            <td class="">102.6% <span class="trend-dn">↓</span></td>
+            <td>85.8% <span class="trend-dn">↓</span></td>
+            <td class="">1.196 <span class="trend-flat">→</span></td>
             <td>—</td>
             <td>—</td>
-            <td class="orange">64.5</td>
+            <td class="orange">64.5 <span class="trend-up">↑</span></td>
             <td>4.84</td>
             <td>0.477</td>
             <td>0.933</td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,1.0 L 80.0,23.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="23.0" r="2" fill="#f85149"/></svg></td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,23.0 L 80.0,1.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="1.0" r="2" fill="#3fb950"/></svg></td>
             <td><span class="badge neutral">NEUTRAL</span></td>
         </tr>
-        <tr>
+        <tr class="data-row" data-symbol="OPEN" style="cursor:pointer">
             <td class="symbol">OPEN</td>
             <td>2026-04-17</td>
             <td>$5.34</td>
             <td>9,183,792</td>
-            <td class="orange">103.3%</td>
-            <td>72.6%</td>
-            <td class="orange">1.423</td>
+            <td class="orange">103.3% <span class="trend-up">↑</span></td>
+            <td>72.6% <span class="trend-up">↑</span></td>
+            <td class="orange">1.423 <span class="trend-dn">↓</span></td>
             <td>—</td>
             <td>—</td>
-            <td class="orange">60.4</td>
+            <td class="orange">60.4 <span class="trend-up">↑</span></td>
             <td>0.33</td>
             <td>0.482</td>
             <td>0.300</td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,23.0 L 80.0,1.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="1.0" r="2" fill="#3fb950"/></svg></td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,23.0 L 80.0,1.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="1.0" r="2" fill="#3fb950"/></svg></td>
             <td><span class="badge rich-iv">RICH IV</span></td>
         </tr>
-        <tr>
+        <tr class="data-row" data-symbol="OSCR" style="cursor:pointer">
             <td class="symbol">OSCR</td>
             <td>2026-04-17</td>
             <td>$16.03</td>
             <td>808,969</td>
-            <td class="">86.6%</td>
-            <td>70.3%</td>
-            <td class="">1.231</td>
+            <td class="">86.6% <span class="trend-flat">→</span></td>
+            <td>70.3% <span class="trend-flat">→</span></td>
+            <td class="">1.231 <span class="trend-flat">→</span></td>
             <td>—</td>
             <td>—</td>
-            <td class="red">70.8</td>
+            <td class="red">70.8 <span class="trend-up">↑</span></td>
             <td>0.74</td>
             <td>0.650</td>
             <td>0.533</td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,23.0 L 80.0,1.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="1.0" r="2" fill="#3fb950"/></svg></td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,23.0 L 80.0,1.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="1.0" r="2" fill="#3fb950"/></svg></td>
             <td><span class="badge neutral">NEUTRAL</span></td>
         </tr>
-        <tr>
+        <tr class="data-row" data-symbol="RGTI" style="cursor:pointer">
             <td class="symbol">RGTI</td>
             <td>2026-04-17</td>
             <td>$19.55</td>
             <td>9,197,811</td>
-            <td class="">109.4%</td>
-            <td>87.1%</td>
-            <td class="">1.256</td>
+            <td class="">109.4% <span class="trend-dn">↓</span></td>
+            <td>87.1% <span class="trend-dn">↓</span></td>
+            <td class="">1.256 <span class="trend-dn">↓</span></td>
             <td>—</td>
             <td>—</td>
-            <td class="orange">69.9</td>
+            <td class="orange">69.9 <span class="trend-up">↑</span></td>
             <td>1.31</td>
             <td>0.476</td>
             <td>0.638</td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,1.0 L 80.0,23.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="23.0" r="2" fill="#f85149"/></svg></td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,23.0 L 80.0,1.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="1.0" r="2" fill="#3fb950"/></svg></td>
             <td><span class="badge neutral">NEUTRAL</span></td>
         </tr>
-        <tr>
+        <tr class="data-row" data-symbol="RKLB" style="cursor:pointer">
             <td class="symbol">RKLB</td>
             <td>2026-04-17</td>
             <td>$85.32</td>
             <td>7,681,046</td>
-            <td class="green">93.5%</td>
-            <td>95.4%</td>
-            <td class="green">0.980</td>
+            <td class="green">93.5% <span class="trend-dn">↓</span></td>
+            <td>95.4% <span class="trend-flat">→</span></td>
+            <td class="green">0.980 <span class="trend-flat">→</span></td>
             <td>—</td>
             <td>—</td>
-            <td class="orange">67.3</td>
+            <td class="orange">67.3 <span class="trend-up">↑</span></td>
             <td>5.55</td>
             <td>0.537</td>
             <td>0.780</td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,1.0 L 80.0,23.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="23.0" r="2" fill="#f85149"/></svg></td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,23.0 L 80.0,1.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="1.0" r="2" fill="#3fb950"/></svg></td>
             <td><span class="badge cheap-iv">CHEAP IV</span></td>
         </tr>
-        <tr>
+        <tr class="data-row" data-symbol="SLV" style="cursor:pointer">
             <td class="symbol">SLV</td>
             <td>2026-04-17</td>
             <td>$74.61</td>
             <td>9,752,918</td>
-            <td class="green">56.2%</td>
-            <td>56.5%</td>
-            <td class="green">0.995</td>
+            <td class="green">56.2% <span class="trend-dn">↓</span></td>
+            <td>56.5% <span class="trend-dn">↓</span></td>
+            <td class="green">0.995 <span class="trend-up">↑</span></td>
             <td>—</td>
             <td>—</td>
-            <td class="">59.6</td>
+            <td class="">59.6 <span class="trend-up">↑</span></td>
             <td>3.18</td>
             <td>1.000</td>
             <td>0.642</td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,1.0 L 80.0,23.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="23.0" r="2" fill="#f85149"/></svg></td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,23.0 L 80.0,1.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="1.0" r="2" fill="#3fb950"/></svg></td>
             <td><span class="badge buy-call">BUY CALL</span></td>
         </tr>
-        <tr>
+        <tr class="data-row" data-symbol="SMR" style="cursor:pointer">
             <td class="symbol">SMR</td>
             <td>2026-04-17</td>
             <td>$12.35</td>
             <td>16,557,309</td>
-            <td class="">112.2%</td>
-            <td>95.5%</td>
-            <td class="">1.175</td>
+            <td class="">112.2% <span class="trend-dn">↓</span></td>
+            <td>95.5% <span class="trend-up">↑</span></td>
+            <td class="">1.175 <span class="trend-dn">↓</span></td>
             <td>—</td>
             <td>—</td>
-            <td class="">58.2</td>
+            <td class="">58.2 <span class="trend-up">↑</span></td>
             <td>0.99</td>
             <td>0.270</td>
             <td>0.666</td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,1.0 L 80.0,23.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="23.0" r="2" fill="#f85149"/></svg></td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,23.0 L 80.0,1.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="1.0" r="2" fill="#3fb950"/></svg></td>
             <td><span class="badge neutral">NEUTRAL</span></td>
         </tr>
-        <tr>
+        <tr class="data-row" data-symbol="SOFI" style="cursor:pointer">
             <td class="symbol">SOFI</td>
             <td>2026-04-17</td>
             <td>$19.78</td>
             <td>14,525,868</td>
-            <td class="red">77.8%</td>
-            <td>47.0%</td>
-            <td class="red">1.657</td>
+            <td class="red">77.8% <span class="trend-up">↑</span></td>
+            <td>47.0% <span class="trend-up">↑</span></td>
+            <td class="red">1.657 <span class="trend-flat">→</span></td>
             <td>—</td>
             <td>—</td>
-            <td class="orange">69.5</td>
+            <td class="orange">69.5 <span class="trend-up">↑</span></td>
             <td>0.89</td>
             <td>0.787</td>
             <td>0.636</td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,23.0 L 80.0,1.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="1.0" r="2" fill="#3fb950"/></svg></td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,23.0 L 80.0,1.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="1.0" r="2" fill="#3fb950"/></svg></td>
             <td><span class="badge sell-call">SELL CALL</span></td>
         </tr>
-        <tr>
+        <tr class="data-row" data-symbol="TSM" style="cursor:pointer">
             <td class="symbol">TSM</td>
             <td>2026-04-17</td>
             <td>$372.29</td>
             <td>4,416,367</td>
-            <td class="green">45.6%</td>
-            <td>48.0%</td>
-            <td class="green">0.950</td>
+            <td class="green">45.6% <span class="trend-dn">↓</span></td>
+            <td>48.0% <span class="trend-up">↑</span></td>
+            <td class="green">0.950 <span class="trend-dn">↓</span></td>
             <td>—</td>
             <td>—</td>
-            <td class="">59.3</td>
+            <td class="">59.3 <span class="trend-dn">↓</span></td>
             <td>12.59</td>
             <td>1.221</td>
             <td>1.467</td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,1.0 L 80.0,23.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="23.0" r="2" fill="#f85149"/></svg></td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,1.0 L 80.0,23.0" fill="none" stroke="#f85149" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="23.0" r="2" fill="#f85149"/></svg></td>
             <td><span class="badge buy-call">BUY CALL</span></td>
         </tr>
-        <tr>
+        <tr class="data-row" data-symbol="UNH" style="cursor:pointer">
             <td class="symbol">UNH</td>
             <td>2026-04-17</td>
             <td>$322.30</td>
             <td>1,370,956</td>
-            <td class="green">38.2%</td>
-            <td>40.4%</td>
-            <td class="green">0.947</td>
+            <td class="green">38.2% <span class="trend-flat">→</span></td>
+            <td>40.4% <span class="trend-flat">→</span></td>
+            <td class="green">0.947 <span class="trend-up">↑</span></td>
             <td>—</td>
             <td>—</td>
-            <td class="red">72.6</td>
+            <td class="red">72.6 <span class="trend-up">↑</span></td>
             <td>8.23</td>
             <td>0.671</td>
             <td>0.754</td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,23.0 L 80.0,1.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="1.0" r="2" fill="#3fb950"/></svg></td>
+            <td><svg width="80" height="24" style="vertical-align:middle"><path d="M 0.0,23.0 L 80.0,1.0" fill="none" stroke="#3fb950" stroke-width="1.5" stroke-linejoin="round"/><circle cx="80.0" cy="1.0" r="2" fill="#3fb950"/></svg></td>
             <td><span class="badge cheap-iv">CHEAP IV</span></td>
-        </tr>
-      </tbody>
+        </tr></tbody>
     </table>
   </div>
 
   <p class="note">
-    IV Rank &amp; IV Percentile populate after 10+ days of data. &nbsp;|&nbsp;
-    Click any column header to sort. &nbsp;|&nbsp;
-    Signal logic: IV/HV &lt; 1.0 + RSI &lt; 60 = Buy Call &nbsp;|&nbsp; IV/HV &gt; 1.3 + RSI &gt; 65 = Sell Call &nbsp;|&nbsp; IV/HV &gt; 1.3 + RSI &lt; 45 = Sell Put
+    Trend arrows compare vs previous day. &nbsp;|&nbsp;
+    Sparklines show last 7 days. &nbsp;|&nbsp;
+    IV Rank &amp; Percentile need 10+ days. &nbsp;|&nbsp;
+    Click a symbol row to view full history.
   </p>
+</div>
 
+<!-- History Modal -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 id="modal-title">History</h2>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
 </div>
 
 <script>
-  // ── Summary cards ──────────────────────────────────────────────────────────
-  const rows = [...document.querySelectorAll('#table-body tr')];
+const HISTORY = {"AAOI": [{"date": "2026-04-16", "price": 142.55, "volume": 9603700, "iv": 162.64, "hv": 156.86, "iv_hv": 1.037, "iv_rank": null, "iv_pct": null, "rsi": 65.59, "atr": 14.2306, "pc_vol": 1.4798, "pc_oi": 1.3536}, {"date": "2026-04-17", "price": 157.74, "volume": 2330514, "iv": 169.75, "hv": 156.29, "iv_hv": 1.086, "iv_rank": null, "iv_pct": null, "rsi": 70.1, "atr": 14.0391, "pc_vol": 0.6017, "pc_oi": 1.1987}], "ASTS": [{"date": "2026-04-16", "price": 86.91, "volume": 17323000, "iv": 112.17, "hv": 105.96, "iv_hv": 1.059, "iv_rank": null, "iv_pct": null, "rsi": 46.97, "atr": 8.681, "pc_vol": 0.4143, "pc_oi": 0.7188}, {"date": "2026-04-17", "price": 88.27, "volume": 3651259, "iv": 107.3, "hv": 105.31, "iv_hv": 1.019, "iv_rank": null, "iv_pct": null, "rsi": 48.26, "atr": 8.084, "pc_vol": 0.7106, "pc_oi": 0.6472}], "AXTI": [{"date": "2026-04-16", "price": 62.93, "volume": 11095200, "iv": 200.46, "hv": 194.95, "iv_hv": 1.028, "iv_rank": null, "iv_pct": null, "rsi": 57.7, "atr": 8.781, "pc_vol": 1.4788, "pc_oi": 0.6902}, {"date": "2026-04-17", "price": 77.11, "volume": 3075848, "iv": 206.43, "hv": 206.39, "iv_hv": 1.0, "iv_rank": null, "iv_pct": null, "rsi": 63.66, "atr": 9.5615, "pc_vol": 0.7058, "pc_oi": 1.0087}], "BABA": [{"date": "2026-04-16", "price": 133.28, "volume": 8700900, "iv": 45.42, "hv": 44.33, "iv_hv": 1.025, "iv_rank": null, "iv_pct": null, "rsi": 54.42, "atr": 4.1492, "pc_vol": 0.296, "pc_oi": 0.4332}, {"date": "2026-04-17", "price": 141.86, "volume": 3313334, "iv": 45.39, "hv": 37.23, "iv_hv": 1.219, "iv_rank": null, "iv_pct": null, "rsi": 64.71, "atr": 4.3672, "pc_vol": 0.3487, "pc_oi": 0.4495}], "BBAI": [{"date": "2026-04-16", "price": 3.79, "volume": 38799900, "iv": 102.12, "hv": 82.85, "iv_hv": 1.233, "iv_rank": null, "iv_pct": null, "rsi": 53.95, "atr": 0.2524, "pc_vol": 0.088, "pc_oi": 0.2578}, {"date": "2026-04-17", "price": 3.91, "volume": 7380800, "iv": 99.98, "hv": 82.77, "iv_hv": 1.208, "iv_rank": null, "iv_pct": null, "rsi": 57.0, "atr": 0.2484, "pc_vol": 0.3191, "pc_oi": 0.2429}], "BMNR": [{"date": "2026-04-16", "price": 22.34, "volume": 40231900, "iv": 89.18, "hv": 68.33, "iv_hv": 1.305, "iv_rank": null, "iv_pct": null, "rsi": 57.81, "atr": 1.4489, "pc_vol": 0.4261, "pc_oi": 0.704}, {"date": "2026-04-17", "price": 23.92, "volume": 13919315, "iv": 91.74, "hv": 64.94, "iv_hv": 1.413, "iv_rank": null, "iv_pct": null, "rsi": 64.8, "atr": 1.4175, "pc_vol": 2.3566, "pc_oi": 0.6557}], "CF": [{"date": "2026-04-16", "price": 120.81, "volume": 2517200, "iv": 57.1, "hv": 50.6, "iv_hv": 1.128, "iv_rank": null, "iv_pct": null, "rsi": 48.66, "atr": 7.1996, "pc_vol": 1.2771, "pc_oi": 0.7163}, {"date": "2026-04-17", "price": 111.93, "volume": 1363604, "iv": 74.55, "hv": 63.61, "iv_hv": 1.172, "iv_rank": null, "iv_pct": null, "rsi": 40.94, "atr": 7.5756, "pc_vol": 1.2924, "pc_oi": 0.7053}], "CLSK": [{"date": "2026-04-16", "price": 11.26, "volume": 16660400, "iv": 101.23, "hv": 73.9, "iv_hv": 1.37, "iv_rank": null, "iv_pct": null, "rsi": 64.22, "atr": 0.7911, "pc_vol": 0.6558, "pc_oi": 1.0922}, {"date": "2026-04-17", "price": 11.93, "volume": 3981094, "iv": 101.37, "hv": 74.13, "iv_hv": 1.367, "iv_rank": null, "iv_pct": null, "rsi": 68.94, "atr": 0.7662, "pc_vol": 0.6943, "pc_oi": 0.9851}], "COIN": [{"date": "2026-04-16", "price": 195.9, "volume": 11745400, "iv": 81.52, "hv": 69.93, "iv_hv": 1.166, "iv_rank": null, "iv_pct": null, "rsi": 59.43, "atr": 11.4062, "pc_vol": 0.2947, "pc_oi": 0.7367}, {"date": "2026-04-17", "price": 207.1, "volume": 2596899, "iv": 85.26, "hv": 70.28, "iv_hv": 1.213, "iv_rank": null, "iv_pct": null, "rsi": 64.89, "atr": 11.2017, "pc_vol": 0.9188, "pc_oi": 0.4967}], "CRM": [{"date": "2026-04-16", "price": 177.6, "volume": 14314100, "iv": 43.3, "hv": 42.66, "iv_hv": 1.015, "iv_rank": null, "iv_pct": null, "rsi": 44.21, "atr": 7.5851, "pc_vol": 0.409, "pc_oi": 1.1684}, {"date": "2026-04-17", "price": 185.95, "volume": 3442255, "iv": 41.9, "hv": 44.73, "iv_hv": 0.937, "iv_rank": null, "iv_pct": null, "rsi": 52.32, "atr": 7.4838, "pc_vol": 1.7031, "pc_oi": 0.628}], "DDOG": [{"date": "2026-04-16", "price": 121.06, "volume": 5475100, "iv": 89.52, "hv": 63.04, "iv_hv": 1.42, "iv_rank": null, "iv_pct": null, "rsi": 53.42, "atr": 7.1952, "pc_vol": 0.7437, "pc_oi": 0.8583}, {"date": "2026-04-17", "price": 126.05, "volume": 625628, "iv": 80.81, "hv": 63.59, "iv_hv": 1.271, "iv_rank": null, "iv_pct": null, "rsi": 58.12, "atr": 7.0694, "pc_vol": 0.7094, "pc_oi": 0.9499}], "ENPH": [{"date": "2026-04-16", "price": 32.18, "volume": 9167100, "iv": 96.02, "hv": 66.22, "iv_hv": 1.45, "iv_rank": null, "iv_pct": null, "rsi": 35.11, "atr": 2.2839, "pc_vol": 0.6444, "pc_oi": 0.7916}, {"date": "2026-04-17", "price": 32.4, "volume": 670884, "iv": 100.97, "hv": 64.7, "iv_hv": 1.561, "iv_rank": null, "iv_pct": null, "rsi": 36.48, "atr": 2.1901, "pc_vol": 1.5723, "pc_oi": 0.6906}], "GRAB": [{"date": "2026-04-16", "price": 3.92, "volume": 54637700, "iv": 64.54, "hv": 36.53, "iv_hv": 1.767, "iv_rank": null, "iv_pct": null, "rsi": 58.35, "atr": 0.1635, "pc_vol": 0.1343, "pc_oi": 0.1332}, {"date": "2026-04-17", "price": 4.21, "volume": 9777302, "iv": 67.45, "hv": 38.37, "iv_hv": 1.758, "iv_rank": null, "iv_pct": null, "rsi": 69.18, "atr": 0.1665, "pc_vol": 0.0801, "pc_oi": 0.1122}], "HOOD": [{"date": "2026-04-16", "price": 87.32, "volume": 71157700, "iv": 76.02, "hv": 72.51, "iv_hv": 1.048, "iv_rank": null, "iv_pct": null, "rsi": 67.57, "atr": 4.6443, "pc_vol": 0.3178, "pc_oi": 0.5999}, {"date": "2026-04-17", "price": 90.24, "volume": 11216997, "iv": 79.0, "hv": 71.74, "iv_hv": 1.101, "iv_rank": null, "iv_pct": null, "rsi": 69.72, "atr": 4.7534, "pc_vol": 0.8554, "pc_oi": 0.6211}], "IREN": [{"date": "2026-04-16", "price": 48.82, "volume": 32071800, "iv": 114.77, "hv": 86.33, "iv_hv": 1.329, "iv_rank": null, "iv_pct": null, "rsi": 67.31, "atr": 3.3988, "pc_vol": 0.377, "pc_oi": 0.934}, {"date": "2026-04-17", "price": 47.83, "volume": 6327580, "iv": 109.63, "hv": 86.28, "iv_hv": 1.271, "iv_rank": null, "iv_pct": null, "rsi": 64.64, "atr": 3.3895, "pc_vol": 1.295, "pc_oi": 0.9503}], "KTOS": [{"date": "2026-04-16", "price": 74.66, "volume": 3494400, "iv": 84.83, "hv": 87.28, "iv_hv": 0.972, "iv_rank": null, "iv_pct": null, "rsi": 45.47, "atr": 5.5426, "pc_vol": 0.6365, "pc_oi": 0.7077}, {"date": "2026-04-17", "price": 74.21, "volume": 402293, "iv": 83.59, "hv": 87.21, "iv_hv": 0.958, "iv_rank": null, "iv_pct": null, "rsi": 44.99, "atr": 5.2659, "pc_vol": 0.5276, "pc_oi": 0.7135}], "LMT": [{"date": "2026-04-16", "price": 611.1, "volume": 878800, "iv": 35.3, "hv": 24.4, "iv_hv": 1.447, "iv_rank": null, "iv_pct": null, "rsi": 43.0, "atr": 15.1512, "pc_vol": 0.8745, "pc_oi": 0.7673}, {"date": "2026-04-17", "price": 606.12, "volume": 188676, "iv": 35.38, "hv": 24.0, "iv_hv": 1.474, "iv_rank": null, "iv_pct": null, "rsi": 40.95, "atr": 14.4556, "pc_vol": 0.7328, "pc_oi": 0.7106}], "MARA": [{"date": "2026-04-16", "price": 10.47, "volume": 38736700, "iv": 96.09, "hv": 76.5, "iv_hv": 1.256, "iv_rank": null, "iv_pct": null, "rsi": 66.07, "atr": 0.7366, "pc_vol": 0.4581, "pc_oi": 0.456}, {"date": "2026-04-17", "price": 11.78, "volume": 11498416, "iv": 99.66, "hv": 81.1, "iv_hv": 1.229, "iv_rank": null, "iv_pct": null, "rsi": 74.43, "atr": 0.7564, "pc_vol": 0.4592, "pc_oi": 0.4473}], "MP": [{"date": "2026-04-16", "price": 59.52, "volume": 4951100, "iv": 72.11, "hv": 79.92, "iv_hv": 0.902, "iv_rank": null, "iv_pct": null, "rsi": 59.72, "atr": 3.3985, "pc_vol": 0.1585, "pc_oi": 0.681}, {"date": "2026-04-17", "price": 63.08, "volume": 1016987, "iv": 82.91, "hv": 74.24, "iv_hv": 1.117, "iv_rank": null, "iv_pct": null, "rsi": 65.14, "atr": 3.3166, "pc_vol": 0.4575, "pc_oi": 0.661}], "MSFT": [{"date": "2026-04-16", "price": 411.22, "volume": 44793300, "iv": 40.21, "hv": 31.18, "iv_hv": 1.29, "iv_rank": null, "iv_pct": null, "rsi": 67.55, "atr": 9.8407, "pc_vol": 0.3401, "pc_oi": 0.6827}, {"date": "2026-04-17", "price": 424.96, "volume": 9097505, "iv": 38.96, "hv": 30.81, "iv_hv": 1.265, "iv_rank": null, "iv_pct": null, "rsi": 72.77, "atr": 9.5437, "pc_vol": 1.6677, "pc_oi": 0.4671}], "MSTR": [{"date": "2026-04-16", "price": 143.54, "volume": 13736800, "iv": 71.84, "hv": 56.86, "iv_hv": 1.263, "iv_rank": null, "iv_pct": null, "rsi": 59.67, "atr": 8.0242, "pc_vol": 0.4193, "pc_oi": 0.8222}, {"date": "2026-04-17", "price": 166.08, "volume": 9794215, "iv": 69.82, "hv": 64.41, "iv_hv": 1.084, "iv_rank": null, "iv_pct": null, "rsi": 72.16, "atr": 8.803, "pc_vol": 1.3948, "pc_oi": 0.9362}], "NOW": [{"date": "2026-04-16", "price": 94.19, "volume": 25718600, "iv": 72.05, "hv": 65.42, "iv_hv": 1.101, "iv_rank": null, "iv_pct": null, "rsi": 41.44, "atr": 5.7349, "pc_vol": 0.373, "pc_oi": 0.5965}, {"date": "2026-04-17", "price": 97.55, "volume": 3389076, "iv": 72.23, "hv": 66.6, "iv_hv": 1.085, "iv_rank": null, "iv_pct": null, "rsi": 45.83, "atr": 5.4583, "pc_vol": 0.5669, "pc_oi": 0.573}], "NVO": [{"date": "2026-04-16", "price": 40.81, "volume": 19392600, "iv": 53.81, "hv": 28.82, "iv_hv": 1.867, "iv_rank": null, "iv_pct": null, "rsi": 65.68, "atr": 1.2022, "pc_vol": 0.6022, "pc_oi": 0.6431}, {"date": "2026-04-17", "price": 40.85, "volume": 2748407, "iv": 52.95, "hv": 25.98, "iv_hv": 2.038, "iv_rank": null, "iv_pct": null, "rsi": 65.65, "atr": 1.1519, "pc_vol": 0.9376, "pc_oi": 0.652}], "OKLO": [{"date": "2026-04-16", "price": 63.35, "volume": 21762200, "iv": 108.06, "hv": 90.34, "iv_hv": 1.196, "iv_rank": null, "iv_pct": null, "rsi": 61.22, "atr": 4.7731, "pc_vol": 0.4293, "pc_oi": 0.9295}, {"date": "2026-04-17", "price": 66.33, "volume": 3165324, "iv": 102.59, "hv": 85.75, "iv_hv": 1.196, "iv_rank": null, "iv_pct": null, "rsi": 64.52, "atr": 4.8445, "pc_vol": 0.4769, "pc_oi": 0.9335}], "OPEN": [{"date": "2026-04-16", "price": 4.82, "volume": 31227000, "iv": 99.09, "hv": 67.21, "iv_hv": 1.474, "iv_rank": null, "iv_pct": null, "rsi": 51.02, "atr": 0.3328, "pc_vol": 0.2051, "pc_oi": 0.2979}, {"date": "2026-04-17", "price": 5.34, "volume": 9183792, "iv": 103.34, "hv": 72.61, "iv_hv": 1.423, "iv_rank": null, "iv_pct": null, "rsi": 60.37, "atr": 0.3299, "pc_vol": 0.4818, "pc_oi": 0.2996}], "OSCR": [{"date": "2026-04-16", "price": 15.59, "volume": 6407400, "iv": 86.09, "hv": 70.76, "iv_hv": 1.217, "iv_rank": null, "iv_pct": null, "rsi": 68.29, "atr": 0.7807, "pc_vol": 0.472, "pc_oi": 0.4189}, {"date": "2026-04-17", "price": 16.03, "volume": 808969, "iv": 86.56, "hv": 70.33, "iv_hv": 1.231, "iv_rank": null, "iv_pct": null, "rsi": 70.83, "atr": 0.7435, "pc_vol": 0.6497, "pc_oi": 0.5335}], "RGTI": [{"date": "2026-04-16", "price": 19.11, "volume": 76700300, "iv": 115.53, "hv": 89.1, "iv_hv": 1.297, "iv_rank": null, "iv_pct": null, "rsi": 68.43, "atr": 1.2949, "pc_vol": 0.2269, "pc_oi": 0.6384}, {"date": "2026-04-17", "price": 19.55, "volume": 9197811, "iv": 109.42, "hv": 87.13, "iv_hv": 1.256, "iv_rank": null, "iv_pct": null, "rsi": 69.92, "atr": 1.3074, "pc_vol": 0.4758, "pc_oi": 0.6379}], "RKLB": [{"date": "2026-04-16", "price": 73.6, "volume": 23435100, "iv": 96.64, "hv": 97.2, "iv_hv": 0.994, "iv_rank": null, "iv_pct": null, "rsi": 56.13, "atr": 5.3388, "pc_vol": 0.6422, "pc_oi": 0.8463}, {"date": "2026-04-17", "price": 85.32, "volume": 7681046, "iv": 93.55, "hv": 95.42, "iv_hv": 0.98, "iv_rank": null, "iv_pct": null, "rsi": 67.29, "atr": 5.5501, "pc_vol": 0.5366, "pc_oi": 0.7802}], "SLV": [{"date": "2026-04-16", "price": 71.84, "volume": 23413700, "iv": 57.63, "hv": 59.24, "iv_hv": 0.973, "iv_rank": null, "iv_pct": null, "rsi": 55.06, "atr": 3.2937, "pc_vol": 0.4471, "pc_oi": 0.671}, {"date": "2026-04-17", "price": 74.61, "volume": 9752918, "iv": 56.18, "hv": 56.48, "iv_hv": 0.995, "iv_rank": null, "iv_pct": null, "rsi": 59.6, "atr": 3.1811, "pc_vol": 0.9995, "pc_oi": 0.6419}], "SMR": [{"date": "2026-04-16", "price": 11.71, "volume": 57867000, "iv": 120.84, "hv": 91.24, "iv_hv": 1.324, "iv_rank": null, "iv_pct": null, "rsi": 54.41, "atr": 0.9269, "pc_vol": 0.2852, "pc_oi": 0.8109}, {"date": "2026-04-17", "price": 12.35, "volume": 16557309, "iv": 112.23, "hv": 95.5, "iv_hv": 1.175, "iv_rank": null, "iv_pct": null, "rsi": 58.23, "atr": 0.9871, "pc_vol": 0.2697, "pc_oi": 0.6663}], "SOFI": [{"date": "2026-04-16", "price": 18.79, "volume": 70427900, "iv": 74.8, "hv": 45.89, "iv_hv": 1.63, "iv_rank": null, "iv_pct": null, "rsi": 63.7, "atr": 0.8782, "pc_vol": 0.2597, "pc_oi": 0.8087}, {"date": "2026-04-17", "price": 19.78, "volume": 14525868, "iv": 77.82, "hv": 46.97, "iv_hv": 1.657, "iv_rank": null, "iv_pct": null, "rsi": 69.54, "atr": 0.8882, "pc_vol": 0.787, "pc_oi": 0.6365}], "TSM": [{"date": "2026-04-16", "price": 375.1, "volume": 14792400, "iv": 47.04, "hv": 46.39, "iv_hv": 1.014, "iv_rank": null, "iv_pct": null, "rsi": 62.65, "atr": 12.4623, "pc_vol": 0.7631, "pc_oi": 1.8398}, {"date": "2026-04-17", "price": 372.29, "volume": 4416367, "iv": 45.6, "hv": 47.98, "iv_hv": 0.95, "iv_rank": null, "iv_pct": null, "rsi": 59.32, "atr": 12.5882, "pc_vol": 1.2208, "pc_oi": 1.4667}], "UNH": [{"date": "2026-04-16", "price": 314.05, "volume": 5037000, "iv": 37.92, "hv": 41.19, "iv_hv": 0.921, "iv_rank": null, "iv_pct": null, "rsi": 68.78, "atr": 8.614, "pc_vol": 0.5391, "pc_oi": 0.4224}, {"date": "2026-04-17", "price": 322.3, "volume": 1370956, "iv": 38.22, "hv": 40.38, "iv_hv": 0.947, "iv_rank": null, "iv_pct": null, "rsi": 72.64, "atr": 8.2275, "pc_vol": 0.6714, "pc_oi": 0.7539}]};
 
-  function countBadge(text) {
-    return rows.filter(r => r.querySelector('.badge')?.textContent.trim() === text).length;
-  }
+// ── Summary cards ─────────────────────────────────────────────────────────────
+const rows = [...document.querySelectorAll('#table-body tr')];
+function countBadge(t) { return rows.filter(r => r.querySelector('.badge')?.textContent.trim()===t).length; }
+const cards = [
+  { label:'Total Symbols', value: rows.length },
+  { label:'Buy Call',  value: countBadge('BUY CALL'),  color:'#58a6ff' },
+  { label:'Cheap IV',  value: countBadge('CHEAP IV'),  color:'#79c0ff' },
+  { label:'Sell Call', value: countBadge('SELL CALL'), color:'#f85149' },
+  { label:'Sell Put',  value: countBadge('SELL PUT'),  color:'#3fb950' },
+  { label:'Rich IV',   value: countBadge('RICH IV'),   color:'#d29922' },
+  { label:'Neutral',   value: countBadge('NEUTRAL'),   color:'#8b949e' },
+];
+const cardEl = document.getElementById('cards');
+cards.forEach(c => {
+  cardEl.innerHTML += `<div class="card">
+    <div class="label">${c.label}</div>
+    <div class="value" style="color:${c.color||'#f0f6fc'}">${c.value}</div>
+  </div>`;
+});
 
-  const cards = [
-    { label: 'Total Symbols', value: rows.length },
-    { label: 'Buy Call',  value: countBadge('BUY CALL'),  color: '#58a6ff' },
-    { label: 'Cheap IV',  value: countBadge('CHEAP IV'),  color: '#79c0ff' },
-    { label: 'Sell Call', value: countBadge('SELL CALL'), color: '#f85149' },
-    { label: 'Sell Put',  value: countBadge('SELL PUT'),  color: '#3fb950' },
-    { label: 'Rich IV',   value: countBadge('RICH IV'),   color: '#d29922' },
-    { label: 'Neutral',   value: countBadge('NEUTRAL'),   color: '#8b949e' },
-  ];
-
-  const cardEl = document.getElementById('cards');
-  cards.forEach(c => {
-    cardEl.innerHTML += `<div class="card">
-      <div class="label">${c.label}</div>
-      <div class="value" style="color:${c.color || '#f0f6fc'}">${c.value}</div>
-    </div>`;
+// ── Filter / Search ───────────────────────────────────────────────────────────
+let activeSignal = '';
+function filterTable() {
+  const q = document.getElementById('search').value.toLowerCase();
+  rows.forEach(r => {
+    const sym = r.cells[0].textContent.toLowerCase();
+    const sig = r.querySelector('.badge')?.textContent.trim() || '';
+    r.style.display = (sym.includes(q) && (!activeSignal || sig===activeSignal)) ? '' : 'none';
   });
+}
+function filterSignal(sig) {
+  activeSignal = sig;
+  document.querySelectorAll('.filter-btn').forEach(b =>
+    b.classList.toggle('active', b.textContent.trim()===(sig||'All')));
+  filterTable();
+}
+filterSignal('');
 
-  // ── Search ─────────────────────────────────────────────────────────────────
-  let activeSignal = '';
+// ── Sort ──────────────────────────────────────────────────────────────────────
+let sortCol=-1, sortDir=1;
+function sortTable(col) {
+  const tbody = document.getElementById('table-body');
+  const all = [...tbody.querySelectorAll('tr')];
+  sortDir = (sortCol===col) ? -sortDir : 1;
+  sortCol = col;
+  document.querySelectorAll('thead th').forEach((th,i) => {
+    th.classList.remove('sort-asc','sort-desc');
+    if(i===col) th.classList.add(sortDir===1?'sort-asc':'sort-desc');
+  });
+  all.sort((a,b) => {
+    let av = a.cells[col].textContent.replace(/[$%,↑↓→—]/g,'').trim();
+    let bv = b.cells[col].textContent.replace(/[$%,↑↓→—]/g,'').trim();
+    const an=parseFloat(av), bn=parseFloat(bv);
+    if(!isNaN(an)&&!isNaN(bn)) return (an-bn)*sortDir;
+    return av.localeCompare(bv)*sortDir;
+  });
+  all.forEach(r => tbody.appendChild(r));
+}
 
-  function filterTable() {
-    const q = document.getElementById('search').value.toLowerCase();
-    rows.forEach(r => {
-      const sym  = r.cells[0].textContent.toLowerCase();
-      const sig  = r.querySelector('.badge')?.textContent.trim() || '';
-      const show = sym.includes(q) && (activeSignal === '' || sig === activeSignal);
-      r.style.display = show ? '' : 'none';
-    });
-  }
+// ── History Modal ─────────────────────────────────────────────────────────────
+document.querySelectorAll('.data-row').forEach(row => {
+  row.addEventListener('click', () => openModal(row.dataset.symbol));
+});
 
-  function filterSignal(sig) {
-    activeSignal = sig;
-    document.querySelectorAll('.filter-btn').forEach(b => {
-      b.classList.toggle('active', b.textContent.trim() === (sig || 'All'));
-    });
-    filterTable();
-  }
+function fmt(v, dp=2) { return v!=null ? Number(v).toFixed(dp) : '—'; }
+function fmtPct(v) { return v!=null ? Number(v).toFixed(1)+'%' : '—'; }
 
-  filterSignal('');
+function makeSVGChart(data, key, color, w=820, h=80) {
+  const vals = data.map(d => d[key]).filter(v => v!=null);
+  if(vals.length < 2) return '<p style="color:#444;font-size:12px">Not enough data yet</p>';
+  const mn=Math.min(...vals), mx=Math.max(...vals), rng=mx-mn||1;
+  const pts = data.filter(d=>d[key]!=null).map((d,i,arr) => {
+    const x = i/(arr.length-1)*w;
+    const y = h - (d[key]-mn)/rng*(h-8)-4;
+    return `${x.toFixed(1)},${y.toFixed(1)}`;
+  });
+  return `<svg width="100%" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" style="display:block">
+    <polyline points="${pts.join(' ')}" fill="none" stroke="${color}" stroke-width="2" stroke-linejoin="round"/>
+  </svg>`;
+}
 
-  // ── Sort ───────────────────────────────────────────────────────────────────
-  let sortCol = -1, sortDir = 1;
+function openModal(sym) {
+  const data = HISTORY[sym] || [];
+  document.getElementById('modal-title').textContent = sym + ' — Last ' + data.length + ' Days';
 
-  function sortTable(col) {
-    const tbody = document.getElementById('table-body');
-    const allRows = [...tbody.querySelectorAll('tr')];
+  let charts = `
+    <div class="chart-wrap">
+      <h3>IV % (blue) &nbsp; HV % (orange)</h3>
+      <div style="position:relative;height:80px">
+        ${makeSVGChart(data,'iv','#58a6ff')}
+        <div style="position:absolute;top:0;left:0;width:100%;height:100%;opacity:0.7">
+          ${makeSVGChart(data,'hv','#d29922')}
+        </div>
+      </div>
+    </div>
+    <div class="chart-wrap">
+      <h3>RSI-14</h3>
+      ${makeSVGChart(data,'rsi','#3fb950')}
+    </div>`;
 
-    if (sortCol === col) sortDir *= -1;
-    else { sortCol = col; sortDir = 1; }
+  let thead = `<thead><tr>
+    <th>Date</th><th>Price</th><th>IV%</th><th>HV%</th>
+    <th>IV/HV</th><th>IV Rank</th><th>IV Pctl</th>
+    <th>RSI</th><th>ATR</th><th>P/C Vol</th><th>P/C OI</th>
+  </tr></thead>`;
 
-    document.querySelectorAll('thead th').forEach((th, i) => {
-      th.classList.remove('sort-asc', 'sort-desc');
-      if (i === col) th.classList.add(sortDir === 1 ? 'sort-asc' : 'sort-desc');
-    });
+  let tbody = '<tbody>' + [...data].reverse().map(r => `<tr>
+    <td>${r.date}</td>
+    <td>$${fmt(r.price)}</td>
+    <td>${fmtPct(r.iv)}</td>
+    <td>${fmtPct(r.hv)}</td>
+    <td>${fmt(r.iv_hv,3)}</td>
+    <td>${fmt(r.iv_rank,1)}</td>
+    <td>${fmt(r.iv_pct,1)}</td>
+    <td>${fmt(r.rsi,1)}</td>
+    <td>${fmt(r.atr,2)}</td>
+    <td>${fmt(r.pc_vol,3)}</td>
+    <td>${fmt(r.pc_oi,3)}</td>
+  </tr>`).join('') + '</tbody>';
 
-    allRows.sort((a, b) => {
-      let av = a.cells[col].textContent.replace(/[$,%,]/g, '').trim();
-      let bv = b.cells[col].textContent.replace(/[$,%,]/g, '').trim();
-      const an = parseFloat(av), bn = parseFloat(bv);
-      if (!isNaN(an) && !isNaN(bn)) return (an - bn) * sortDir;
-      return av.localeCompare(bv) * sortDir;
-    });
+  document.getElementById('modal-body').innerHTML =
+    charts + '<table class="hist-table">' + thead + tbody + '</table>';
 
-    allRows.forEach(r => tbody.appendChild(r));
-  }
+  document.getElementById('modal-overlay').classList.add('open');
+}
+
+function closeModal(e) {
+  if(!e || e.target===document.getElementById('modal-overlay') || !e.target)
+    document.getElementById('modal-overlay').classList.remove('open');
+}
+
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
 </script>
-
 </body>
 </html>
