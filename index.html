@@ -156,7 +156,7 @@
     background: #0d1117; border: 1px solid #30363d;
     border-radius: 6px; padding: 12px 14px;
   }
-  .ref-card h4 { color: #f0f6fc; font-size: 16px; margin-bottom: 8px; }
+  .ref-card h4 { color: #d29922; font-size: 16px; margin-bottom: 8px; }
   .ref-card p  { color: #8b949e; font-size: 15px; line-height: 1.6; margin-bottom: 6px; white-space: normal; }
   .ref-card table { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 6px; }
   .ref-card th { color: #8b949e; text-align: left; padding: 5px 8px; border-bottom: 1px solid #30363d; white-space: normal; }
@@ -168,7 +168,7 @@
 
 <header>
   <h1>Options Tracker</h1>
-  <span>Generated: 2026-04-17 23:49 &nbsp;|&nbsp; 33 symbols &nbsp;|&nbsp;
+  <span>Generated: 2026-04-17 23:53 &nbsp;|&nbsp; 33 symbols &nbsp;|&nbsp;
     Click any symbol for history</span>
 </header>
 
@@ -191,7 +191,7 @@
       <div class="ref-grid">
 
         <div class="ref-card">
-          <h4>ATR — Average True Range</h4>
+          <h4>1. ATR — Average True Range</h4>
           <p>How much the stock moves in dollars per day on average. Calculated over the last 14 days.</p>
           <p>Higher ATR = bigger daily swings. Lower ATR = calmer stock.</p>
           <table>
@@ -208,7 +208,7 @@
         </div>
 
         <div class="ref-card">
-          <h4>P/C Vol — Put/Call Volume Ratio</h4>
+          <h4>2. P/C Vol — Put/Call Volume Ratio</h4>
           <p>Total puts traded today divided by total calls traded today. Changes every day — reflects short term sentiment.</p>
           <table>
             <tr><th>Value</th><th>Meaning</th></tr>
@@ -225,7 +225,7 @@
         </div>
 
         <div class="ref-card">
-          <h4>P/C OI — Put/Call Open Interest</h4>
+          <h4>3. P/C OI — Put/Call Open Interest</h4>
           <p>All outstanding put contracts divided by all outstanding call contracts. Moves slowly — reflects positioning built over days or weeks. More reliable than volume for gauging real sentiment.</p>
           <table>
             <tr><th>P/C Vol</th><th>P/C OI</th><th>Reading</th></tr>
@@ -242,7 +242,7 @@
         </div>
 
         <div class="ref-card">
-          <h4>IV / HV Ratio</h4>
+          <h4>4. IV / HV Ratio</h4>
           <p><b style="color:#c9d1d9">IV</b> = what the options market expects the stock to move in the future.<br>
           <b style="color:#c9d1d9">HV</b> = what the stock has actually moved in the past 20 days.<br>
           Dividing them tells you if options are cheap or expensive right now.</p>
@@ -264,7 +264,7 @@
         </div>
 
         <div class="ref-card">
-          <h4>RSI — Relative Strength Index</h4>
+          <h4>5. RSI — Relative Strength Index</h4>
           <p>Momentum indicator showing if a stock is overbought or oversold. Scale of 0 to 100. Calculated over 14 days.</p>
           <table>
             <tr><th>Value</th><th>Meaning</th><th>Options signal</th></tr>
@@ -285,7 +285,7 @@
         </div>
 
         <div class="ref-card">
-          <h4>IV Rank</h4>
+          <h4>6. IV Rank</h4>
           <p>Answers: Is IV high or low compared to the past 52 weeks?<br>
           Formula: (Current IV − 52w Low) ÷ (52w High − 52w Low) × 100</p>
           <table>
@@ -307,7 +307,7 @@
         </div>
 
         <div class="ref-card">
-          <h4>IV Percentile</h4>
+          <h4>7. IV Percentile</h4>
           <p>Answers: On what percentage of past trading days was IV lower than today?</p>
           <table>
             <tr><th>IV Pctile</th><th>Meaning</th></tr>
@@ -335,7 +335,7 @@
         </div>
 
         <div class="ref-card">
-          <h4>Earnings Play — Selling BEFORE Earnings</h4>
+          <h4>8. Earnings Play — Selling BEFORE Earnings</h4>
           <p>As earnings approach, IV spikes because nobody knows the outcome. Once earnings are announced, IV collapses instantly — this is called <b>IV Crush</b>. The strategy is to sell options when IV is inflated, then buy them back after the crush at a lower price, keeping the difference.</p>
           <table>
             <tr><th>Timing</th><th>Why</th></tr>
@@ -363,7 +363,7 @@
         </div>
 
         <div class="ref-card">
-          <h4>Earnings Play — Selling AFTER Earnings</h4>
+          <h4>9. Earnings Play — Selling AFTER Earnings</h4>
           <p>After earnings, IV has already crushed and the stock has made its move. You are no longer playing IV crush — you are playing <b>mean reversion</b>. The stock has overextended and is likely to consolidate.</p>
           <table>
             <tr><th>Timing</th><th>Why</th></tr>
@@ -388,7 +388,7 @@
         </div>
 
         <div class="ref-card">
-          <h4>Earnings Drop Premarket — Low Risk Same-Day Play</h4>
+          <h4>10. Earnings Drop Premarket — Low Risk Same-Day Play</h4>
           <p>When earnings are announced before the market opens, the big unknown is already resolved. The stock has already gapped. You are now reading the <b>reaction</b>, not guessing the outcome. This is one of the better setups because you have a clear reference level to trade against.</p>
           <table>
             <tr><th>Step</th><th>Action</th></tr>
@@ -423,7 +423,7 @@
         </div>
 
         <div class="ref-card">
-          <h4>Strategy — Cash-Secured Put (CSP)</h4>
+          <h4>11. Strategy — Cash-Secured Put (CSP)</h4>
           <p>Sell a put below the current price and collect premium. If the stock drops to your strike, you buy 100 shares at that price. If it stays above, the put expires worthless and you keep the premium. Only use on stocks you genuinely want to own.</p>
           <table>
             <tr><th>Indicator</th><th>What to look for</th></tr>
@@ -440,7 +440,7 @@
         </div>
 
         <div class="ref-card">
-          <h4>Strategy — Covered Call</h4>
+          <h4>12. Strategy — Covered Call</h4>
           <p>You already own 100 shares. Sell a call above the current price to collect monthly income. If the stock stays below the strike, the call expires worthless and you keep the premium. If it rises above, your shares get called away at the strike — you still profit, just capped.</p>
           <table>
             <tr><th>Indicator</th><th>What to look for</th></tr>
@@ -457,7 +457,7 @@
         </div>
 
         <div class="ref-card">
-          <h4>Strategy — The Wheel</h4>
+          <h4>13. Strategy — The Wheel</h4>
           <p>A repeating income loop combining CSP and Covered Call. You are paid to wait at every step — whether the stock goes up, down, or sideways.</p>
           <table>
             <tr><th>Step</th><th>Action</th></tr>
@@ -476,7 +476,7 @@
         </div>
 
         <div class="ref-card">
-          <h4>Strategy — Bull Put Spread</h4>
+          <h4>14. Strategy — Bull Put Spread</h4>
           <p>Sell a put at a higher strike and buy a put at a lower strike. You collect the difference in premium. Your maximum loss is fixed — you cannot lose more than the spread width regardless of how far the stock falls.</p>
           <table>
             <tr><th>Indicator</th><th>What to look for</th></tr>
@@ -494,7 +494,7 @@
         </div>
 
         <div class="ref-card">
-          <h4>Strategy — Bear Call Spread</h4>
+          <h4>15. Strategy — Bear Call Spread</h4>
           <p>Sell a call at a lower strike and buy a call at a higher strike. Mirror image of the bull put spread. You profit if the stock stays below your sold strike. Maximum loss is fixed at the spread width minus premium collected.</p>
           <table>
             <tr><th>Indicator</th><th>What to look for</th></tr>
@@ -512,7 +512,7 @@
         </div>
 
         <div class="ref-card">
-          <h4>Strategy — Iron Condor</h4>
+          <h4>16. Strategy — Iron Condor</h4>
           <p>Combine a bull put spread (below current price) and a bear call spread (above current price). You collect premium from both sides and profit if the stock stays inside the range between the two short strikes. Best used on calm, range-bound stocks with high IV.</p>
           <table>
             <tr><th>Indicator</th><th>What to look for</th></tr>
@@ -531,7 +531,7 @@
         </div>
 
         <div class="ref-card">
-          <h4>Strategy — Diagonal Spread (Poor Man's Covered Call)</h4>
+          <h4>17. Strategy — Diagonal Spread (Poor Man's Covered Call)</h4>
           <p>Buy a deep in-the-money (ITM) call with a long expiry (6–12 months) — this acts like owning 100 shares but at a fraction of the cost. Then sell a short-dated out-of-the-money (OTM) call against it each month to collect premium. Same income as a covered call with much less capital tied up.</p>
           <table>
             <tr><th>Component</th><th>What to buy/sell</th></tr>
