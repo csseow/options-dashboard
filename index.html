@@ -232,7 +232,7 @@
 
 <header>
   <h1>Options Tracker</h1>
-  <span>Generated: 2026-04-18 15:23 &nbsp;|&nbsp; 49 symbols &nbsp;|&nbsp;
+  <span>Generated: 2026-04-18 15:29 &nbsp;|&nbsp; 49 symbols &nbsp;|&nbsp;
     Click any symbol for history</span>
 </header>
 
@@ -1853,6 +1853,25 @@ function filterTable() {
   const totalOIs  = rows.map((_,i) => allCO[i] + allPO[i]).sort((a,b)=>a-b);
   const medVol = totalVols[Math.floor(totalVols.length/2)] || 0;
   const medOI  = totalOIs[Math.floor(totalOIs.length/2)]  || 0;
+
+  // Sort largest-to-smallest for vol/OI filters
+  const volOiTypes = ['put-vol','call-vol','total-vol','put-oi','call-oi','total-oi'];
+  if (volOiTypes.includes(activeType)) {
+    const tbody = document.getElementById('table-body');
+    const sortKey = r => {
+      const cv = +r.dataset.callVol||0, pv = +r.dataset.putVol||0;
+      const co = +r.dataset.callOi||0,  po = +r.dataset.putOi||0;
+      if (activeType==='put-vol')   return pv;
+      if (activeType==='call-vol')  return cv;
+      if (activeType==='total-vol') return cv + pv;
+      if (activeType==='put-oi')    return po;
+      if (activeType==='call-oi')   return co;
+      if (activeType==='total-oi')  return co + po;
+      return 0;
+    };
+    [...rows].sort((a,b) => sortKey(b) - sortKey(a))
+             .forEach(r => tbody.appendChild(r));
+  }
 
   rows.forEach(r => {
     const sym    = r.cells[0].textContent.toLowerCase();
