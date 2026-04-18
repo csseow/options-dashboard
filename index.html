@@ -102,6 +102,15 @@
   .why-cell { min-width: 260px; max-width: 400px; line-height: 1.6; white-space: normal; vertical-align: top; text-align: left; }
   .why-label { font-size: 14px; font-weight: 700; color: #8b949e;
                 text-align: left; margin-top: 8px; margin-bottom: 2px; }
+  .pv-cell      { white-space: normal; vertical-align: top; text-align: left; min-width: 130px; }
+  .pv-label     { font-size: 12px; color: #f0f6fc; margin-top: 4px; }
+  .pv-price     { font-size: 15px; font-weight: 600; color: #f0f6fc; }
+  .pv-vol-label { margin-top: 6px; color: #e8c84a; }
+  .pv-vol       { font-size: 15px; font-weight: 600; color: #e8c84a; }
+  .vol-flag     { font-size: 12px; margin-top: 3px; white-space: normal; }
+  .vol-30       { color: #ff79a8; }
+  .vol-60       { color: #3fb950; }
+  .vol-90       { color: #f85149; }
   .earn-cell { white-space: normal; vertical-align: top; min-width: 110px; }
   .earn-days-label { font-size: 13px; color: #484f58; font-weight: 600; }
   .notes-cell { vertical-align: top; min-width: 180px; max-width: 280px; text-align: left; }
@@ -221,7 +230,7 @@
 
 <header>
   <h1>Options Tracker</h1>
-  <span>Generated: 2026-04-18 14:32 &nbsp;|&nbsp; 33 symbols &nbsp;|&nbsp;
+  <span>Generated: 2026-04-18 14:39 &nbsp;|&nbsp; 33 symbols &nbsp;|&nbsp;
     Click any symbol for history</span>
 </header>
 
@@ -630,21 +639,20 @@
       <thead><tr>
         <th onclick="sortTable(0)">Symbol</th>
         <th onclick="sortTable(1)">Date</th>
-        <th onclick="sortTable(2)">Price</th>
-        <th onclick="sortTable(3)">Volume</th>
-        <th onclick="sortTable(4)">IV%</th>
-        <th onclick="sortTable(5)">HV%</th>
-        <th onclick="sortTable(6)">IV/HV</th>
-        <th onclick="sortTable(7)">IV Rank</th>
-        <th onclick="sortTable(8)">IV Pctile</th>
-        <th onclick="sortTable(9)">RSI</th>
-        <th onclick="sortTable(10)">ATR</th>
-        <th onclick="sortTable(11)">P/C Vol</th>
-        <th onclick="sortTable(12)">P/C OI</th>
+        <th onclick="sortTable(2)">Price / Vol</th>
+        <th onclick="sortTable(3)">IV%</th>
+        <th onclick="sortTable(4)">HV%</th>
+        <th onclick="sortTable(5)">IV/HV</th>
+        <th onclick="sortTable(6)">IV Rank</th>
+        <th onclick="sortTable(7)">IV Pctile</th>
+        <th onclick="sortTable(8)">RSI</th>
+        <th onclick="sortTable(9)">ATR</th>
+        <th onclick="sortTable(10)">P/C Vol</th>
+        <th onclick="sortTable(11)">P/C OI</th>
         <th>IV Trend</th>
         <th>RSI Trend</th>
-        <th onclick="sortTable(15)">Signal</th>
-        <th onclick="sortTable(16)">Earnings</th>
+        <th onclick="sortTable(14)">Signal</th>
+        <th onclick="sortTable(15)">Earnings</th>
         <th>Strategies &amp; Why</th>
         <th>Additional Notes</th>
       </tr></thead>
@@ -652,8 +660,7 @@
         <tr class="data-row" data-symbol="AAOI" style="cursor:pointer">
             <td class="symbol">AAOI</td>
             <td>2026-04-18</td>
-            <td>$159.42</td>
-            <td>8,691,900</td>
+            <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$159.42</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">8,691,900</div><div class="vol-flag vol-90">↑ above 90d avg <b>6,875,371</b></div></td>
             <td class="green">154.4% <span class="trend-dn">↓</span></td>
             <td>156.2% <span class="trend-flat">→</span></td>
             <td class="green">0.989 <span class="trend-dn">↓</span></td>
@@ -673,8 +680,7 @@
         <tr class="data-row" data-symbol="ASTS" style="cursor:pointer">
             <td class="symbol">ASTS</td>
             <td>2026-04-18</td>
-            <td>$85.53</td>
-            <td>19,947,300</td>
+            <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$85.53</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">19,947,300</div><div class="vol-flag vol-90">↑ above 90d avg <b>13,640,519</b></div></td>
             <td class="">110.5% <span class="trend-up">↑</span></td>
             <td>107.0% <span class="trend-flat">→</span></td>
             <td class="">1.033 <span class="trend-flat">→</span></td>
@@ -694,8 +700,7 @@
         <tr class="data-row" data-symbol="AXTI" style="cursor:pointer">
             <td class="symbol">AXTI</td>
             <td>2026-04-18</td>
-            <td>$82.56</td>
-            <td>10,286,500</td>
+            <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$82.56</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">10,286,500</div><div class="vol-flag vol-90">↑ above 90d avg <b>8,152,516</b></div></td>
             <td class="green">201.9% <span class="trend-dn">↓</span></td>
             <td>204.6% <span class="trend-flat">→</span></td>
             <td class="green">0.987 <span class="trend-flat">→</span></td>
@@ -715,8 +720,7 @@
         <tr class="data-row" data-symbol="BABA" style="cursor:pointer">
             <td class="symbol">BABA</td>
             <td>2026-04-18</td>
-            <td>$141.01</td>
-            <td>12,862,100</td>
+            <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$141.01</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">12,862,100</div><div class="vol-flag vol-90">↑ above 90d avg <b>8,292,111</b></div></td>
             <td class="">47.0% <span class="trend-up">↑</span></td>
             <td>36.9% <span class="trend-flat">→</span></td>
             <td class="">1.272 <span class="trend-up">↑</span></td>
@@ -736,8 +740,7 @@
         <tr class="data-row" data-symbol="BBAI" style="cursor:pointer">
             <td class="symbol">BBAI</td>
             <td>2026-04-18</td>
-            <td>$3.85</td>
-            <td>46,115,400</td>
+            <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$3.85</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">46,115,400</div><div class="vol-flag vol-90">↑ above 90d avg <b>30,765,366</b></div></td>
             <td class="">100.9% <span class="trend-flat">→</span></td>
             <td>81.9% <span class="trend-flat">→</span></td>
             <td class="">1.232 <span class="trend-flat">→</span></td>
@@ -757,8 +760,7 @@
         <tr class="data-row" data-symbol="BMNR" style="cursor:pointer">
             <td class="symbol">BMNR</td>
             <td>2026-04-18</td>
-            <td>$22.95</td>
-            <td>63,358,000</td>
+            <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$22.95</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">63,358,000</div><div class="vol-flag vol-90">↑ above 90d avg <b>39,169,738</b></div></td>
             <td class="orange">84.4% <span class="trend-dn">↓</span></td>
             <td>61.6% <span class="trend-dn">↓</span></td>
             <td class="orange">1.369 <span class="trend-dn">↓</span></td>
@@ -778,8 +780,7 @@
         <tr class="data-row" data-symbol="CF" style="cursor:pointer">
             <td class="symbol">CF</td>
             <td>2026-04-18</td>
-            <td>$112.68</td>
-            <td>6,850,200</td>
+            <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$112.68</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">6,850,200</div><div class="vol-flag vol-90">↑ above 90d avg <b>3,577,001</b></div></td>
             <td class="green-strong">52.8% <span class="trend-dn">↓</span></td>
             <td>62.2% <span class="trend-dn">↓</span></td>
             <td class="green-strong">0.849 <span class="trend-dn">↓</span></td>
@@ -799,8 +800,7 @@
         <tr class="data-row" data-symbol="CLSK" style="cursor:pointer">
             <td class="symbol">CLSK</td>
             <td>2026-04-18</td>
-            <td>$11.97</td>
-            <td>27,884,300</td>
+            <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$11.97</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">27,884,300</div><div class="vol-flag vol-90">↑ above 90d avg <b>16,175,264</b></div></td>
             <td class="orange">99.5% <span class="trend-flat">→</span></td>
             <td>74.3% <span class="trend-flat">→</span></td>
             <td class="orange">1.338 <span class="trend-dn">↓</span></td>
@@ -820,8 +820,7 @@
         <tr class="data-row" data-symbol="COIN" style="cursor:pointer">
             <td class="symbol">COIN</td>
             <td>2026-04-18</td>
-            <td>$206.33</td>
-            <td>15,631,400</td>
+            <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$206.33</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">15,631,400</div><div class="vol-flag vol-90">↑ above 90d avg <b>9,991,233</b></div></td>
             <td class="">78.3% <span class="trend-dn">↓</span></td>
             <td>70.1% <span class="trend-flat">→</span></td>
             <td class="">1.117 <span class="trend-dn">↓</span></td>
@@ -841,8 +840,7 @@
         <tr class="data-row" data-symbol="CRM" style="cursor:pointer">
             <td class="symbol">CRM</td>
             <td>2026-04-18</td>
-            <td>$182.14</td>
-            <td>17,124,000</td>
+            <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$182.14</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">17,124,000</div><div class="vol-flag vol-90">↑ above 90d avg <b>11,626,785</b></div></td>
             <td class="">43.9% <span class="trend-up">↑</span></td>
             <td>43.6% <span class="trend-dn">↓</span></td>
             <td class="">1.006 <span class="trend-up">↑</span></td>
@@ -862,8 +860,7 @@
         <tr class="data-row" data-symbol="DDOG" style="cursor:pointer">
             <td class="symbol">DDOG</td>
             <td>2026-04-18</td>
-            <td>$126.61</td>
-            <td>4,049,400</td>
+            <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$126.61</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">4,049,400</div><div class="vol-flag vol-90">↑ above 90d avg <b>3,383,376</b></div></td>
             <td class="">75.4% <span class="trend-dn">↓</span></td>
             <td>63.8% <span class="trend-flat">→</span></td>
             <td class="">1.181 <span class="trend-dn">↓</span></td>
@@ -883,8 +880,7 @@
         <tr class="data-row" data-symbol="ENPH" style="cursor:pointer">
             <td class="symbol">ENPH</td>
             <td>2026-04-18</td>
-            <td>$32.48</td>
-            <td>7,958,000</td>
+            <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$32.48</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">7,958,000</div><div class="vol-flag vol-90">↑ above 90d avg <b>5,931,994</b></div></td>
             <td class="orange">86.7% <span class="trend-dn">↓</span></td>
             <td>64.9% <span class="trend-flat">→</span></td>
             <td class="orange">1.336 <span class="trend-dn">↓</span></td>
@@ -904,8 +900,7 @@
         <tr class="data-row" data-symbol="GRAB" style="cursor:pointer">
             <td class="symbol">GRAB</td>
             <td>2026-04-18</td>
-            <td>$4.21</td>
-            <td>72,591,800</td>
+            <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$4.21</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">72,591,800</div><div class="vol-flag vol-90">↑ above 90d avg <b>45,668,934</b></div></td>
             <td class="red">62.6% <span class="trend-dn">↓</span></td>
             <td>38.2% <span class="trend-flat">→</span></td>
             <td class="red">1.638 <span class="trend-dn">↓</span></td>
@@ -925,8 +920,7 @@
         <tr class="data-row" data-symbol="HOOD" style="cursor:pointer">
             <td class="symbol">HOOD</td>
             <td>2026-04-18</td>
-            <td>$90.75</td>
-            <td>49,681,400</td>
+            <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$90.75</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">49,681,400</div><div class="vol-flag vol-90">↑ above 90d avg <b>44,018,699</b></div></td>
             <td class="green">70.8% <span class="trend-dn">↓</span></td>
             <td>72.1% <span class="trend-flat">→</span></td>
             <td class="green">0.982 <span class="trend-dn">↓</span></td>
@@ -946,8 +940,7 @@
         <tr class="data-row" data-symbol="IREN" style="cursor:pointer">
             <td class="symbol">IREN</td>
             <td>2026-04-18</td>
-            <td>$48.12</td>
-            <td>30,748,300</td>
+            <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$48.12</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">30,748,300</div><div class="vol-flag vol-90">↑ above 90d avg <b>23,049,226</b></div></td>
             <td class="">104.1% <span class="trend-dn">↓</span></td>
             <td>86.3% <span class="trend-flat">→</span></td>
             <td class="">1.207 <span class="trend-dn">↓</span></td>
@@ -967,8 +960,7 @@
         <tr class="data-row" data-symbol="KTOS" style="cursor:pointer">
             <td class="symbol">KTOS</td>
             <td>2026-04-18</td>
-            <td>$70.99</td>
-            <td>7,152,000</td>
+            <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$70.99</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">7,152,000</div><div class="vol-flag vol-90">↑ above 90d avg <b>3,682,897</b></div></td>
             <td class="green">82.1% <span class="trend-flat">→</span></td>
             <td>88.1% <span class="trend-flat">→</span></td>
             <td class="green">0.932 <span class="trend-dn">↓</span></td>
@@ -988,8 +980,7 @@
         <tr class="data-row" data-symbol="LMT" style="cursor:pointer">
             <td class="symbol">LMT</td>
             <td>2026-04-18</td>
-            <td>$592.19</td>
-            <td>1,697,700</td>
+            <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$592.19</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">1,697,700</div><div class="vol-flag vol-90">↑ above 90d avg <b>921,725</b></div></td>
             <td class="">31.1% <span class="trend-dn">↓</span></td>
             <td>25.3% <span class="trend-up">↑</span></td>
             <td class="">1.228 <span class="trend-dn">↓</span></td>
@@ -1009,8 +1000,7 @@
         <tr class="data-row" data-symbol="MARA" style="cursor:pointer">
             <td class="symbol">MARA</td>
             <td>2026-04-18</td>
-            <td>$11.60</td>
-            <td>52,216,200</td>
+            <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$11.60</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">52,216,200</div><div class="vol-flag vol-90">↑ above 90d avg <b>34,150,438</b></div></td>
             <td class="">93.9% <span class="trend-dn">↓</span></td>
             <td>81.1% <span class="trend-flat">→</span></td>
             <td class="">1.158 <span class="trend-dn">↓</span></td>
@@ -1030,8 +1020,7 @@
         <tr class="data-row" data-symbol="MP" style="cursor:pointer">
             <td class="symbol">MP</td>
             <td>2026-04-18</td>
-            <td>$60.99</td>
-            <td>6,540,000</td>
+            <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$60.99</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">6,540,000</div><div class="vol-flag vol-90">↑ above 90d avg <b>4,169,362</b></div></td>
             <td class="green">71.5% <span class="trend-dn">↓</span></td>
             <td>75.0% <span class="trend-flat">→</span></td>
             <td class="green">0.954 <span class="trend-dn">↓</span></td>
@@ -1051,8 +1040,7 @@
         <tr class="data-row" data-symbol="MSFT" style="cursor:pointer">
             <td class="symbol">MSFT</td>
             <td>2026-04-18</td>
-            <td>$422.79</td>
-            <td>47,812,100</td>
+            <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$422.79</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">47,812,100</div><div class="vol-flag vol-90">↑ above 90d avg <b>33,900,968</b></div></td>
             <td class="">36.1% <span class="trend-dn">↓</span></td>
             <td>30.7% <span class="trend-flat">→</span></td>
             <td class="">1.174 <span class="trend-dn">↓</span></td>
@@ -1072,8 +1060,7 @@
         <tr class="data-row" data-symbol="MSTR" style="cursor:pointer">
             <td class="symbol">MSTR</td>
             <td>2026-04-18</td>
-            <td>$166.52</td>
-            <td>52,025,900</td>
+            <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$166.52</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">52,025,900</div><div class="vol-flag vol-90">↑ above 90d avg <b>25,185,638</b></div></td>
             <td class="">78.7% <span class="trend-up">↑</span></td>
             <td>65.0% <span class="trend-flat">→</span></td>
             <td class="">1.211 <span class="trend-up">↑</span></td>
@@ -1093,8 +1080,7 @@
         <tr class="data-row" data-symbol="NOW" style="cursor:pointer">
             <td class="symbol">NOW</td>
             <td>2026-04-18</td>
-            <td>$96.66</td>
-            <td>17,673,500</td>
+            <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$96.66</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">17,673,500</div><div class="vol-flag vol-90">↑ above 90d avg <b>15,593,725</b></div></td>
             <td class="">71.1% <span class="trend-flat">→</span></td>
             <td>66.3% <span class="trend-flat">→</span></td>
             <td class="">1.072 <span class="trend-flat">→</span></td>
@@ -1114,8 +1100,7 @@
         <tr class="data-row" data-symbol="NVO" style="cursor:pointer">
             <td class="symbol">NVO</td>
             <td>2026-04-18</td>
-            <td>$40.52</td>
-            <td>13,178,400</td>
+            <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$40.52</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">13,178,400</div><div class="vol-flag vol-90">↑ above 90d avg <b>11,773,135</b></div></td>
             <td class="red">47.1% <span class="trend-dn">↓</span></td>
             <td>26.5% <span class="trend-flat">→</span></td>
             <td class="red">1.779 <span class="trend-dn">↓</span></td>
@@ -1135,8 +1120,7 @@
         <tr class="data-row" data-symbol="OKLO" style="cursor:pointer">
             <td class="symbol">OKLO</td>
             <td>2026-04-18</td>
-            <td>$66.81</td>
-            <td>24,287,800</td>
+            <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$66.81</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">24,287,800</div><div class="vol-flag vol-90">↑ above 90d avg <b>16,405,108</b></div></td>
             <td class="">103.7% <span class="trend-flat">→</span></td>
             <td>86.0% <span class="trend-flat">→</span></td>
             <td class="">1.206 <span class="trend-flat">→</span></td>
@@ -1156,8 +1140,7 @@
         <tr class="data-row" data-symbol="OPEN" style="cursor:pointer">
             <td class="symbol">OPEN</td>
             <td>2026-04-18</td>
-            <td>$5.29</td>
-            <td>43,320,800</td>
+            <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$5.29</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">43,320,800</div><div class="vol-flag vol-90">↑ above 90d avg <b>27,910,530</b></div></td>
             <td class="orange">97.3% <span class="trend-dn">↓</span></td>
             <td>72.5% <span class="trend-flat">→</span></td>
             <td class="orange">1.342 <span class="trend-dn">↓</span></td>
@@ -1177,8 +1160,7 @@
         <tr class="data-row" data-symbol="OSCR" style="cursor:pointer">
             <td class="symbol">OSCR</td>
             <td>2026-04-18</td>
-            <td>$15.79</td>
-            <td>4,925,500</td>
+            <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$15.79</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">4,925,500</div><div class="vol-flag vol-90">↑ above 90d avg <b>4,047,289</b></div></td>
             <td class="">81.9% <span class="trend-dn">↓</span></td>
             <td>70.1% <span class="trend-flat">→</span></td>
             <td class="">1.168 <span class="trend-dn">↓</span></td>
@@ -1198,8 +1180,7 @@
         <tr class="data-row" data-symbol="RGTI" style="cursor:pointer">
             <td class="symbol">RGTI</td>
             <td>2026-04-18</td>
-            <td>$19.81</td>
-            <td>40,290,100</td>
+            <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$19.81</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">40,290,100</div></td>
             <td class="">105.6% <span class="trend-dn">↓</span></td>
             <td>87.1% <span class="trend-flat">→</span></td>
             <td class="">1.212 <span class="trend-dn">↓</span></td>
@@ -1219,8 +1200,7 @@
         <tr class="data-row" data-symbol="RKLB" style="cursor:pointer">
             <td class="symbol">RKLB</td>
             <td>2026-04-18</td>
-            <td>$84.80</td>
-            <td>25,986,800</td>
+            <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$84.80</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">25,986,800</div><div class="vol-flag vol-90">↑ above 90d avg <b>19,034,315</b></div></td>
             <td class="green">90.3% <span class="trend-dn">↓</span></td>
             <td>95.3% <span class="trend-flat">→</span></td>
             <td class="green">0.948 <span class="trend-dn">↓</span></td>
@@ -1240,8 +1220,7 @@
         <tr class="data-row" data-symbol="SLV" style="cursor:pointer">
             <td class="symbol">SLV</td>
             <td>2026-04-18</td>
-            <td>$73.63</td>
-            <td>35,072,200</td>
+            <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$73.63</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">35,072,200</div><div class="vol-flag vol-90">↑ above 90d avg <b>22,746,272</b></div></td>
             <td class="">56.2% <span class="trend-flat">→</span></td>
             <td>55.4% <span class="trend-flat">→</span></td>
             <td class="">1.014 <span class="trend-flat">→</span></td>
@@ -1261,8 +1240,7 @@
         <tr class="data-row" data-symbol="SMR" style="cursor:pointer">
             <td class="symbol">SMR</td>
             <td>2026-04-18</td>
-            <td>$12.65</td>
-            <td>66,888,000</td>
+            <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$12.65</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">66,888,000</div><div class="vol-flag vol-90">↑ above 90d avg <b>47,104,103</b></div></td>
             <td class="">114.3% <span class="trend-flat">→</span></td>
             <td>98.4% <span class="trend-up">↑</span></td>
             <td class="">1.162 <span class="trend-flat">→</span></td>
@@ -1282,8 +1260,7 @@
         <tr class="data-row" data-symbol="SOFI" style="cursor:pointer">
             <td class="symbol">SOFI</td>
             <td>2026-04-18</td>
-            <td>$19.43</td>
-            <td>73,102,200</td>
+            <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$19.43</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">73,102,200</div><div class="vol-flag vol-90">↑ above 90d avg <b>52,685,322</b></div></td>
             <td class="orange">68.2% <span class="trend-dn">↓</span></td>
             <td>45.8% <span class="trend-dn">↓</span></td>
             <td class="orange">1.490 <span class="trend-dn">↓</span></td>
@@ -1303,8 +1280,7 @@
         <tr class="data-row" data-symbol="TSM" style="cursor:pointer">
             <td class="symbol">TSM</td>
             <td>2026-04-18</td>
-            <td>$370.50</td>
-            <td>18,389,700</td>
+            <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$370.50</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">18,389,700</div><div class="vol-flag vol-90">↑ above 90d avg <b>12,532,822</b></div></td>
             <td class="green">42.4% <span class="trend-dn">↓</span></td>
             <td>47.8% <span class="trend-flat">→</span></td>
             <td class="green">0.888 <span class="trend-dn">↓</span></td>
@@ -1324,8 +1300,7 @@
         <tr class="data-row" data-symbol="UNH" style="cursor:pointer">
             <td class="symbol">UNH</td>
             <td>2026-04-18</td>
-            <td>$324.63</td>
-            <td>9,397,500</td>
+            <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$324.63</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">9,397,500</div><div class="vol-flag vol-90">↑ above 90d avg <b>5,268,485</b></div></td>
             <td class="green">34.7% <span class="trend-dn">↓</span></td>
             <td>40.7% <span class="trend-flat">→</span></td>
             <td class="green">0.851 <span class="trend-dn">↓</span></td>
