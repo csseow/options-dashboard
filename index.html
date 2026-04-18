@@ -41,15 +41,17 @@
     background: #388bfd22; border-color: #388bfd; color: #58a6ff;
   }
 
-  .table-wrap { overflow-x: auto; border-radius: 8px; border: 1px solid #30363d; }
+  .table-wrap { overflow: auto; border-radius: 8px; border: 1px solid #30363d; max-height: 80vh; }
   table { width: 100%; border-collapse: collapse; }
   thead th {
     background: #161b22; color: #8b949e; font-weight: 600;
     padding: 10px 12px; text-align: right; white-space: nowrap;
     cursor: pointer; user-select: none; font-size: 15px;
     border-bottom: 1px solid #30363d;
+    position: sticky; top: 0; z-index: 2;
   }
-  thead th:first-child, thead th:nth-child(2) { text-align: left; }
+  thead th:first-child { text-align: left; position: sticky; top: 0; left: 0; z-index: 4; }
+  thead th:nth-child(2) { text-align: left; }
   thead th:hover { color: #f0f6fc; }
   thead th.sort-asc::after  { content: " ▲"; }
   thead th.sort-desc::after { content: " ▼"; }
@@ -58,7 +60,12 @@
   tbody tr:last-child { border-bottom: none; }
   tbody tr:hover { background: #1c2128; }
   td { padding: 8px 12px; text-align: right; white-space: nowrap; }
-  td:first-child, td:nth-child(2) { text-align: left; }
+  td:first-child {
+    text-align: left; position: sticky; left: 0; z-index: 1;
+    background: #0d1117;
+  }
+  tbody tr:hover td:first-child { background: #1c2128; }
+  td:nth-child(2) { text-align: left; }
 
   .symbol { font-weight: 700; color: #58a6ff; font-size: 16px; text-decoration: underline dotted; }
 
@@ -195,7 +202,7 @@
 
 <header>
   <h1>Options Tracker</h1>
-  <span>Generated: 2026-04-18 14:15 &nbsp;|&nbsp; 33 symbols &nbsp;|&nbsp;
+  <span>Generated: 2026-04-18 14:17 &nbsp;|&nbsp; 33 symbols &nbsp;|&nbsp;
     Click any symbol for history</span>
 </header>
 
