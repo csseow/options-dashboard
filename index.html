@@ -88,6 +88,7 @@
     font-size: 13px; font-weight: 700;
     background: #d2992222; color: #d29922; border: 1px solid #d2992266;
   }
+  .why-cell { min-width: 220px; max-width: 320px; line-height: 1.6; }
   .earn-timing { color: #8b949e; font-size: 13px; }
   .earn-bmo {
     display: inline-block; font-size: 13px;
@@ -194,7 +195,7 @@
 
 <header>
   <h1>Options Tracker</h1>
-  <span>Generated: 2026-04-18 14:11 &nbsp;|&nbsp; 33 symbols &nbsp;|&nbsp;
+  <span>Generated: 2026-04-18 14:15 &nbsp;|&nbsp; 33 symbols &nbsp;|&nbsp;
     Click any symbol for history</span>
 </header>
 
@@ -611,6 +612,7 @@
         <th onclick="sortTable(16)">Earnings</th>
         <th onclick="sortTable(17)">Days</th>
         <th>Strategies</th>
+        <th>Why</th>
       </tr></thead>
       <tbody id="table-body">
         <tr class="data-row" data-symbol="AAOI" style="cursor:pointer">
@@ -633,6 +635,7 @@
             <td>May 07 <span class='earn-amc' title='After Market Close'>🌙✦</span></td>
             <td><span class="earn-far">19d</span></td>
             <td><span style="color:#484f58">—</span></td>
+            <td class="why-cell"><span style="color:#484f58">—</span></td>
         </tr>
         <tr class="data-row" data-symbol="ASTS" style="cursor:pointer">
             <td class="symbol">ASTS</td>
@@ -654,6 +657,7 @@
             <td>May 11 <span class='earn-amc' title='After Market Close'>🌙✦</span></td>
             <td><span class="earn-far">23d</span></td>
             <td><span class="strat-badge">13 wheel</span> <span class="strat-badge">17 diag-spd</span></td>
+            <td class="why-cell"><span style="font-size:12px;color:#58a6ff;font-family:monospace">IV/HV 1.03 · RSI 46 · ATR $8.27</span><br><span style="font-size:12px;color:#8b949e;line-height:1.5">premium moderate, neutral momentum — income + capital-efficient LEAPS approach</span></td>
         </tr>
         <tr class="data-row" data-symbol="AXTI" style="cursor:pointer">
             <td class="symbol">AXTI</td>
@@ -675,6 +679,7 @@
             <td>Apr 30 <span class='earn-amc' title='After Market Close'>🌙✦</span></td>
             <td><span class="earn-near">12d</span></td>
             <td><span style="color:#484f58">—</span></td>
+            <td class="why-cell"><span style="color:#484f58">—</span></td>
         </tr>
         <tr class="data-row" data-symbol="BABA" style="cursor:pointer">
             <td class="symbol">BABA</td>
@@ -696,6 +701,7 @@
             <td>May 14 <span class='earn-bmo' title='Before Market Open'>☀️</span></td>
             <td><span class="earn-far">26d</span></td>
             <td><span class="strat-badge">11 cash-sec-put</span> <span class="strat-badge">13 wheel</span> <span class="strat-badge">14 bull-put-spd</span> <span class="strat-badge">17 diag-spd</span></td>
+            <td class="why-cell"><span style="font-size:12px;color:#58a6ff;font-family:monospace">IV/HV 1.27 · RSI 64 · ATR $4.46</span><br><span style="font-size:12px;color:#8b949e;line-height:1.5">premium rich, neutral momentum — good income setup, sell puts then roll into wheel</span></td>
         </tr>
         <tr class="data-row" data-symbol="BBAI" style="cursor:pointer">
             <td class="symbol">BBAI</td>
@@ -717,6 +723,7 @@
             <td>Apr 30 <span class='earn-amc' title='After Market Close'>🌙✦</span></td>
             <td><span class="earn-near">12d</span></td>
             <td><span class="strat-badge">11 cash-sec-put</span> <span class="strat-badge">13 wheel</span> <span class="strat-badge">14 bull-put-spd</span></td>
+            <td class="why-cell"><span style="font-size:12px;color:#58a6ff;font-family:monospace">IV/HV 1.23 · RSI 55 · ATR $0.26</span><br><span style="font-size:12px;color:#8b949e;line-height:1.5">premium rich, neutral momentum — good income setup, sell puts then roll into wheel</span></td>
         </tr>
         <tr class="data-row" data-symbol="BMNR" style="cursor:pointer">
             <td class="symbol">BMNR</td>
@@ -738,6 +745,7 @@
             <td>Jul 02 <span class='earn-amc' title='After Market Close'>🌙✦</span></td>
             <td><span class="earn-far">75d</span></td>
             <td><span class="strat-badge">11 cash-sec-put</span> <span class="strat-badge">13 wheel</span> <span class="strat-badge">14 bull-put-spd</span> <span class="strat-badge">16 iron-condr</span></td>
+            <td class="why-cell"><span style="font-size:12px;color:#58a6ff;font-family:monospace">IV/HV 1.37 · RSI 61 · ATR $1.43</span><br><span style="font-size:12px;color:#8b949e;line-height:1.5">premium very rich, neutral momentum — stock likely range-bound, collect from both sides</span></td>
         </tr>
         <tr class="data-row" data-symbol="CF" style="cursor:pointer">
             <td class="symbol">CF</td>
@@ -759,6 +767,7 @@
             <td>May 06 <span class='earn-amc' title='After Market Close'>🌙✦</span></td>
             <td><span class="earn-far">18d</span></td>
             <td><span class="strat-badge">17 diag-spd</span></td>
+            <td class="why-cell"><span style="font-size:12px;color:#58a6ff;font-family:monospace">IV/HV 0.85 · RSI 41 · ATR $7.58</span><br><span style="font-size:12px;color:#8b949e;line-height:1.5">$113 stock, premium cheap — use LEAPS to control shares at lower capital cost</span></td>
         </tr>
         <tr class="data-row" data-symbol="CLSK" style="cursor:pointer">
             <td class="symbol">CLSK</td>
@@ -780,6 +789,7 @@
             <td>May 07 <span class='earn-amc' title='After Market Close'>🌙✦</span></td>
             <td><span class="earn-far">19d</span></td>
             <td><span class="strat-badge">12 cvr-call</span> <span class="strat-badge">13 wheel</span> <span class="strat-badge">14 bull-put-spd</span> <span class="strat-badge">15 bear-call-spd</span></td>
+            <td class="why-cell"><span style="font-size:12px;color:#58a6ff;font-family:monospace">IV/HV 1.34 · RSI 69 · ATR $0.79</span><br><span style="font-size:12px;color:#8b949e;line-height:1.5">premium very rich + near overbought — sell spreads on both sides</span></td>
         </tr>
         <tr class="data-row" data-symbol="COIN" style="cursor:pointer">
             <td class="symbol">COIN</td>
@@ -801,6 +811,7 @@
             <td>May 07 <span class='earn-amc' title='After Market Close'>🌙✦</span></td>
             <td><span class="earn-far">19d</span></td>
             <td><span class="strat-badge">11 cash-sec-put</span> <span class="strat-badge">13 wheel</span> <span class="strat-badge">14 bull-put-spd</span> <span class="strat-badge">17 diag-spd</span></td>
+            <td class="why-cell"><span style="font-size:12px;color:#58a6ff;font-family:monospace">IV/HV 1.12 · RSI 65 · ATR $11.80</span><br><span style="font-size:12px;color:#8b949e;line-height:1.5">premium rich, neutral momentum — good income setup, sell puts then roll into wheel</span></td>
         </tr>
         <tr class="data-row" data-symbol="CRM" style="cursor:pointer">
             <td class="symbol">CRM</td>
@@ -822,6 +833,7 @@
             <td>May 27 <span class='earn-amc' title='After Market Close'>🌙✦</span></td>
             <td><span class="earn-far">39d</span></td>
             <td><span class="strat-badge">13 wheel</span> <span class="strat-badge">17 diag-spd</span></td>
+            <td class="why-cell"><span style="font-size:12px;color:#58a6ff;font-family:monospace">IV/HV 1.01 · RSI 49 · ATR $7.50</span><br><span style="font-size:12px;color:#8b949e;line-height:1.5">premium moderate, neutral momentum — income + capital-efficient LEAPS approach</span></td>
         </tr>
         <tr class="data-row" data-symbol="DDOG" style="cursor:pointer">
             <td class="symbol">DDOG</td>
@@ -843,6 +855,7 @@
             <td>May 07 <span class='earn-bmo' title='Before Market Open'>☀️</span></td>
             <td><span class="earn-far">19d</span></td>
             <td><span class="strat-badge">11 cash-sec-put</span> <span class="strat-badge">13 wheel</span> <span class="strat-badge">14 bull-put-spd</span> <span class="strat-badge">17 diag-spd</span></td>
+            <td class="why-cell"><span style="font-size:12px;color:#58a6ff;font-family:monospace">IV/HV 1.18 · RSI 59 · ATR $7.07</span><br><span style="font-size:12px;color:#8b949e;line-height:1.5">premium rich, neutral momentum — good income setup, sell puts then roll into wheel</span></td>
         </tr>
         <tr class="data-row" data-symbol="ENPH" style="cursor:pointer">
             <td class="symbol">ENPH</td>
@@ -864,6 +877,7 @@
             <td>Apr 28 <span class='earn-amc' title='After Market Close'>🌙✦</span></td>
             <td><span class="earn-near">10d</span></td>
             <td><span class="strat-badge">11 cash-sec-put</span> <span class="strat-badge">13 wheel</span></td>
+            <td class="why-cell"><span style="font-size:12px;color:#58a6ff;font-family:monospace">IV/HV 1.34 · RSI 37 · ATR $2.21</span><br><span style="font-size:12px;color:#8b949e;line-height:1.5">premium very rich, near oversold — good income setup, sell puts then roll into wheel</span></td>
         </tr>
         <tr class="data-row" data-symbol="GRAB" style="cursor:pointer">
             <td class="symbol">GRAB</td>
@@ -885,6 +899,7 @@
             <td>May 04 <span class='earn-amc' title='After Market Close'>🌙✦</span></td>
             <td><span class="earn-far">16d</span></td>
             <td><span class="strat-badge">12 cvr-call</span> <span class="strat-badge">13 wheel</span> <span class="strat-badge">14 bull-put-spd</span> <span class="strat-badge">15 bear-call-spd</span></td>
+            <td class="why-cell"><span style="font-size:12px;color:#58a6ff;font-family:monospace">IV/HV 1.64 · RSI 69 · ATR $0.17</span><br><span style="font-size:12px;color:#8b949e;line-height:1.5">premium very rich + near overbought — sell spreads on both sides</span></td>
         </tr>
         <tr class="data-row" data-symbol="HOOD" style="cursor:pointer">
             <td class="symbol">HOOD</td>
@@ -906,6 +921,7 @@
             <td>Apr 28 <span class='earn-amc' title='After Market Close'>🌙✦</span></td>
             <td><span class="earn-near">10d</span></td>
             <td><span style="color:#484f58">—</span></td>
+            <td class="why-cell"><span style="color:#484f58">—</span></td>
         </tr>
         <tr class="data-row" data-symbol="IREN" style="cursor:pointer">
             <td class="symbol">IREN</td>
@@ -927,6 +943,7 @@
             <td>May 13 <span class='earn-amc' title='After Market Close'>🌙✦</span></td>
             <td><span class="earn-far">25d</span></td>
             <td><span class="strat-badge">12 cvr-call</span> <span class="strat-badge">13 wheel</span> <span class="strat-badge">14 bull-put-spd</span> <span class="strat-badge">15 bear-call-spd</span></td>
+            <td class="why-cell"><span style="font-size:12px;color:#58a6ff;font-family:monospace">IV/HV 1.21 · RSI 65 · ATR $3.43</span><br><span style="font-size:12px;color:#8b949e;line-height:1.5">premium rich + near overbought — sell spreads on both sides</span></td>
         </tr>
         <tr class="data-row" data-symbol="KTOS" style="cursor:pointer">
             <td class="symbol">KTOS</td>
@@ -948,6 +965,7 @@
             <td>May 07 <span class='earn-amc' title='After Market Close'>🌙✦</span></td>
             <td><span class="earn-far">19d</span></td>
             <td><span class="strat-badge">17 diag-spd</span></td>
+            <td class="why-cell"><span style="font-size:12px;color:#58a6ff;font-family:monospace">IV/HV 0.93 · RSI 42 · ATR $5.52</span><br><span style="font-size:12px;color:#8b949e;line-height:1.5">$71 stock, premium cheap — use LEAPS to control shares at lower capital cost</span></td>
         </tr>
         <tr class="data-row" data-symbol="LMT" style="cursor:pointer">
             <td class="symbol">LMT</td>
@@ -969,6 +987,7 @@
             <td>Apr 23 <span class='earn-bmo' title='Before Market Open'>☀️</span></td>
             <td><span class="earn-soon">5d</span></td>
             <td><span class="strat-badge">11 cash-sec-put</span> <span class="strat-badge">13 wheel</span></td>
+            <td class="why-cell"><span style="font-size:12px;color:#58a6ff;font-family:monospace">IV/HV 1.23 · RSI 36 · ATR $15.34</span><br><span style="font-size:12px;color:#8b949e;line-height:1.5">premium rich, near oversold — good income setup, sell puts then roll into wheel</span></td>
         </tr>
         <tr class="data-row" data-symbol="MARA" style="cursor:pointer">
             <td class="symbol">MARA</td>
@@ -990,6 +1009,7 @@
             <td>May 07 <span class='earn-amc' title='After Market Close'>🌙✦</span></td>
             <td><span class="earn-far">19d</span></td>
             <td><span class="strat-badge">12 cvr-call</span> <span class="strat-badge">15 bear-call-spd</span></td>
+            <td class="why-cell"><span style="font-size:12px;color:#58a6ff;font-family:monospace">IV/HV 1.16 · RSI 74 · ATR $0.77</span><br><span style="font-size:12px;color:#8b949e;line-height:1.5">overbought + premium rich — stock has run up, sell calls to collect inflated premium</span></td>
         </tr>
         <tr class="data-row" data-symbol="MP" style="cursor:pointer">
             <td class="symbol">MP</td>
@@ -1011,6 +1031,7 @@
             <td>May 07 <span class='earn-amc' title='After Market Close'>🌙✦</span></td>
             <td><span class="earn-far">19d</span></td>
             <td><span class="strat-badge">17 diag-spd</span></td>
+            <td class="why-cell"><span style="font-size:12px;color:#58a6ff;font-family:monospace">IV/HV 0.95 · RSI 61 · ATR $3.43</span><br><span style="font-size:12px;color:#8b949e;line-height:1.5">$61 stock, premium cheap — use LEAPS to control shares at lower capital cost</span></td>
         </tr>
         <tr class="data-row" data-symbol="MSFT" style="cursor:pointer">
             <td class="symbol">MSFT</td>
@@ -1032,6 +1053,7 @@
             <td>Apr 29 <span class='earn-amc' title='After Market Close'>🌙✦</span></td>
             <td><span class="earn-near">11d</span></td>
             <td><span class="strat-badge">12 cvr-call</span> <span class="strat-badge">15 bear-call-spd</span></td>
+            <td class="why-cell"><span style="font-size:12px;color:#58a6ff;font-family:monospace">IV/HV 1.17 · RSI 72 · ATR $9.93</span><br><span style="font-size:12px;color:#8b949e;line-height:1.5">overbought + premium rich — stock has run up, sell calls to collect inflated premium</span></td>
         </tr>
         <tr class="data-row" data-symbol="MSTR" style="cursor:pointer">
             <td class="symbol">MSTR</td>
@@ -1053,6 +1075,7 @@
             <td>May 05 <span class='earn-amc' title='After Market Close'>🌙✦</span></td>
             <td><span class="earn-far">17d</span></td>
             <td><span class="strat-badge">12 cvr-call</span> <span class="strat-badge">15 bear-call-spd</span></td>
+            <td class="why-cell"><span style="font-size:12px;color:#58a6ff;font-family:monospace">IV/HV 1.21 · RSI 72 · ATR $9.31</span><br><span style="font-size:12px;color:#8b949e;line-height:1.5">overbought + premium rich — stock has run up, sell calls to collect inflated premium</span></td>
         </tr>
         <tr class="data-row" data-symbol="NOW" style="cursor:pointer">
             <td class="symbol">NOW</td>
@@ -1074,6 +1097,7 @@
             <td>Apr 22 <span class='earn-amc' title='After Market Close'>🌙✦</span></td>
             <td><span class="earn-soon">4d</span></td>
             <td><span class="strat-badge">13 wheel</span> <span class="strat-badge">17 diag-spd</span></td>
+            <td class="why-cell"><span style="font-size:12px;color:#58a6ff;font-family:monospace">IV/HV 1.07 · RSI 45 · ATR $5.48</span><br><span style="font-size:12px;color:#8b949e;line-height:1.5">premium moderate, near oversold — income + capital-efficient LEAPS approach</span></td>
         </tr>
         <tr class="data-row" data-symbol="NVO" style="cursor:pointer">
             <td class="symbol">NVO</td>
@@ -1095,6 +1119,7 @@
             <td>May 06 <span class='earn-bmo' title='Before Market Open'>☀️</span></td>
             <td><span class="earn-far">18d</span></td>
             <td><span class="strat-badge">11 cash-sec-put</span> <span class="strat-badge">13 wheel</span> <span class="strat-badge">14 bull-put-spd</span> <span class="strat-badge">16 iron-condr</span></td>
+            <td class="why-cell"><span style="font-size:12px;color:#58a6ff;font-family:monospace">IV/HV 1.78 · RSI 63 · ATR $1.17</span><br><span style="font-size:12px;color:#8b949e;line-height:1.5">premium very rich, neutral momentum — stock likely range-bound, collect from both sides</span></td>
         </tr>
         <tr class="data-row" data-symbol="OKLO" style="cursor:pointer">
             <td class="symbol">OKLO</td>
@@ -1116,6 +1141,7 @@
             <td>May 12 <span class='earn-amc' title='After Market Close'>🌙✦</span></td>
             <td><span class="earn-far">24d</span></td>
             <td><span class="strat-badge">11 cash-sec-put</span> <span class="strat-badge">12 cvr-call</span> <span class="strat-badge">13 wheel</span> <span class="strat-badge">14 bull-put-spd</span> <span class="strat-badge">15 bear-call-spd</span> <span class="strat-badge">17 diag-spd</span></td>
+            <td class="why-cell"><span style="font-size:12px;color:#58a6ff;font-family:monospace">IV/HV 1.21 · RSI 65 · ATR $5.36</span><br><span style="font-size:12px;color:#8b949e;line-height:1.5">premium rich + near overbought — sell spreads on both sides</span></td>
         </tr>
         <tr class="data-row" data-symbol="OPEN" style="cursor:pointer">
             <td class="symbol">OPEN</td>
@@ -1137,6 +1163,7 @@
             <td>May 07 <span class='earn-amc' title='After Market Close'>🌙✦</span></td>
             <td><span class="earn-far">19d</span></td>
             <td><span class="strat-badge">11 cash-sec-put</span> <span class="strat-badge">13 wheel</span> <span class="strat-badge">14 bull-put-spd</span> <span class="strat-badge">16 iron-condr</span></td>
+            <td class="why-cell"><span style="font-size:12px;color:#58a6ff;font-family:monospace">IV/HV 1.34 · RSI 60 · ATR $0.34</span><br><span style="font-size:12px;color:#8b949e;line-height:1.5">premium very rich, neutral momentum — stock likely range-bound, collect from both sides</span></td>
         </tr>
         <tr class="data-row" data-symbol="OSCR" style="cursor:pointer">
             <td class="symbol">OSCR</td>
@@ -1158,6 +1185,7 @@
             <td>May 06 <span class='earn-bmo' title='Before Market Open'>☀️</span></td>
             <td><span class="earn-far">18d</span></td>
             <td><span class="strat-badge">12 cvr-call</span> <span class="strat-badge">13 wheel</span> <span class="strat-badge">14 bull-put-spd</span> <span class="strat-badge">15 bear-call-spd</span></td>
+            <td class="why-cell"><span style="font-size:12px;color:#58a6ff;font-family:monospace">IV/HV 1.17 · RSI 70 · ATR $0.75</span><br><span style="font-size:12px;color:#8b949e;line-height:1.5">premium rich + near overbought — sell spreads on both sides</span></td>
         </tr>
         <tr class="data-row" data-symbol="RGTI" style="cursor:pointer">
             <td class="symbol">RGTI</td>
@@ -1179,6 +1207,7 @@
             <td>May 12 <span class='earn-amc' title='After Market Close'>🌙✦</span></td>
             <td><span class="earn-far">24d</span></td>
             <td><span class="strat-badge">12 cvr-call</span> <span class="strat-badge">15 bear-call-spd</span></td>
+            <td class="why-cell"><span style="font-size:12px;color:#58a6ff;font-family:monospace">IV/HV 1.21 · RSI 71 · ATR $1.32</span><br><span style="font-size:12px;color:#8b949e;line-height:1.5">overbought + premium rich — stock has run up, sell calls to collect inflated premium</span></td>
         </tr>
         <tr class="data-row" data-symbol="RKLB" style="cursor:pointer">
             <td class="symbol">RKLB</td>
@@ -1200,6 +1229,7 @@
             <td>May 07 <span class='earn-amc' title='After Market Close'>🌙✦</span></td>
             <td><span class="earn-far">19d</span></td>
             <td><span style="color:#484f58">—</span></td>
+            <td class="why-cell"><span style="color:#484f58">—</span></td>
         </tr>
         <tr class="data-row" data-symbol="SLV" style="cursor:pointer">
             <td class="symbol">SLV</td>
@@ -1221,6 +1251,7 @@
             <td><span style="color:#484f58">—</span></td>
             <td><span style="color:#484f58">—</span></td>
             <td><span class="strat-badge">13 wheel</span> <span class="strat-badge">17 diag-spd</span></td>
+            <td class="why-cell"><span style="font-size:12px;color:#58a6ff;font-family:monospace">IV/HV 1.01 · RSI 58 · ATR $3.22</span><br><span style="font-size:12px;color:#8b949e;line-height:1.5">premium moderate, neutral momentum — income + capital-efficient LEAPS approach</span></td>
         </tr>
         <tr class="data-row" data-symbol="SMR" style="cursor:pointer">
             <td class="symbol">SMR</td>
@@ -1242,6 +1273,7 @@
             <td>May 07 <span class='earn-amc' title='After Market Close'>🌙✦</span></td>
             <td><span class="earn-far">19d</span></td>
             <td><span class="strat-badge">11 cash-sec-put</span> <span class="strat-badge">13 wheel</span> <span class="strat-badge">14 bull-put-spd</span></td>
+            <td class="why-cell"><span style="font-size:12px;color:#58a6ff;font-family:monospace">IV/HV 1.16 · RSI 60 · ATR $1.03</span><br><span style="font-size:12px;color:#8b949e;line-height:1.5">premium rich, neutral momentum — good income setup, sell puts then roll into wheel</span></td>
         </tr>
         <tr class="data-row" data-symbol="SOFI" style="cursor:pointer">
             <td class="symbol">SOFI</td>
@@ -1263,6 +1295,7 @@
             <td>Apr 29 <span class='earn-bmo' title='Before Market Open'>☀️</span></td>
             <td><span class="earn-near">11d</span></td>
             <td><span class="strat-badge">12 cvr-call</span> <span class="strat-badge">13 wheel</span> <span class="strat-badge">14 bull-put-spd</span> <span class="strat-badge">15 bear-call-spd</span></td>
+            <td class="why-cell"><span style="font-size:12px;color:#58a6ff;font-family:monospace">IV/HV 1.49 · RSI 68 · ATR $0.90</span><br><span style="font-size:12px;color:#8b949e;line-height:1.5">premium very rich + near overbought — sell spreads on both sides</span></td>
         </tr>
         <tr class="data-row" data-symbol="TSM" style="cursor:pointer">
             <td class="symbol">TSM</td>
@@ -1284,6 +1317,7 @@
             <td>Jul 16 <span class='earn-bmo' title='Before Market Open'>☀️</span></td>
             <td><span class="earn-far">89d</span></td>
             <td><span class="strat-badge">17 diag-spd</span></td>
+            <td class="why-cell"><span style="font-size:12px;color:#58a6ff;font-family:monospace">IV/HV 0.89 · RSI 59 · ATR $12.59</span><br><span style="font-size:12px;color:#8b949e;line-height:1.5">$370 stock, premium cheap — use LEAPS to control shares at lower capital cost</span></td>
         </tr>
         <tr class="data-row" data-symbol="UNH" style="cursor:pointer">
             <td class="symbol">UNH</td>
@@ -1305,6 +1339,7 @@
             <td>Apr 21 <span class='earn-bmo' title='Before Market Open'>☀️</span></td>
             <td><span class="earn-soon">3d</span></td>
             <td><span style="color:#484f58">—</span></td>
+            <td class="why-cell"><span style="color:#484f58">—</span></td>
         </tr></tbody>
     </table>
   </div>
