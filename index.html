@@ -231,7 +231,7 @@
 
 <header>
   <h1>Options Tracker</h1>
-  <span>Generated: 2026-04-18 15:15 &nbsp;|&nbsp; 49 symbols &nbsp;|&nbsp;
+  <span>Generated: 2026-04-18 15:19 &nbsp;|&nbsp; 49 symbols &nbsp;|&nbsp;
     Click any symbol for history</span>
 </header>
 
@@ -625,6 +625,14 @@
     <button class="filter-btn" onclick="filterBy('signal','SELL PUT')">Sell Put</button>
     <button class="filter-btn" onclick="filterBy('signal','RICH IV')">Rich IV</button>
     <button class="filter-btn" onclick="filterBy('signal','CHEAP IV')">Cheap IV</button>
+    <span class="filter-group-label">Volume:</span>
+    <button class="filter-btn" onclick="filterBy('put-vol','')">Put Vol</button>
+    <button class="filter-btn" onclick="filterBy('call-vol','')">Call Vol</button>
+    <button class="filter-btn" onclick="filterBy('total-vol','')">Total Vol</button>
+    <span class="filter-group-label">OI:</span>
+    <button class="filter-btn" onclick="filterBy('put-oi','')">Put OI</button>
+    <button class="filter-btn" onclick="filterBy('call-oi','')">Call OI</button>
+    <button class="filter-btn" onclick="filterBy('total-oi','')">Total OI</button>
     <span class="filter-group-label">Strategy:</span>
     <button class="filter-btn" onclick="filterBy('strat','cash-sec-put')">cash-sec-put</button>
     <button class="filter-btn" onclick="filterBy('strat','cvr-call')">cvr-call</button>
@@ -658,7 +666,10 @@
         <th>Additional Notes</th>
       </tr></thead>
       <tbody id="table-body">
-        <tr class="data-row" data-symbol="AAOI" style="cursor:pointer">
+        <tr class="data-row" data-symbol="AAOI"
+            data-call-vol="13547" data-put-vol="10240"
+            data-call-oi="26900"  data-put-oi="32407"
+            style="cursor:pointer">
             <td class="symbol">AAOI</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$159.42</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">8,691,900</div></td>
@@ -678,7 +689,10 @@
             <td class="why-cell"><span style="color:#484f58">—</span><div class="why-label">Why?</div><span style="color:#484f58">—</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="AAOI" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="AMD" style="cursor:pointer">
+        <tr class="data-row" data-symbol="AMD"
+            data-call-vol="108889" data-put-vol="93968"
+            data-call-oi="302037"  data-put-oi="274172"
+            style="cursor:pointer">
             <td class="symbol">AMD</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$278.39</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">35,441,000</div></td>
@@ -698,7 +712,10 @@
             <td class="why-cell"><span class="strat-badge">12 cvr-call</span><div class="why-label">Why?</div><span style="font-size:14px;color:#58a6ff;font-family:monospace">IV 60% · HV 54% · IV/HV 1.10 · RSI 80</span><br><span style="font-size:13px;color:#6e7681;font-family:monospace">ATR $10.20 · P/C Vol 0.86 (neutral flow) · P/C OI 0.91 (hedged)</span><br><span style="font-size:13px;color:#c9d1d9">• RSI overbought — stock extended, pullback likely</span><br><span style="font-size:13px;color:#c9d1d9">• High volume 35.4M — strong conviction in today's move</span><br><span style="font-size:14px;color:#8b949e">overbought + premium moderate — stock extended, sell calls to harvest inflated premium</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="AMD" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="ANET" style="cursor:pointer">
+        <tr class="data-row" data-symbol="ANET"
+            data-call-vol="27303" data-put-vol="5511"
+            data-call-oi="43531"  data-put-oi="30838"
+            style="cursor:pointer">
             <td class="symbol">ANET</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$164.23</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">8,209,400</div></td>
@@ -718,7 +735,10 @@
             <td class="why-cell"><span class="strat-badge">12 cvr-call</span><div class="why-label">Why?</div><span style="font-size:14px;color:#58a6ff;font-family:monospace">IV 65% · HV 65% · IV/HV 1.00 · RSI 73</span><br><span style="font-size:13px;color:#6e7681;font-family:monospace">ATR $6.17 · P/C Vol 0.20 (bullish flow) · P/C OI 0.71 (balanced OI)</span><br><span style="font-size:13px;color:#c9d1d9">• RSI overbought — stock extended, pullback likely</span><br><span style="font-size:13px;color:#c9d1d9">• Call volume heavy — crowd is bullish / complacent</span><br><span style="font-size:13px;color:#c9d1d9">• High volume 8.2M — strong conviction in today's move</span><br><span style="font-size:14px;color:#8b949e">overbought + premium moderate — stock extended, sell calls to harvest inflated premium</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="ANET" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="ARM" style="cursor:pointer">
+        <tr class="data-row" data-symbol="ARM"
+            data-call-vol="62381" data-put-vol="16765"
+            data-call-oi="74483"  data-put-oi="75030"
+            style="cursor:pointer">
             <td class="symbol">ARM</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$166.73</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">5,083,300</div></td>
@@ -738,7 +758,10 @@
             <td class="why-cell"><span style="color:#484f58">—</span><div class="why-label">Why?</div><span style="color:#484f58">—</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="ARM" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="ASTS" style="cursor:pointer">
+        <tr class="data-row" data-symbol="ASTS"
+            data-call-vol="92487" data-put-vol="39860"
+            data-call-oi="111501"  data-put-oi="79262"
+            style="cursor:pointer">
             <td class="symbol">ASTS</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$85.53</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">19,947,300</div></td>
@@ -758,7 +781,10 @@
             <td class="why-cell"><span class="strat-badge">13 wheel</span> <span class="strat-badge">17 diag-spd</span><div class="why-label">Why?</div><span style="font-size:14px;color:#58a6ff;font-family:monospace">IV 111% · HV 107% · IV/HV 1.03 · RSI 46</span><br><span style="font-size:13px;color:#6e7681;font-family:monospace">ATR $8.27 · P/C Vol 0.43 (bullish flow) · P/C OI 0.71 (balanced OI)</span><br><span style="font-size:13px;color:#c9d1d9">• High volume 19.9M — strong conviction in today's move</span><br><span style="font-size:14px;color:#8b949e">premium moderate, neutral — income strategies + LEAPS as capital-efficient alternative</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="ASTS" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="AXTI" style="cursor:pointer">
+        <tr class="data-row" data-symbol="AXTI"
+            data-call-vol="15400" data-put-vol="6400"
+            data-call-oi="65519"  data-put-oi="29940"
+            style="cursor:pointer">
             <td class="symbol">AXTI</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$82.56</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">10,286,500</div></td>
@@ -778,7 +804,10 @@
             <td class="why-cell"><span style="color:#484f58">—</span><div class="why-label">Why?</div><span style="color:#484f58">—</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="AXTI" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="BABA" style="cursor:pointer">
+        <tr class="data-row" data-symbol="BABA"
+            data-call-vol="73015" data-put-vol="30425"
+            data-call-oi="196193"  data-put-oi="80389"
+            style="cursor:pointer">
             <td class="symbol">BABA</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$141.01</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">12,862,100</div></td>
@@ -798,7 +827,10 @@
             <td class="why-cell"><span class="strat-badge">11 cash-sec-put</span> <span class="strat-badge">13 wheel</span> <span class="strat-badge">14 bull-put-spd</span> <span class="strat-badge">17 diag-spd</span><div class="why-label">Why?</div><span style="font-size:14px;color:#58a6ff;font-family:monospace">IV 47% · HV 37% · IV/HV 1.27 · RSI 64</span><br><span style="font-size:13px;color:#6e7681;font-family:monospace">ATR $4.46 · P/C Vol 0.42 (bullish flow) · P/C OI 0.41 (balanced OI)</span><br><span style="font-size:13px;color:#c9d1d9">• High volume 12.9M — strong conviction in today's move</span><br><span style="font-size:14px;color:#8b949e">premium rich, neutral — sell put or put spread, defined-risk income below current price</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="BABA" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="BBAI" style="cursor:pointer">
+        <tr class="data-row" data-symbol="BBAI"
+            data-call-vol="40335" data-put-vol="5685"
+            data-call-oi="72424"  data-put-oi="20521"
+            style="cursor:pointer">
             <td class="symbol">BBAI</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$3.85</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">46,115,400</div></td>
@@ -818,7 +850,10 @@
             <td class="why-cell"><span class="strat-badge">11 cash-sec-put</span> <span class="strat-badge">13 wheel</span> <span class="strat-badge">14 bull-put-spd</span><div class="why-label">Why?</div><span style="font-size:14px;color:#58a6ff;font-family:monospace">IV 101% · HV 82% · IV/HV 1.23 · RSI 55</span><br><span style="font-size:13px;color:#6e7681;font-family:monospace">ATR $0.26 · P/C Vol 0.14 (bullish flow) · P/C OI 0.28 (call-heavy)</span><br><span style="font-size:13px;color:#c9d1d9">• Call volume heavy — crowd is bullish / complacent</span><br><span style="font-size:13px;color:#c9d1d9">• High volume 46.1M — strong conviction in today's move</span><br><span style="font-size:14px;color:#8b949e">premium rich, neutral — sell put or put spread, defined-risk income below current price</span><br><span style="color:#d29922;font-size:14px">⚡ Earnings in 12d — monitor closely, consider shorter expiry</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="BBAI" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="BE" style="cursor:pointer">
+        <tr class="data-row" data-symbol="BE"
+            data-call-vol="8498" data-put-vol="16855"
+            data-call-oi="67500"  data-put-oi="84904"
+            style="cursor:pointer">
             <td class="symbol">BE</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$207.86</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">11,297,100</div></td>
@@ -838,7 +873,10 @@
             <td class="why-cell"><span style="color:#484f58">—</span><div class="why-label">Why?</div><span style="color:#484f58">—</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="BE" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="BMNR" style="cursor:pointer">
+        <tr class="data-row" data-symbol="BMNR"
+            data-call-vol="128834" data-put-vol="56489"
+            data-call-oi="225412"  data-put-oi="133073"
+            style="cursor:pointer">
             <td class="symbol">BMNR</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$22.95</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">63,358,000</div></td>
@@ -858,7 +896,10 @@
             <td class="why-cell"><span class="strat-badge">11 cash-sec-put</span> <span class="strat-badge">13 wheel</span> <span class="strat-badge">14 bull-put-spd</span> <span class="strat-badge">16 iron-condr</span><div class="why-label">Why?</div><span style="font-size:14px;color:#58a6ff;font-family:monospace">IV 84% · HV 62% · IV/HV 1.37 · RSI 61</span><br><span style="font-size:13px;color:#6e7681;font-family:monospace">ATR $1.43 · P/C Vol 0.44 (bullish flow) · P/C OI 0.59 (balanced OI)</span><br><span style="font-size:13px;color:#c9d1d9">• High volume 63.4M — strong conviction in today's move</span><br><span style="font-size:14px;color:#8b949e">premium very rich, neutral — range-bound, collect premium from both call and put side</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="BMNR" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="CF" style="cursor:pointer">
+        <tr class="data-row" data-symbol="CF"
+            data-call-vol="9316" data-put-vol="4210"
+            data-call-oi="22628"  data-put-oi="8549"
+            style="cursor:pointer">
             <td class="symbol">CF</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$112.68</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">6,850,200</div></td>
@@ -878,7 +919,10 @@
             <td class="why-cell"><span class="strat-badge">17 diag-spd</span><div class="why-label">Why?</div><span style="font-size:14px;color:#58a6ff;font-family:monospace">IV 53% · HV 62% · IV/HV 0.85 · RSI 41</span><br><span style="font-size:13px;color:#6e7681;font-family:monospace">ATR $7.58 · P/C Vol 0.45 (bullish flow) · P/C OI 0.38 (call-heavy)</span><br><span style="font-size:13px;color:#c9d1d9">• IV below HV — options unusually cheap</span><br><span style="font-size:13px;color:#c9d1d9">• RSI near oversold — downside may be limited</span><br><span style="font-size:13px;color:#c9d1d9">• High volume 6.9M — strong conviction in today's move</span><br><span style="font-size:14px;color:#8b949e">$113 stock, premium cheap — buy deep ITM LEAPS, sell monthly calls to reduce cost</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="CF" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="CIFR" style="cursor:pointer">
+        <tr class="data-row" data-symbol="CIFR"
+            data-call-vol="84976" data-put-vol="16159"
+            data-call-oi="158605"  data-put-oi="111719"
+            style="cursor:pointer">
             <td class="symbol">CIFR</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$19.37</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">35,319,300</div></td>
@@ -898,7 +942,10 @@
             <td class="why-cell"><span class="strat-badge">12 cvr-call</span> <span class="strat-badge">13 wheel</span> <span class="strat-badge">14 bull-put-spd</span> <span class="strat-badge">15 bear-call-spd</span><div class="why-label">Why?</div><span style="font-size:14px;color:#58a6ff;font-family:monospace">IV 114% · HV 102% · IV/HV 1.11 · RSI 67</span><br><span style="font-size:13px;color:#6e7681;font-family:monospace">ATR $1.43 · P/C Vol 0.19 (bullish flow) · P/C OI 0.70 (balanced OI)</span><br><span style="font-size:13px;color:#c9d1d9">• RSI near overbought — upside getting stretched</span><br><span style="font-size:13px;color:#c9d1d9">• Call volume heavy — crowd is bullish / complacent</span><br><span style="font-size:13px;color:#c9d1d9">• High volume 35.3M — strong conviction in today's move</span><br><span style="font-size:14px;color:#8b949e">premium rich, near overbought — sell defined-risk spreads on both sides</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="CIFR" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="CLSK" style="cursor:pointer">
+        <tr class="data-row" data-symbol="CLSK"
+            data-call-vol="28149" data-put-vol="11663"
+            data-call-oi="70752"  data-put-oi="61144"
+            style="cursor:pointer">
             <td class="symbol">CLSK</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$11.97</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">27,884,300</div></td>
@@ -918,7 +965,10 @@
             <td class="why-cell"><span class="strat-badge">12 cvr-call</span> <span class="strat-badge">13 wheel</span> <span class="strat-badge">14 bull-put-spd</span> <span class="strat-badge">15 bear-call-spd</span><div class="why-label">Why?</div><span style="font-size:14px;color:#58a6ff;font-family:monospace">IV 99% · HV 74% · IV/HV 1.34 · RSI 69</span><br><span style="font-size:13px;color:#6e7681;font-family:monospace">ATR $0.79 · P/C Vol 0.41 (bullish flow) · P/C OI 0.86 (hedged)</span><br><span style="font-size:13px;color:#c9d1d9">• RSI near overbought — upside getting stretched</span><br><span style="font-size:13px;color:#c9d1d9">• High volume 27.9M — strong conviction in today's move</span><br><span style="font-size:14px;color:#8b949e">premium very rich, near overbought — sell defined-risk spreads on both sides</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="CLSK" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="COIN" style="cursor:pointer">
+        <tr class="data-row" data-symbol="COIN"
+            data-call-vol="149897" data-put-vol="37659"
+            data-call-oi="206137"  data-put-oi="101476"
+            style="cursor:pointer">
             <td class="symbol">COIN</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$206.33</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">15,631,400</div></td>
@@ -938,7 +988,10 @@
             <td class="why-cell"><span class="strat-badge">11 cash-sec-put</span> <span class="strat-badge">13 wheel</span> <span class="strat-badge">14 bull-put-spd</span> <span class="strat-badge">17 diag-spd</span><div class="why-label">Why?</div><span style="font-size:14px;color:#58a6ff;font-family:monospace">IV 78% · HV 70% · IV/HV 1.12 · RSI 65</span><br><span style="font-size:13px;color:#6e7681;font-family:monospace">ATR $11.80 · P/C Vol 0.25 (bullish flow) · P/C OI 0.49 (balanced OI)</span><br><span style="font-size:13px;color:#c9d1d9">• Call volume heavy — crowd is bullish / complacent</span><br><span style="font-size:13px;color:#c9d1d9">• High volume 15.6M — strong conviction in today's move</span><br><span style="font-size:14px;color:#8b949e">premium rich, neutral — sell put or put spread, defined-risk income below current price</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="COIN" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="CRCL" style="cursor:pointer">
+        <tr class="data-row" data-symbol="CRCL"
+            data-call-vol="61697" data-put-vol="32465"
+            data-call-oi="79482"  data-put-oi="55767"
+            style="cursor:pointer">
             <td class="symbol">CRCL</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$105.91</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">14,476,900</div></td>
@@ -958,7 +1011,10 @@
             <td class="why-cell"><span class="strat-badge">17 diag-spd</span><div class="why-label">Why?</div><span style="font-size:14px;color:#58a6ff;font-family:monospace">IV 95% · HV 111% · IV/HV 0.86 · RSI 56</span><br><span style="font-size:13px;color:#6e7681;font-family:monospace">ATR $8.60 · P/C Vol 0.53 (neutral flow) · P/C OI 0.70 (balanced OI)</span><br><span style="font-size:13px;color:#c9d1d9">• IV below HV — options unusually cheap</span><br><span style="font-size:13px;color:#c9d1d9">• High volume 14.5M — strong conviction in today's move</span><br><span style="font-size:14px;color:#8b949e">$106 stock, premium cheap — buy deep ITM LEAPS, sell monthly calls to reduce cost</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="CRCL" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="CRM" style="cursor:pointer">
+        <tr class="data-row" data-symbol="CRM"
+            data-call-vol="26912" data-put-vol="13137"
+            data-call-oi="110100"  data-put-oi="91634"
+            style="cursor:pointer">
             <td class="symbol">CRM</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$182.14</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">17,124,000</div></td>
@@ -978,7 +1034,10 @@
             <td class="why-cell"><span class="strat-badge">13 wheel</span> <span class="strat-badge">17 diag-spd</span><div class="why-label">Why?</div><span style="font-size:14px;color:#58a6ff;font-family:monospace">IV 44% · HV 44% · IV/HV 1.01 · RSI 49</span><br><span style="font-size:13px;color:#6e7681;font-family:monospace">ATR $7.50 · P/C Vol 0.49 (bullish flow) · P/C OI 0.83 (hedged)</span><br><span style="font-size:13px;color:#c9d1d9">• High volume 17.1M — strong conviction in today's move</span><br><span style="font-size:14px;color:#8b949e">premium moderate, neutral — income strategies + LEAPS as capital-efficient alternative</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="CRM" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="CRWD" style="cursor:pointer">
+        <tr class="data-row" data-symbol="CRWD"
+            data-call-vol="12442" data-put-vol="9741"
+            data-call-oi="46642"  data-put-oi="32466"
+            style="cursor:pointer">
             <td class="symbol">CRWD</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$423.95</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">2,902,400</div></td>
@@ -998,7 +1057,10 @@
             <td class="why-cell"><span class="strat-badge">17 diag-spd</span><div class="why-label">Why?</div><span style="font-size:14px;color:#58a6ff;font-family:monospace">IV 48% · HV 60% · IV/HV 0.81 · RSI 56</span><br><span style="font-size:13px;color:#6e7681;font-family:monospace">ATR $19.90 · P/C Vol 0.78 (neutral flow) · P/C OI 0.70 (balanced OI)</span><br><span style="font-size:13px;color:#c9d1d9">• IV below HV — options unusually cheap</span><br><span style="font-size:14px;color:#8b949e">$424 stock, premium cheap — buy deep ITM LEAPS, sell monthly calls to reduce cost</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="CRWD" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="DDOG" style="cursor:pointer">
+        <tr class="data-row" data-symbol="DDOG"
+            data-call-vol="7971" data-put-vol="5534"
+            data-call-oi="35030"  data-put-oi="36907"
+            style="cursor:pointer">
             <td class="symbol">DDOG</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$126.61</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">4,049,400</div></td>
@@ -1018,7 +1080,10 @@
             <td class="why-cell"><span class="strat-badge">11 cash-sec-put</span> <span class="strat-badge">13 wheel</span> <span class="strat-badge">14 bull-put-spd</span> <span class="strat-badge">17 diag-spd</span><div class="why-label">Why?</div><span style="font-size:14px;color:#58a6ff;font-family:monospace">IV 75% · HV 64% · IV/HV 1.18 · RSI 59</span><br><span style="font-size:13px;color:#6e7681;font-family:monospace">ATR $7.07 · P/C Vol 0.69 (neutral flow) · P/C OI 1.05 (hedged)</span><br><span style="font-size:14px;color:#8b949e">premium rich, neutral — sell put or put spread, defined-risk income below current price</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="DDOG" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="ENPH" style="cursor:pointer">
+        <tr class="data-row" data-symbol="ENPH"
+            data-call-vol="6507" data-put-vol="2157"
+            data-call-oi="52450"  data-put-oi="41718"
+            style="cursor:pointer">
             <td class="symbol">ENPH</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$32.48</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">7,958,000</div></td>
@@ -1038,7 +1103,10 @@
             <td class="why-cell"><span class="strat-badge">11 cash-sec-put</span> <span class="strat-badge">13 wheel</span><div class="why-label">Why?</div><span style="font-size:14px;color:#58a6ff;font-family:monospace">IV 87% · HV 65% · IV/HV 1.34 · RSI 37</span><br><span style="font-size:13px;color:#6e7681;font-family:monospace">ATR $2.21 · P/C Vol 0.33 (bullish flow) · P/C OI 0.80 (balanced OI)</span><br><span style="font-size:13px;color:#c9d1d9">• RSI near oversold — downside may be limited</span><br><span style="font-size:13px;color:#c9d1d9">• Call volume heavy — crowd is bullish / complacent</span><br><span style="font-size:13px;color:#c9d1d9">• High volume 8.0M — strong conviction in today's move</span><br><span style="font-size:14px;color:#8b949e">premium very rich, near oversold — sell puts for income, take assignment into wheel if hit</span><br><span style="color:#d29922;font-size:14px">⚡ Earnings in 10d — monitor closely, consider shorter expiry</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="ENPH" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="GRAB" style="cursor:pointer">
+        <tr class="data-row" data-symbol="GRAB"
+            data-call-vol="30934" data-put-vol="959"
+            data-call-oi="104509"  data-put-oi="25076"
+            style="cursor:pointer">
             <td class="symbol">GRAB</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$4.21</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">72,591,800</div></td>
@@ -1058,7 +1126,10 @@
             <td class="why-cell"><span class="strat-badge">12 cvr-call</span> <span class="strat-badge">13 wheel</span> <span class="strat-badge">14 bull-put-spd</span> <span class="strat-badge">15 bear-call-spd</span><div class="why-label">Why?</div><span style="font-size:14px;color:#58a6ff;font-family:monospace">IV 63% · HV 38% · IV/HV 1.64 · RSI 69</span><br><span style="font-size:13px;color:#6e7681;font-family:monospace">ATR $0.17 · P/C Vol 0.03 (bullish flow) · P/C OI 0.24 (call-heavy)</span><br><span style="font-size:13px;color:#c9d1d9">• IV far above HV — market pricing in big move</span><br><span style="font-size:13px;color:#c9d1d9">• RSI near overbought — upside getting stretched</span><br><span style="font-size:13px;color:#c9d1d9">• Call volume heavy — crowd is bullish / complacent</span><br><span style="font-size:13px;color:#c9d1d9">• High volume 72.6M — strong conviction in today's move</span><br><span style="font-size:14px;color:#8b949e">premium very rich, near overbought — sell defined-risk spreads on both sides</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="GRAB" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="HOOD" style="cursor:pointer">
+        <tr class="data-row" data-symbol="HOOD"
+            data-call-vol="150159" data-put-vol="76717"
+            data-call-oi="256693"  data-put-oi="174526"
+            style="cursor:pointer">
             <td class="symbol">HOOD</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$90.75</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">49,681,400</div></td>
@@ -1078,7 +1149,10 @@
             <td class="why-cell"><span style="color:#484f58">—</span><div class="why-label">Why?</div><span style="color:#484f58">—</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="HOOD" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="IREN" style="cursor:pointer">
+        <tr class="data-row" data-symbol="IREN"
+            data-call-vol="64076" data-put-vol="37181"
+            data-call-oi="263145"  data-put-oi="191607"
+            style="cursor:pointer">
             <td class="symbol">IREN</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$48.12</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">30,748,300</div></td>
@@ -1098,7 +1172,10 @@
             <td class="why-cell"><span class="strat-badge">12 cvr-call</span> <span class="strat-badge">13 wheel</span> <span class="strat-badge">14 bull-put-spd</span> <span class="strat-badge">15 bear-call-spd</span><div class="why-label">Why?</div><span style="font-size:14px;color:#58a6ff;font-family:monospace">IV 104% · HV 86% · IV/HV 1.21 · RSI 65</span><br><span style="font-size:13px;color:#6e7681;font-family:monospace">ATR $3.43 · P/C Vol 0.58 (neutral flow) · P/C OI 0.73 (balanced OI)</span><br><span style="font-size:13px;color:#c9d1d9">• RSI near overbought — upside getting stretched</span><br><span style="font-size:13px;color:#c9d1d9">• High volume 30.7M — strong conviction in today's move</span><br><span style="font-size:14px;color:#8b949e">premium rich, near overbought — sell defined-risk spreads on both sides</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="IREN" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="IWM" style="cursor:pointer">
+        <tr class="data-row" data-symbol="IWM"
+            data-call-vol="97030" data-put-vol="85140"
+            data-call-oi="45883"  data-put-oi="81165"
+            style="cursor:pointer">
             <td class="symbol">IWM</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$275.78</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">46,424,100</div></td>
@@ -1118,7 +1195,10 @@
             <td class="why-cell"><span style="color:#484f58">—</span><div class="why-label">Why?</div><span style="color:#484f58">—</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="IWM" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="KTOS" style="cursor:pointer">
+        <tr class="data-row" data-symbol="KTOS"
+            data-call-vol="3192" data-put-vol="1934"
+            data-call-oi="20570"  data-put-oi="16961"
+            style="cursor:pointer">
             <td class="symbol">KTOS</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$70.99</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">7,152,000</div></td>
@@ -1138,7 +1218,10 @@
             <td class="why-cell"><span class="strat-badge">17 diag-spd</span><div class="why-label">Why?</div><span style="font-size:14px;color:#58a6ff;font-family:monospace">IV 82% · HV 88% · IV/HV 0.93 · RSI 42</span><br><span style="font-size:13px;color:#6e7681;font-family:monospace">ATR $5.52 · P/C Vol 0.61 (neutral flow) · P/C OI 0.82 (hedged)</span><br><span style="font-size:13px;color:#c9d1d9">• RSI near oversold — downside may be limited</span><br><span style="font-size:13px;color:#c9d1d9">• High volume 7.2M — strong conviction in today's move</span><br><span style="font-size:14px;color:#8b949e">$71 stock, premium cheap — buy deep ITM LEAPS, sell monthly calls to reduce cost</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="KTOS" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="LMT" style="cursor:pointer">
+        <tr class="data-row" data-symbol="LMT"
+            data-call-vol="1749" data-put-vol="3813"
+            data-call-oi="3849"  data-put-oi="6665"
+            style="cursor:pointer">
             <td class="symbol">LMT</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$592.19</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">1,697,700</div></td>
@@ -1158,7 +1241,10 @@
             <td class="why-cell"><span class="strat-badge">11 cash-sec-put</span> <span class="strat-badge">13 wheel</span><div class="why-label">Why?</div><span style="font-size:14px;color:#58a6ff;font-family:monospace">IV 31% · HV 25% · IV/HV 1.23 · RSI 36</span><br><span style="font-size:13px;color:#6e7681;font-family:monospace">ATR $15.34 · P/C Vol 2.18 (bearish flow) · P/C OI 1.73 (hedged)</span><br><span style="font-size:13px;color:#c9d1d9">• RSI near oversold — downside may be limited</span><br><span style="font-size:13px;color:#c9d1d9">• Put volume heavy — crowd is hedging or betting on drop</span><br><span style="font-size:14px;color:#8b949e">premium rich, near oversold — sell puts for income, take assignment into wheel if hit</span><br><span style="color:#f85149;font-size:14px">⚠ Earnings in 5d — IV elevated due to event risk, exit or hedge before announcement</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="LMT" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="MARA" style="cursor:pointer">
+        <tr class="data-row" data-symbol="MARA"
+            data-call-vol="205177" data-put-vol="37034"
+            data-call-oi="499088"  data-put-oi="216482"
+            style="cursor:pointer">
             <td class="symbol">MARA</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$11.60</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">52,216,200</div></td>
@@ -1178,7 +1264,10 @@
             <td class="why-cell"><span class="strat-badge">12 cvr-call</span> <span class="strat-badge">15 bear-call-spd</span><div class="why-label">Why?</div><span style="font-size:14px;color:#58a6ff;font-family:monospace">IV 94% · HV 81% · IV/HV 1.16 · RSI 74</span><br><span style="font-size:13px;color:#6e7681;font-family:monospace">ATR $0.77 · P/C Vol 0.18 (bullish flow) · P/C OI 0.43 (balanced OI)</span><br><span style="font-size:13px;color:#c9d1d9">• RSI overbought — stock extended, pullback likely</span><br><span style="font-size:13px;color:#c9d1d9">• Call volume heavy — crowd is bullish / complacent</span><br><span style="font-size:13px;color:#c9d1d9">• High volume 52.2M — strong conviction in today's move</span><br><span style="font-size:14px;color:#8b949e">overbought + premium rich — stock extended, sell calls to harvest inflated premium</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="MARA" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="MP" style="cursor:pointer">
+        <tr class="data-row" data-symbol="MP"
+            data-call-vol="13338" data-put-vol="4036"
+            data-call-oi="45910"  data-put-oi="35765"
+            style="cursor:pointer">
             <td class="symbol">MP</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$60.99</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">6,540,000</div></td>
@@ -1198,7 +1287,10 @@
             <td class="why-cell"><span class="strat-badge">17 diag-spd</span><div class="why-label">Why?</div><span style="font-size:14px;color:#58a6ff;font-family:monospace">IV 71% · HV 75% · IV/HV 0.95 · RSI 61</span><br><span style="font-size:13px;color:#6e7681;font-family:monospace">ATR $3.43 · P/C Vol 0.30 (bullish flow) · P/C OI 0.78 (balanced OI)</span><br><span style="font-size:13px;color:#c9d1d9">• Call volume heavy — crowd is bullish / complacent</span><br><span style="font-size:13px;color:#c9d1d9">• High volume 6.5M — strong conviction in today's move</span><br><span style="font-size:14px;color:#8b949e">$61 stock, premium cheap — buy deep ITM LEAPS, sell monthly calls to reduce cost</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="MP" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="MSFT" style="cursor:pointer">
+        <tr class="data-row" data-symbol="MSFT"
+            data-call-vol="347206" data-put-vol="69560"
+            data-call-oi="248350"  data-put-oi="90917"
+            style="cursor:pointer">
             <td class="symbol">MSFT</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$422.79</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">47,812,100</div></td>
@@ -1218,7 +1310,10 @@
             <td class="why-cell"><span class="strat-badge">12 cvr-call</span> <span class="strat-badge">15 bear-call-spd</span><div class="why-label">Why?</div><span style="font-size:14px;color:#58a6ff;font-family:monospace">IV 36% · HV 31% · IV/HV 1.17 · RSI 72</span><br><span style="font-size:13px;color:#6e7681;font-family:monospace">ATR $9.93 · P/C Vol 0.20 (bullish flow) · P/C OI 0.37 (call-heavy)</span><br><span style="font-size:13px;color:#c9d1d9">• RSI overbought — stock extended, pullback likely</span><br><span style="font-size:13px;color:#c9d1d9">• Call volume heavy — crowd is bullish / complacent</span><br><span style="font-size:13px;color:#c9d1d9">• High volume 47.8M — strong conviction in today's move</span><br><span style="font-size:14px;color:#8b949e">overbought + premium rich — stock extended, sell calls to harvest inflated premium</span><br><span style="color:#d29922;font-size:14px">⚡ Earnings in 11d — monitor closely, consider shorter expiry</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="MSFT" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="MSTR" style="cursor:pointer">
+        <tr class="data-row" data-symbol="MSTR"
+            data-call-vol="416590" data-put-vol="160470"
+            data-call-oi="291285"  data-put-oi="288018"
+            style="cursor:pointer">
             <td class="symbol">MSTR</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$166.52</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">52,025,900</div></td>
@@ -1238,7 +1333,10 @@
             <td class="why-cell"><span class="strat-badge">12 cvr-call</span> <span class="strat-badge">15 bear-call-spd</span><div class="why-label">Why?</div><span style="font-size:14px;color:#58a6ff;font-family:monospace">IV 79% · HV 65% · IV/HV 1.21 · RSI 72</span><br><span style="font-size:13px;color:#6e7681;font-family:monospace">ATR $9.31 · P/C Vol 0.39 (bullish flow) · P/C OI 0.99 (hedged)</span><br><span style="font-size:13px;color:#c9d1d9">• RSI overbought — stock extended, pullback likely</span><br><span style="font-size:13px;color:#c9d1d9">• Call volume heavy — crowd is bullish / complacent</span><br><span style="font-size:13px;color:#c9d1d9">• High volume 52.0M — strong conviction in today's move</span><br><span style="font-size:14px;color:#8b949e">overbought + premium rich — stock extended, sell calls to harvest inflated premium</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="MSTR" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="MU" style="cursor:pointer">
+        <tr class="data-row" data-symbol="MU"
+            data-call-vol="129902" data-put-vol="135047"
+            data-call-oi="287321"  data-put-oi="349874"
+            style="cursor:pointer">
             <td class="symbol">MU</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$455.07</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">33,300,700</div></td>
@@ -1258,7 +1356,10 @@
             <td class="why-cell"><span class="strat-badge">17 diag-spd</span><div class="why-label">Why?</div><span style="font-size:14px;color:#58a6ff;font-family:monospace">IV 72% · HV 80% · IV/HV 0.91 · RSI 63</span><br><span style="font-size:13px;color:#6e7681;font-family:monospace">ATR $25.63 · P/C Vol 1.04 (bearish flow) · P/C OI 1.22 (hedged)</span><br><span style="font-size:13px;color:#c9d1d9">• High volume 33.3M — strong conviction in today's move</span><br><span style="font-size:14px;color:#8b949e">$455 stock, premium cheap — buy deep ITM LEAPS, sell monthly calls to reduce cost</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="MU" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="NBIS" style="cursor:pointer">
+        <tr class="data-row" data-symbol="NBIS"
+            data-call-vol="22350" data-put-vol="16996"
+            data-call-oi="90233"  data-put-oi="88924"
+            style="cursor:pointer">
             <td class="symbol">NBIS</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$157.14</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">17,158,000</div></td>
@@ -1278,7 +1379,10 @@
             <td class="why-cell"><span class="strat-badge">12 cvr-call</span> <span class="strat-badge">13 wheel</span><div class="why-label">Why?</div><span style="font-size:14px;color:#58a6ff;font-family:monospace">IV 93% · HV 91% · IV/HV 1.03 · RSI 68</span><br><span style="font-size:13px;color:#6e7681;font-family:monospace">ATR $10.25 · P/C Vol 0.76 (neutral flow) · P/C OI 0.99 (hedged)</span><br><span style="font-size:13px;color:#c9d1d9">• RSI near overbought — upside getting stretched</span><br><span style="font-size:13px;color:#c9d1d9">• High volume 17.2M — strong conviction in today's move</span><br><span style="font-size:14px;color:#8b949e">near overbought + premium moderate — stock extended, sell calls to harvest inflated premium</span><br><span style="color:#d29922;font-size:14px">⚡ Earnings in 11d — monitor closely, consider shorter expiry</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="NBIS" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="NOW" style="cursor:pointer">
+        <tr class="data-row" data-symbol="NOW"
+            data-call-vol="27895" data-put-vol="16766"
+            data-call-oi="130529"  data-put-oi="93587"
+            style="cursor:pointer">
             <td class="symbol">NOW</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$96.66</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">17,673,500</div></td>
@@ -1298,7 +1402,10 @@
             <td class="why-cell"><span class="strat-badge">13 wheel</span> <span class="strat-badge">17 diag-spd</span><div class="why-label">Why?</div><span style="font-size:14px;color:#58a6ff;font-family:monospace">IV 71% · HV 66% · IV/HV 1.07 · RSI 45</span><br><span style="font-size:13px;color:#6e7681;font-family:monospace">ATR $5.48 · P/C Vol 0.60 (neutral flow) · P/C OI 0.72 (balanced OI)</span><br><span style="font-size:13px;color:#c9d1d9">• RSI near oversold — downside may be limited</span><br><span style="font-size:13px;color:#c9d1d9">• High volume 17.7M — strong conviction in today's move</span><br><span style="font-size:14px;color:#8b949e">premium moderate, near oversold — income strategies + LEAPS as capital-efficient alternative</span><br><span style="color:#f85149;font-size:14px">⚠ Earnings in 4d — IV elevated due to event risk, exit or hedge before announcement</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="NOW" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="NVDA" style="cursor:pointer">
+        <tr class="data-row" data-symbol="NVDA"
+            data-call-vol="591982" data-put-vol="279496"
+            data-call-oi="616964"  data-put-oi="554913"
+            style="cursor:pointer">
             <td class="symbol">NVDA</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$201.68</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">159,843,200</div></td>
@@ -1318,7 +1425,10 @@
             <td class="why-cell"><span class="strat-badge">12 cvr-call</span> <span class="strat-badge">15 bear-call-spd</span><div class="why-label">Why?</div><span style="font-size:14px;color:#58a6ff;font-family:monospace">IV 41% · HV 36% · IV/HV 1.14 · RSI 72</span><br><span style="font-size:13px;color:#6e7681;font-family:monospace">ATR $5.13 · P/C Vol 0.47 (bullish flow) · P/C OI 0.90 (hedged)</span><br><span style="font-size:13px;color:#c9d1d9">• RSI overbought — stock extended, pullback likely</span><br><span style="font-size:13px;color:#c9d1d9">• High volume 159.8M — strong conviction in today's move</span><br><span style="font-size:14px;color:#8b949e">overbought + premium rich — stock extended, sell calls to harvest inflated premium</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="NVDA" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="NVO" style="cursor:pointer">
+        <tr class="data-row" data-symbol="NVO"
+            data-call-vol="13542" data-put-vol="15193"
+            data-call-oi="104328"  data-put-oi="94262"
+            style="cursor:pointer">
             <td class="symbol">NVO</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$40.52</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">13,178,400</div></td>
@@ -1338,7 +1448,10 @@
             <td class="why-cell"><span class="strat-badge">11 cash-sec-put</span> <span class="strat-badge">13 wheel</span> <span class="strat-badge">14 bull-put-spd</span> <span class="strat-badge">16 iron-condr</span><div class="why-label">Why?</div><span style="font-size:14px;color:#58a6ff;font-family:monospace">IV 47% · HV 26% · IV/HV 1.78 · RSI 63</span><br><span style="font-size:13px;color:#6e7681;font-family:monospace">ATR $1.17 · P/C Vol 1.12 (bearish flow) · P/C OI 0.90 (hedged)</span><br><span style="font-size:13px;color:#c9d1d9">• IV far above HV — market pricing in big move</span><br><span style="font-size:13px;color:#c9d1d9">• High volume 13.2M — strong conviction in today's move</span><br><span style="font-size:14px;color:#8b949e">premium very rich, neutral — range-bound, collect premium from both call and put side</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="NVO" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="OKLO" style="cursor:pointer">
+        <tr class="data-row" data-symbol="OKLO"
+            data-call-vol="49191" data-put-vol="24831"
+            data-call-oi="62736"  data-put-oi="45102"
+            style="cursor:pointer">
             <td class="symbol">OKLO</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$66.81</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">24,287,800</div></td>
@@ -1358,7 +1471,10 @@
             <td class="why-cell"><span class="strat-badge">11 cash-sec-put</span> <span class="strat-badge">12 cvr-call</span> <span class="strat-badge">13 wheel</span> <span class="strat-badge">14 bull-put-spd</span> <span class="strat-badge">15 bear-call-spd</span> <span class="strat-badge">17 diag-spd</span><div class="why-label">Why?</div><span style="font-size:14px;color:#58a6ff;font-family:monospace">IV 104% · HV 86% · IV/HV 1.21 · RSI 65</span><br><span style="font-size:13px;color:#6e7681;font-family:monospace">ATR $5.36 · P/C Vol 0.50 (neutral flow) · P/C OI 0.72 (balanced OI)</span><br><span style="font-size:13px;color:#c9d1d9">• RSI near overbought — upside getting stretched</span><br><span style="font-size:13px;color:#c9d1d9">• High volume 24.3M — strong conviction in today's move</span><br><span style="font-size:14px;color:#8b949e">premium rich, near overbought — sell defined-risk spreads on both sides</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="OKLO" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="OPEN" style="cursor:pointer">
+        <tr class="data-row" data-symbol="OPEN"
+            data-call-vol="86030" data-put-vol="11547"
+            data-call-oi="255226"  data-put-oi="74051"
+            style="cursor:pointer">
             <td class="symbol">OPEN</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$5.29</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">43,320,800</div></td>
@@ -1378,7 +1494,10 @@
             <td class="why-cell"><span class="strat-badge">11 cash-sec-put</span> <span class="strat-badge">13 wheel</span> <span class="strat-badge">14 bull-put-spd</span> <span class="strat-badge">16 iron-condr</span><div class="why-label">Why?</div><span style="font-size:14px;color:#58a6ff;font-family:monospace">IV 97% · HV 72% · IV/HV 1.34 · RSI 60</span><br><span style="font-size:13px;color:#6e7681;font-family:monospace">ATR $0.34 · P/C Vol 0.13 (bullish flow) · P/C OI 0.29 (call-heavy)</span><br><span style="font-size:13px;color:#c9d1d9">• Call volume heavy — crowd is bullish / complacent</span><br><span style="font-size:13px;color:#c9d1d9">• High volume 43.3M — strong conviction in today's move</span><br><span style="font-size:14px;color:#8b949e">premium very rich, neutral — range-bound, collect premium from both call and put side</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="OPEN" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="OSCR" style="cursor:pointer">
+        <tr class="data-row" data-symbol="OSCR"
+            data-call-vol="7160" data-put-vol="3027"
+            data-call-oi="42503"  data-put-oi="34980"
+            style="cursor:pointer">
             <td class="symbol">OSCR</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$15.79</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">4,925,500</div></td>
@@ -1398,7 +1517,10 @@
             <td class="why-cell"><span class="strat-badge">12 cvr-call</span> <span class="strat-badge">13 wheel</span> <span class="strat-badge">14 bull-put-spd</span> <span class="strat-badge">15 bear-call-spd</span><div class="why-label">Why?</div><span style="font-size:14px;color:#58a6ff;font-family:monospace">IV 82% · HV 70% · IV/HV 1.17 · RSI 70</span><br><span style="font-size:13px;color:#6e7681;font-family:monospace">ATR $0.75 · P/C Vol 0.42 (bullish flow) · P/C OI 0.82 (hedged)</span><br><span style="font-size:13px;color:#c9d1d9">• RSI near overbought — upside getting stretched</span><br><span style="font-size:14px;color:#8b949e">premium rich, near overbought — sell defined-risk spreads on both sides</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="OSCR" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="PANW" style="cursor:pointer">
+        <tr class="data-row" data-symbol="PANW"
+            data-call-vol="9940" data-put-vol="8155"
+            data-call-oi="59824"  data-put-oi="39600"
+            style="cursor:pointer">
             <td class="symbol">PANW</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$167.85</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">7,032,100</div></td>
@@ -1418,7 +1540,10 @@
             <td class="why-cell"><span class="strat-badge">17 diag-spd</span><div class="why-label">Why?</div><span style="font-size:14px;color:#58a6ff;font-family:monospace">IV 52% · HV 57% · IV/HV 0.92 · RSI 55</span><br><span style="font-size:13px;color:#6e7681;font-family:monospace">ATR $7.19 · P/C Vol 0.82 (neutral flow) · P/C OI 0.66 (balanced OI)</span><br><span style="font-size:13px;color:#c9d1d9">• High volume 7.0M — strong conviction in today's move</span><br><span style="font-size:14px;color:#8b949e">$168 stock, premium cheap — buy deep ITM LEAPS, sell monthly calls to reduce cost</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="PANW" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="QQQ" style="cursor:pointer">
+        <tr class="data-row" data-symbol="QQQ"
+            data-call-vol="203156" data-put-vol="297871"
+            data-call-oi="148226"  data-put-oi="214757"
+            style="cursor:pointer">
             <td class="symbol">QQQ</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$648.85</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">53,386,300</div></td>
@@ -1438,7 +1563,10 @@
             <td class="why-cell"><span style="color:#484f58">—</span><div class="why-label">Why?</div><span style="color:#484f58">—</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="QQQ" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="RGTI" style="cursor:pointer">
+        <tr class="data-row" data-symbol="RGTI"
+            data-call-vol="39344" data-put-vol="20727"
+            data-call-oi="122886"  data-put-oi="100266"
+            style="cursor:pointer">
             <td class="symbol">RGTI</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$19.81</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">40,290,100</div></td>
@@ -1458,7 +1586,10 @@
             <td class="why-cell"><span class="strat-badge">12 cvr-call</span> <span class="strat-badge">15 bear-call-spd</span><div class="why-label">Why?</div><span style="font-size:14px;color:#58a6ff;font-family:monospace">IV 106% · HV 87% · IV/HV 1.21 · RSI 71</span><br><span style="font-size:13px;color:#6e7681;font-family:monospace">ATR $1.32 · P/C Vol 0.53 (neutral flow) · P/C OI 0.82 (hedged)</span><br><span style="font-size:13px;color:#c9d1d9">• RSI overbought — stock extended, pullback likely</span><br><span style="font-size:13px;color:#c9d1d9">• High volume 40.3M — strong conviction in today's move</span><br><span style="font-size:14px;color:#8b949e">overbought + premium rich — stock extended, sell calls to harvest inflated premium</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="RGTI" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="RKLB" style="cursor:pointer">
+        <tr class="data-row" data-symbol="RKLB"
+            data-call-vol="55237" data-put-vol="32053"
+            data-call-oi="103812"  data-put-oi="67074"
+            style="cursor:pointer">
             <td class="symbol">RKLB</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$84.80</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">25,986,800</div></td>
@@ -1478,7 +1609,10 @@
             <td class="why-cell"><span style="color:#484f58">—</span><div class="why-label">Why?</div><span style="color:#484f58">—</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="RKLB" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="SLV" style="cursor:pointer">
+        <tr class="data-row" data-symbol="SLV"
+            data-call-vol="177022" data-put-vol="78553"
+            data-call-oi="258591"  data-put-oi="185443"
+            style="cursor:pointer">
             <td class="symbol">SLV</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$73.63</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">35,072,200</div></td>
@@ -1498,7 +1632,10 @@
             <td class="why-cell"><span class="strat-badge">13 wheel</span> <span class="strat-badge">17 diag-spd</span><div class="why-label">Why?</div><span style="font-size:14px;color:#58a6ff;font-family:monospace">IV 56% · HV 55% · IV/HV 1.01 · RSI 58</span><br><span style="font-size:13px;color:#6e7681;font-family:monospace">ATR $3.22 · P/C Vol 0.44 (bullish flow) · P/C OI 0.72 (balanced OI)</span><br><span style="font-size:13px;color:#c9d1d9">• High volume 35.1M — strong conviction in today's move</span><br><span style="font-size:14px;color:#8b949e">premium moderate, neutral — income strategies + LEAPS as capital-efficient alternative</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="SLV" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="SMR" style="cursor:pointer">
+        <tr class="data-row" data-symbol="SMR"
+            data-call-vol="38966" data-put-vol="14676"
+            data-call-oi="89776"  data-put-oi="53076"
+            style="cursor:pointer">
             <td class="symbol">SMR</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$12.65</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">66,888,000</div></td>
@@ -1518,7 +1655,10 @@
             <td class="why-cell"><span class="strat-badge">11 cash-sec-put</span> <span class="strat-badge">13 wheel</span> <span class="strat-badge">14 bull-put-spd</span><div class="why-label">Why?</div><span style="font-size:14px;color:#58a6ff;font-family:monospace">IV 114% · HV 98% · IV/HV 1.16 · RSI 60</span><br><span style="font-size:13px;color:#6e7681;font-family:monospace">ATR $1.03 · P/C Vol 0.38 (bullish flow) · P/C OI 0.59 (balanced OI)</span><br><span style="font-size:13px;color:#c9d1d9">• Call volume heavy — crowd is bullish / complacent</span><br><span style="font-size:13px;color:#c9d1d9">• High volume 66.9M — strong conviction in today's move</span><br><span style="font-size:14px;color:#8b949e">premium rich, neutral — sell put or put spread, defined-risk income below current price</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="SMR" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="SOFI" style="cursor:pointer">
+        <tr class="data-row" data-symbol="SOFI"
+            data-call-vol="187493" data-put-vol="82921"
+            data-call-oi="635809"  data-put-oi="331024"
+            style="cursor:pointer">
             <td class="symbol">SOFI</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$19.43</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">73,102,200</div></td>
@@ -1538,7 +1678,10 @@
             <td class="why-cell"><span class="strat-badge">12 cvr-call</span> <span class="strat-badge">13 wheel</span> <span class="strat-badge">14 bull-put-spd</span> <span class="strat-badge">15 bear-call-spd</span><div class="why-label">Why?</div><span style="font-size:14px;color:#58a6ff;font-family:monospace">IV 68% · HV 46% · IV/HV 1.49 · RSI 68</span><br><span style="font-size:13px;color:#6e7681;font-family:monospace">ATR $0.90 · P/C Vol 0.44 (bullish flow) · P/C OI 0.52 (balanced OI)</span><br><span style="font-size:13px;color:#c9d1d9">• RSI near overbought — upside getting stretched</span><br><span style="font-size:13px;color:#c9d1d9">• High volume 73.1M — strong conviction in today's move</span><br><span style="font-size:14px;color:#8b949e">premium very rich, near overbought — sell defined-risk spreads on both sides</span><br><span style="color:#d29922;font-size:14px">⚡ Earnings in 11d — monitor closely, consider shorter expiry</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="SOFI" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="SOUN" style="cursor:pointer">
+        <tr class="data-row" data-symbol="SOUN"
+            data-call-vol="38622" data-put-vol="11707"
+            data-call-oi="158116"  data-put-oi="87227"
+            style="cursor:pointer">
             <td class="symbol">SOUN</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$8.08</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">30,623,600</div></td>
@@ -1558,7 +1701,10 @@
             <td class="why-cell"><span class="strat-badge">11 cash-sec-put</span> <span class="strat-badge">13 wheel</span> <span class="strat-badge">14 bull-put-spd</span><div class="why-label">Why?</div><span style="font-size:14px;color:#58a6ff;font-family:monospace">IV 103% · HV 87% · IV/HV 1.18 · RSI 62</span><br><span style="font-size:13px;color:#6e7681;font-family:monospace">ATR $0.51 · P/C Vol 0.30 (bullish flow) · P/C OI 0.55 (balanced OI)</span><br><span style="font-size:13px;color:#c9d1d9">• Call volume heavy — crowd is bullish / complacent</span><br><span style="font-size:13px;color:#c9d1d9">• High volume 30.6M — strong conviction in today's move</span><br><span style="font-size:14px;color:#8b949e">premium rich, neutral — sell put or put spread, defined-risk income below current price</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="SOUN" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="SPY" style="cursor:pointer">
+        <tr class="data-row" data-symbol="SPY"
+            data-call-vol="443720" data-put-vol="551557"
+            data-call-oi="197087"  data-put-oi="342058"
+            style="cursor:pointer">
             <td class="symbol">SPY</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$710.14</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">70,538,900</div></td>
@@ -1578,7 +1724,10 @@
             <td class="why-cell"><span style="color:#484f58">—</span><div class="why-label">Why?</div><span style="color:#484f58">—</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="SPY" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="TSLA" style="cursor:pointer">
+        <tr class="data-row" data-symbol="TSLA"
+            data-call-vol="810752" data-put-vol="500020"
+            data-call-oi="300455"  data-put-oi="313056"
+            style="cursor:pointer">
             <td class="symbol">TSLA</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$400.62</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">90,388,400</div></td>
@@ -1598,7 +1747,10 @@
             <td class="why-cell"><span class="strat-badge">17 diag-spd</span><div class="why-label">Why?</div><span style="font-size:14px;color:#58a6ff;font-family:monospace">IV 47% · HV 50% · IV/HV 0.94 · RSI 61</span><br><span style="font-size:13px;color:#6e7681;font-family:monospace">ATR $15.72 · P/C Vol 0.62 (neutral flow) · P/C OI 1.04 (hedged)</span><br><span style="font-size:13px;color:#c9d1d9">• High volume 90.4M — strong conviction in today's move</span><br><span style="font-size:14px;color:#8b949e">$401 stock, premium cheap — buy deep ITM LEAPS, sell monthly calls to reduce cost</span><br><span style="color:#f85149;font-size:14px">⚠ Earnings in 4d — IV elevated due to event risk, exit or hedge before announcement</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="TSLA" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="TSM" style="cursor:pointer">
+        <tr class="data-row" data-symbol="TSM"
+            data-call-vol="43937" data-put-vol="55701"
+            data-call-oi="124091"  data-put-oi="218943"
+            style="cursor:pointer">
             <td class="symbol">TSM</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$370.50</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">18,389,700</div></td>
@@ -1618,7 +1770,10 @@
             <td class="why-cell"><span class="strat-badge">17 diag-spd</span><div class="why-label">Why?</div><span style="font-size:14px;color:#58a6ff;font-family:monospace">IV 42% · HV 48% · IV/HV 0.89 · RSI 59</span><br><span style="font-size:13px;color:#6e7681;font-family:monospace">ATR $12.59 · P/C Vol 1.27 (bearish flow) · P/C OI 1.76 (hedged)</span><br><span style="font-size:13px;color:#c9d1d9">• IV below HV — options unusually cheap</span><br><span style="font-size:13px;color:#c9d1d9">• High volume 18.4M — strong conviction in today's move</span><br><span style="font-size:14px;color:#8b949e">$370 stock, premium cheap — buy deep ITM LEAPS, sell monthly calls to reduce cost</span></td>
             <td class="notes-cell"><div class="notes-edit" contenteditable="true" data-sym="TSM" placeholder="Click to add notes..."></div></td>
         </tr>
-        <tr class="data-row" data-symbol="UNH" style="cursor:pointer">
+        <tr class="data-row" data-symbol="UNH"
+            data-call-vol="39844" data-put-vol="23998"
+            data-call-oi="96841"  data-put-oi="71455"
+            style="cursor:pointer">
             <td class="symbol">UNH</td>
             <td>2026-04-18</td>
             <td class="pv-cell"><div class="pv-label">Price</div><div class="pv-price">$324.63</div><div class="pv-label pv-vol-label">Volume</div><div class="pv-vol">9,397,500</div></td>
@@ -1687,13 +1842,34 @@ cards.forEach(c => {
 let activeType = '', activeValue = '';
 function filterTable() {
   const q = document.getElementById('search').value.toLowerCase();
+
+  // Pre-compute medians for total vol/OI filters
+  const allCV = rows.map(r => +r.dataset.callVol||0);
+  const allPV = rows.map(r => +r.dataset.putVol||0);
+  const allCO = rows.map(r => +r.dataset.callOi||0);
+  const allPO = rows.map(r => +r.dataset.putOi||0);
+  const totalVols = rows.map((_,i) => allCV[i] + allPV[i]).sort((a,b)=>a-b);
+  const totalOIs  = rows.map((_,i) => allCO[i] + allPO[i]).sort((a,b)=>a-b);
+  const medVol = totalVols[Math.floor(totalVols.length/2)] || 0;
+  const medOI  = totalOIs[Math.floor(totalOIs.length/2)]  || 0;
+
   rows.forEach(r => {
     const sym    = r.cells[0].textContent.toLowerCase();
     const sig    = r.querySelector('.badge')?.textContent.trim() || '';
     const strats = [...r.querySelectorAll('.strat-badge')].map(b => b.textContent.trim()).join(' ');
+    const cv = +r.dataset.callVol||0, pv = +r.dataset.putVol||0;
+    const co = +r.dataset.callOi||0,  po = +r.dataset.putOi||0;
+
     let match = true;
-    if (activeType === 'signal') match = sig === activeValue;
-    if (activeType === 'strat')  match = strats.includes(activeValue);
+    if (activeType === 'signal')    match = sig === activeValue;
+    if (activeType === 'strat')     match = strats.includes(activeValue);
+    if (activeType === 'put-vol')   match = pv > cv;
+    if (activeType === 'call-vol')  match = cv > pv;
+    if (activeType === 'total-vol') match = (cv + pv) >= medVol;
+    if (activeType === 'put-oi')    match = po > co;
+    if (activeType === 'call-oi')   match = co > po;
+    if (activeType === 'total-oi')  match = (co + po) >= medOI;
+
     r.style.display = (sym.includes(q) && match) ? '' : 'none';
   });
 }
@@ -1702,7 +1878,9 @@ function filterBy(type, value) {
   activeValue = value;
   document.querySelectorAll('.filter-btn').forEach(b => {
     const t = b.getAttribute('onclick') || '';
-    b.classList.toggle('active', (!type && !value) ? b.textContent.trim()==='All' : t.includes(`'${value}'`));
+    const isAll = (!type && !value) && b.textContent.trim()==='All';
+    const isThis = type && t.includes(`'${type}'`);
+    b.classList.toggle('active', isAll || isThis);
   });
   filterTable();
 }
