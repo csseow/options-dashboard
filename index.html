@@ -233,7 +233,7 @@
 
 <header>
   <h1>Options Tracker</h1>
-  <span>Generated: 2026-04-26 01:09 &nbsp;|&nbsp; 72 symbols &nbsp;|&nbsp;
+  <span>Generated: 2026-04-26 01:22 &nbsp;|&nbsp; 72 symbols &nbsp;|&nbsp;
     Click any symbol for history</span>
 </header>
 
@@ -241,7 +241,7 @@
   <div class="cards" id="cards"></div>
 
   
-  <div style="margin:0 0 16px;padding:20px 24px;background:#161b22;border:1px solid #30363d;
+  <div style="margin:0 0 4px;padding:20px 24px;background:#161b22;border:1px solid #30363d;
               border-radius:10px;display:flex;gap:0;flex-wrap:wrap;align-items:stretch">
     <div style="flex:0 0 auto;padding:0 28px 0 0;margin-right:28px;border-right:1px solid #21262d;display:flex;flex-direction:column;justify-content:center">
       
@@ -306,6 +306,79 @@
       <div style="text-align:center"><div style="font-size:11px;letter-spacing:2px;color:#8b949e;margin-bottom:4px">1-WEEK BIAS</div><div style="color:#484f58;font-size:13px">Building…<br><span style="font-size:11px">needs ~7 trading days</span></div></div>
     </div>
   </div>
+
+  <details style="margin:0 0 16px">
+    <summary style="cursor:pointer;padding:8px 16px;background:#161b22;border:1px solid #30363d;
+                    border-radius:8px;font-size:12px;color:#8b949e;list-style:none;
+                    display:flex;align-items:center;gap:6px">
+      <span style="font-size:10px">▶</span>
+      <span style="letter-spacing:1px">VIX / VVIX — HOW TO READ THESE NUMBERS</span>
+    </summary>
+    <div style="padding:16px;background:#0d1117;border:1px solid #30363d;border-top:none;
+                border-radius:0 0 8px 8px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+
+      <div style="background:#161b22;border:1px solid #21262d;border-radius:6px;padding:12px">
+        <div style="font-size:11px;letter-spacing:1px;color:#8b949e;margin-bottom:8px">VIX — MARKET FEAR</div>
+        <div style="font-size:11px;color:#e6edf3;line-height:1.6">
+          VIX = how nervous the market is right now.<br>
+          <span style="color:#3fb950">■</span> <b>Below 15</b> — calm. Good time to sell options.<br>
+          <span style="color:#56d364">■</span> <b>15–20</b> — sweet spot for premium selling.<br>
+          <span style="color:#d29922">■</span> <b>20–30</b> — nervous. Reduce size.<br>
+          <span style="color:#f0883e">■</span> <b>30–40</b> — fearful. Wait, don't chase.<br>
+          <span style="color:#f85149">■</span> <b>Above 40</b> — panic. Contrarian buy zone.<br><br>
+          <span style="color:#8b949e">Rule: above 30 → half size max. Above 40 → buy dips, don't short.</span>
+        </div>
+      </div>
+
+      <div style="background:#161b22;border:1px solid #21262d;border-radius:6px;padding:12px">
+        <div style="font-size:11px;letter-spacing:1px;color:#8b949e;margin-bottom:8px">VVIX — FEAR OF THE FEAR</div>
+        <div style="font-size:11px;color:#e6edf3;line-height:1.6">
+          VVIX = how fast VIX itself is moving. Normal range is 80–100.<br>
+          <span style="color:#3fb950">■</span> <b>Below 85</b> — calm, VIX is stable.<br>
+          <span style="color:#56d364">■</span> <b>85–95</b> — normal, nothing unusual.<br>
+          <span style="color:#d29922">■</span> <b>95–110</b> — elevated, expect VIX swings.<br>
+          <span style="color:#f0883e">■</span> <b>110–125</b> — high, vol spike incoming.<br>
+          <span style="color:#f85149">■</span> <b>Above 125</b> — extreme. VIX often reverses down ~80% of the time within days.<br><br>
+          <span style="color:#8b949e">Rule: VVIX above 125 = don't buy more fear, it's about to cool off.</span>
+        </div>
+      </div>
+
+      <div style="background:#161b22;border:1px solid #21262d;border-radius:6px;padding:12px">
+        <div style="font-size:11px;letter-spacing:1px;color:#8b949e;margin-bottom:8px">VVIX/VIX RATIO — THE COMBO SIGNAL</div>
+        <div style="font-size:11px;color:#e6edf3;line-height:1.6">
+          Normal ratio is 4×–6×. When it breaks out of this range, something unusual is happening.<br>
+          <span style="color:#3fb950">■</span> <b>Below 4×</b> — low risk. Both are calm.<br>
+          <span style="color:#d29922">■</span> <b>4×–5×</b> — normal, watch for changes.<br>
+          <span style="color:#f0883e">■</span> <b>5×–6×</b> — elevated, consider hedging.<br>
+          <span style="color:#f85149">■</span> <b>Above 6×</b> — warning. VIX spike likely soon.<br><br>
+          <span style="color:#8b949e">Rule: above 6× = hedge before the spike, not after.</span>
+        </div>
+      </div>
+
+      <div style="grid-column:1/-1;background:#161b22;border:1px solid #21262d;border-radius:6px;padding:12px">
+        <div style="font-size:11px;letter-spacing:1px;color:#8b949e;margin-bottom:8px">FOUR SITUATIONS — WHAT THEY MEAN AND WHAT TO DO</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px">
+          <div style="background:#0d1117;border-radius:4px;padding:10px">
+            <div style="font-size:11px;font-weight:700;color:#3fb950;margin-bottom:4px">LOW VIX + LOW VVIX</div>
+            <div style="font-size:11px;color:#e6edf3;line-height:1.5">Market is calm and stable. Best time to sell options (collect premium). Standard position sizes.</div>
+          </div>
+          <div style="background:#0d1117;border-radius:4px;padding:10px">
+            <div style="font-size:11px;font-weight:700;color:#f85149;margin-bottom:4px">LOW VIX + HIGH VVIX ⚠</div>
+            <div style="font-size:11px;color:#e6edf3;line-height:1.5">Most dangerous setup. Market looks calm but fear-of-fear is rising — a sudden spike is being priced in. Hedge immediately, reduce size.</div>
+          </div>
+          <div style="background:#0d1117;border-radius:4px;padding:10px">
+            <div style="font-size:11px;font-weight:700;color:#d29922;margin-bottom:4px">HIGH VIX + LOW VVIX</div>
+            <div style="font-size:11px;color:#e6edf3;line-height:1.5">Market is nervous but volatility is stabilising. Fear is priced in and fading — good zone to start scaling in carefully. Use smaller first entries.</div>
+          </div>
+          <div style="background:#0d1117;border-radius:4px;padding:10px">
+            <div style="font-size:11px;font-weight:700;color:#f0883e;margin-bottom:4px">HIGH VIX + HIGH VVIX</div>
+            <div style="font-size:11px;color:#e6edf3;line-height:1.5">Full panic. Stay on sidelines or buy protection only. Wait for VVIX to come down before any entries. This is not a trading environment.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </details>
 
   <!-- Signal Legend -->
   <div class="legend">
