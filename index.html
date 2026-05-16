@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Options Dashboard</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0d1117; color: #e6edf3; padding: 20px; }
+  h1 { font-size: 1.4rem; color: #58a6ff; margin-bottom: 4px; }
+  .meta { font-size: 0.75rem; color: #8b949e; margin-bottom: 20px; }
+  h2 { font-size: 1rem; color: #8b949e; margin: 20px 0 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  th { text-align: left; padding: 6px 10px; color: #8b949e; border-bottom: 1px solid #21262d; font-weight: 500; font-size: 0.75rem; text-transform: uppercase; }
+  td { padding: 7px 10px; border-bottom: 1px solid #161b22; }
+  tr:hover td { background: #161b22; }
+  td.sym { font-weight: 600; color: #58a6ff; }
+  td.num { font-family: 'Courier New', monospace; font-size: 0.82rem; }
+  .sig { padding: 2px 8px; border-radius: 10px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em; }
+  .sig-trade { background: #1f6feb33; color: #58a6ff; border: 1px solid #1f6feb; }
+  .sig-watch { background: #38824233; color: #3fb950; border: 1px solid #388242; }
+  .sig-warn  { background: #b6251533; color: #f85149; border: 1px solid #b62515; }
+  .sig-wait  { background: #21262d;   color: #8b949e; border: 1px solid #30363d; }
+  span.high { color: #3fb950; }
+  span.low  { color: #f85149; }
+  span.warn { color: #f0883e; }
+  span.na   { color: #484f58; }
+  .stale { color: #f0883e; font-weight: 600; }
+  @media (max-width: 700px) { table { font-size: 0.75rem; } th, td { padding: 5px 6px; } }
+</style>
+</head>
+<body>
+<h1>Options Dashboard</h1>
+<p class="meta">
+  Data: <strong>2026-05-16</strong> &nbsp;|&nbsp;
+  Page built: 2026-05-16 10:41 UTC
+  
+</p>
+
+<h2>Equities</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Symbol</th><th>Price</th><th>IV</th><th>HV</th><th>IV/HV</th><th>RSI</th><th>P/C</th><th>ATR</th><th>Signal</th>
+    </tr>
+  </thead>
+  <tbody>
+
+        <tr>
+          <td class="sym">INTC</td>
+          <td class="num">$108.77</td>
+          <td class="num">82.5%</td>
+          <td class="num">99.3%</td>
+          <td class="num">0.83</td>
+          <td class="num">64.7</td>
+          <td class="num"><span class="warn">1.55</span></td>
+          <td class="num">9.19</td>
+          <td><span class="sig sig-warn">BEARISH P/C</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">NOK</td>
+          <td class="num">$13.95</td>
+          <td class="num">79.4%</td>
+          <td class="num">71.9%</td>
+          <td class="num">1.104</td>
+          <td class="num">68.4</td>
+          <td class="num"><span class="high">0.18</span></td>
+          <td class="num">0.96</td>
+          <td><span class="sig sig-watch">WATCH</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">SOFI</td>
+          <td class="num">$15.61</td>
+          <td class="num">50.3%</td>
+          <td class="num">65.8%</td>
+          <td class="num"><span class="low">0.764</span></td>
+          <td class="num"><span class="high">30.2</span></td>
+          <td class="num">1.26</td>
+          <td class="num">0.82</td>
+          <td><span class="sig sig-wait">WAIT</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">HOOD</td>
+          <td class="num">$77.14</td>
+          <td class="num">58.7%</td>
+          <td class="num">74.8%</td>
+          <td class="num"><span class="low">0.785</span></td>
+          <td class="num">41.4</td>
+          <td class="num">0.66</td>
+          <td class="num">4.45</td>
+          <td><span class="sig sig-wait">WAIT</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">MSTR</td>
+          <td class="num">$177.42</td>
+          <td class="num">63.2%</td>
+          <td class="num">70.6%</td>
+          <td class="num">0.895</td>
+          <td class="num">54.1</td>
+          <td class="num"><span class="high">0.24</span></td>
+          <td class="num">11.44</td>
+          <td><span class="sig sig-wait">WAIT</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">COIN</td>
+          <td class="num">$195.43</td>
+          <td class="num">68.8%</td>
+          <td class="num">67.0%</td>
+          <td class="num">1.028</td>
+          <td class="num">49.4</td>
+          <td class="num"><span class="high">0.32</span></td>
+          <td class="num">14.49</td>
+          <td><span class="sig sig-watch">WATCH</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">BBAI</td>
+          <td class="num">$4.08</td>
+          <td class="num">75.0%</td>
+          <td class="num">67.8%</td>
+          <td class="num">1.107</td>
+          <td class="num">57.7</td>
+          <td class="num">1.45</td>
+          <td class="num">0.31</td>
+          <td><span class="sig sig-watch">WATCH</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">KTOS</td>
+          <td class="num">$52.09</td>
+          <td class="num">69.3%</td>
+          <td class="num">70.4%</td>
+          <td class="num">0.985</td>
+          <td class="num"><span class="high">31.3</span></td>
+          <td class="num">0.65</td>
+          <td class="num">3.45</td>
+          <td><span class="sig sig-watch">WATCH</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">LMT</td>
+          <td class="num">$516.01</td>
+          <td class="num">32.0%</td>
+          <td class="num">25.0%</td>
+          <td class="num"><span class="high">1.282</span></td>
+          <td class="num">52.0</td>
+          <td class="num"><span class="high">0.20</span></td>
+          <td class="num">10.9</td>
+          <td><span class="sig sig-trade">TRADE</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">RKLB</td>
+          <td class="num">$124.77</td>
+          <td class="num">103.5%</td>
+          <td class="num">114.9%</td>
+          <td class="num">0.901</td>
+          <td class="num">73.3</td>
+          <td class="num">0.55</td>
+          <td class="num">9.65</td>
+          <td><span class="sig sig-watch">WATCH</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">ASTS</td>
+          <td class="num">$83.67</td>
+          <td class="num">109.8%</td>
+          <td class="num">105.2%</td>
+          <td class="num">1.044</td>
+          <td class="num">54.5</td>
+          <td class="num"><span class="high">0.30</span></td>
+          <td class="num">7.25</td>
+          <td><span class="sig sig-watch">WATCH</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">SMR</td>
+          <td class="num">$11.23</td>
+          <td class="num">90.4%</td>
+          <td class="num">116.1%</td>
+          <td class="num"><span class="low">0.779</span></td>
+          <td class="num">41.9</td>
+          <td class="num">0.63</td>
+          <td class="num">1.12</td>
+          <td><span class="sig sig-wait">WAIT</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">OKLO</td>
+          <td class="num">$62.25</td>
+          <td class="num">91.7%</td>
+          <td class="num">114.7%</td>
+          <td class="num"><span class="low">0.799</span></td>
+          <td class="num">39.3</td>
+          <td class="num">1.27</td>
+          <td class="num">6.58</td>
+          <td><span class="sig sig-wait">WAIT</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">ENPH</td>
+          <td class="num">$52.89</td>
+          <td class="num">106.5%</td>
+          <td class="num">79.9%</td>
+          <td class="num"><span class="high">1.333</span></td>
+          <td class="num"><span class="warn">79.6</span></td>
+          <td class="num"><span class="high">0.47</span></td>
+          <td class="num">3.59</td>
+          <td><span class="sig sig-watch">WATCH</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">CLSK</td>
+          <td class="num">$13.11</td>
+          <td class="num">86.8%</td>
+          <td class="num">71.8%</td>
+          <td class="num"><span class="high">1.209</span></td>
+          <td class="num">55.3</td>
+          <td class="num">1.26</td>
+          <td class="num">1.03</td>
+          <td><span class="sig sig-trade">TRADE</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">MARA</td>
+          <td class="num">$12.44</td>
+          <td class="num">83.1%</td>
+          <td class="num">69.5%</td>
+          <td class="num">1.196</td>
+          <td class="num">59.1</td>
+          <td class="num"><span class="high">0.12</span></td>
+          <td class="num">1.0</td>
+          <td><span class="sig sig-watch">WATCH</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">IREN</td>
+          <td class="num">$52.94</td>
+          <td class="num">104.3%</td>
+          <td class="num">98.8%</td>
+          <td class="num">1.057</td>
+          <td class="num">54.6</td>
+          <td class="num">1.03</td>
+          <td class="num">5.5</td>
+          <td><span class="sig sig-watch">WATCH</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">UNH</td>
+          <td class="num">$393.85</td>
+          <td class="num">31.5%</td>
+          <td class="num">35.8%</td>
+          <td class="num">0.881</td>
+          <td class="num"><span class="warn">77.4</span></td>
+          <td class="num">0.82</td>
+          <td class="num">9.11</td>
+          <td><span class="sig sig-warn">OVERBOUGHT</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">OSCR</td>
+          <td class="num">$23.32</td>
+          <td class="num">70.7%</td>
+          <td class="num">57.5%</td>
+          <td class="num"><span class="high">1.230</span></td>
+          <td class="num"><span class="warn">85.0</span></td>
+          <td class="num"><span class="high">0.17</span></td>
+          <td class="num">1.28</td>
+          <td><span class="sig sig-watch">WATCH</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">NVO</td>
+          <td class="num">$44.74</td>
+          <td class="num">38.9%</td>
+          <td class="num">34.7%</td>
+          <td class="num">1.121</td>
+          <td class="num">67.6</td>
+          <td class="num">1.11</td>
+          <td class="num">1.4</td>
+          <td><span class="sig sig-watch">WATCH</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">AAOI</td>
+          <td class="num">$190.36</td>
+          <td class="num">136.0%</td>
+          <td class="num">143.6%</td>
+          <td class="num">0.947</td>
+          <td class="num">60.5</td>
+          <td class="num"><span class="warn">6.34</span></td>
+          <td class="num">25.29</td>
+          <td><span class="sig sig-watch">WATCH</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">AXTI</td>
+          <td class="num">$123.78</td>
+          <td class="num">154.9%</td>
+          <td class="num">161.7%</td>
+          <td class="num">0.958</td>
+          <td class="num"><span class="warn">82.1</span></td>
+          <td class="num"><span class="warn">6.41</span></td>
+          <td class="num">14.3</td>
+          <td><span class="sig sig-watch">WATCH</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">TSM</td>
+          <td class="num">$404.35</td>
+          <td class="num">49.8%</td>
+          <td class="num">41.4%</td>
+          <td class="num"><span class="high">1.205</span></td>
+          <td class="num">49.7</td>
+          <td class="num"><span class="warn">2.02</span></td>
+          <td class="num">15.6</td>
+          <td><span class="sig sig-trade">TRADE</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">RGTI</td>
+          <td class="num">$17.85</td>
+          <td class="num">94.9%</td>
+          <td class="num">89.9%</td>
+          <td class="num">1.056</td>
+          <td class="num">53.6</td>
+          <td class="num"><span class="high">0.28</span></td>
+          <td class="num">1.6</td>
+          <td><span class="sig sig-watch">WATCH</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">MU</td>
+          <td class="num">$724.66</td>
+          <td class="num">97.0%</td>
+          <td class="num">76.6%</td>
+          <td class="num"><span class="high">1.266</span></td>
+          <td class="num">70.1</td>
+          <td class="num">1.36</td>
+          <td class="num">53.45</td>
+          <td><span class="sig sig-watch">WATCH</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">AMD</td>
+          <td class="num">$424.1</td>
+          <td class="num">70.2%</td>
+          <td class="num">81.4%</td>
+          <td class="num">0.863</td>
+          <td class="num">67.6</td>
+          <td class="num">0.97</td>
+          <td class="num">27.76</td>
+          <td><span class="sig sig-wait">WAIT</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">NVDA</td>
+          <td class="num">$225.32</td>
+          <td class="num">38.2%</td>
+          <td class="num">37.9%</td>
+          <td class="num">1.009</td>
+          <td class="num">56.2</td>
+          <td class="num"><span class="high">0.50</span></td>
+          <td class="num">8.21</td>
+          <td><span class="sig sig-watch">WATCH</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">ARM</td>
+          <td class="num">$209.16</td>
+          <td class="num">76.5%</td>
+          <td class="num">92.5%</td>
+          <td class="num">0.827</td>
+          <td class="num">47.6</td>
+          <td class="num">0.54</td>
+          <td class="num">16.2</td>
+          <td><span class="sig sig-wait">WAIT</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">CF</td>
+          <td class="num">$125.24</td>
+          <td class="num">54.4%</td>
+          <td class="num">61.9%</td>
+          <td class="num">0.879</td>
+          <td class="num">52.0</td>
+          <td class="num">0.81</td>
+          <td class="num">5.59</td>
+          <td><span class="sig sig-wait">WAIT</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">MP</td>
+          <td class="num">$61.27</td>
+          <td class="num">72.1%</td>
+          <td class="num">72.1%</td>
+          <td class="num">1.0</td>
+          <td class="num">43.7</td>
+          <td class="num"><span class="high">0.34</span></td>
+          <td class="num">4.75</td>
+          <td><span class="sig sig-watch">WATCH</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">SLV</td>
+          <td class="num">$69.04</td>
+          <td class="num">50.7%</td>
+          <td class="num">53.9%</td>
+          <td class="num">0.941</td>
+          <td class="num">51.1</td>
+          <td class="num">0.79</td>
+          <td class="num">3.33</td>
+          <td><span class="sig sig-watch">WATCH</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">MSFT</td>
+          <td class="num">$421.92</td>
+          <td class="num">30.3%</td>
+          <td class="num">30.3%</td>
+          <td class="num">1.0</td>
+          <td class="num">48.1</td>
+          <td class="num"><span class="high">0.24</span></td>
+          <td class="num">11.41</td>
+          <td><span class="sig sig-watch">WATCH</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">BABA</td>
+          <td class="num">$132.59</td>
+          <td class="num">45.0%</td>
+          <td class="num">48.0%</td>
+          <td class="num">0.938</td>
+          <td class="num">50.1</td>
+          <td class="num"><span class="high">0.23</span></td>
+          <td class="num">5.43</td>
+          <td><span class="sig sig-watch">WATCH</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">DDOG</td>
+          <td class="num">$207.98</td>
+          <td class="num">58.3%</td>
+          <td class="num">91.6%</td>
+          <td class="num"><span class="low">0.636</span></td>
+          <td class="num"><span class="warn">88.9</span></td>
+          <td class="num">0.98</td>
+          <td class="num">11.94</td>
+          <td><span class="sig sig-warn">OVERBOUGHT</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">NOW</td>
+          <td class="num">$95.07</td>
+          <td class="num">60.0%</td>
+          <td class="num">83.1%</td>
+          <td class="num"><span class="low">0.722</span></td>
+          <td class="num">58.1</td>
+          <td class="num"><span class="high">0.30</span></td>
+          <td class="num">4.38</td>
+          <td><span class="sig sig-wait">WAIT</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">CRM</td>
+          <td class="num">$173.51</td>
+          <td class="num">46.8%</td>
+          <td class="num">48.0%</td>
+          <td class="num">0.976</td>
+          <td class="num">44.0</td>
+          <td class="num"><span class="high">0.27</span></td>
+          <td class="num">6.91</td>
+          <td><span class="sig sig-watch">WATCH</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">ANET</td>
+          <td class="num">$141.97</td>
+          <td class="num">52.9%</td>
+          <td class="num">66.5%</td>
+          <td class="num"><span class="low">0.795</span></td>
+          <td class="num"><span class="high">28.8</span></td>
+          <td class="num">1.2</td>
+          <td class="num">8.63</td>
+          <td><span class="sig sig-wait">WAIT</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">CRWD</td>
+          <td class="num">$594.08</td>
+          <td class="num">51.5%</td>
+          <td class="num">51.0%</td>
+          <td class="num">1.01</td>
+          <td class="num"><span class="warn">89.9</span></td>
+          <td class="num">0.82</td>
+          <td class="num">22.8</td>
+          <td><span class="sig sig-watch">WATCH</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">PANW</td>
+          <td class="num">$242.83</td>
+          <td class="num">52.3%</td>
+          <td class="num">48.5%</td>
+          <td class="num">1.079</td>
+          <td class="num"><span class="warn">92.8</span></td>
+          <td class="num">0.53</td>
+          <td class="num">9.51</td>
+          <td><span class="sig sig-watch">WATCH</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">GOOGL</td>
+          <td class="num">$396.78</td>
+          <td class="num">29.2%</td>
+          <td class="num">35.9%</td>
+          <td class="num">0.812</td>
+          <td class="num"><span class="warn">75.5</span></td>
+          <td class="num"><span class="high">0.39</span></td>
+          <td class="num">11.07</td>
+          <td><span class="sig sig-warn">OVERBOUGHT</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">AMZN</td>
+          <td class="num">$264.14</td>
+          <td class="num">25.5%</td>
+          <td class="num">26.5%</td>
+          <td class="num">0.961</td>
+          <td class="num">53.9</td>
+          <td class="num">0.66</td>
+          <td class="num">7.19</td>
+          <td><span class="sig sig-watch">WATCH</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">ORCL</td>
+          <td class="num">$192.95</td>
+          <td class="num">58.5%</td>
+          <td class="num">58.9%</td>
+          <td class="num">0.994</td>
+          <td class="num">65.0</td>
+          <td class="num"><span class="high">0.36</span></td>
+          <td class="num">9.25</td>
+          <td><span class="sig sig-watch">WATCH</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">AVGO</td>
+          <td class="num">$425.19</td>
+          <td class="num">38.9%</td>
+          <td class="num">43.7%</td>
+          <td class="num">0.891</td>
+          <td class="num">52.5</td>
+          <td class="num">0.56</td>
+          <td class="num">17.21</td>
+          <td><span class="sig sig-wait">WAIT</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">QQQ</td>
+          <td class="num">$708.93</td>
+          <td class="num">19.9%</td>
+          <td class="num">16.5%</td>
+          <td class="num"><span class="high">1.202</span></td>
+          <td class="num">73.3</td>
+          <td class="num">1.4</td>
+          <td class="num">10.65</td>
+          <td><span class="sig sig-watch">WATCH</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">SPY</td>
+          <td class="num">$739.17</td>
+          <td class="num">14.5%</td>
+          <td class="num">11.8%</td>
+          <td class="num"><span class="high">1.222</span></td>
+          <td class="num">69.6</td>
+          <td class="num">1.05</td>
+          <td class="num">7.2</td>
+          <td><span class="sig sig-watch">WATCH</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">IWM</td>
+          <td class="num">$277.6</td>
+          <td class="num">27.3%</td>
+          <td class="num">18.4%</td>
+          <td class="num"><span class="high">1.483</span></td>
+          <td class="num">50.5</td>
+          <td class="num">1.49</td>
+          <td class="num">4.68</td>
+          <td><span class="sig sig-trade">TRADE</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">GLD</td>
+          <td class="num">$417.29</td>
+          <td class="num">22.6%</td>
+          <td class="num">20.8%</td>
+          <td class="num">1.087</td>
+          <td class="num">40.3</td>
+          <td class="num">0.85</td>
+          <td class="num">7.96</td>
+          <td><span class="sig sig-watch">WATCH</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">TSLA</td>
+          <td class="num">$422.24</td>
+          <td class="num">35.4%</td>
+          <td class="num">41.2%</td>
+          <td class="num">0.86</td>
+          <td class="num">66.7</td>
+          <td class="num">0.77</td>
+          <td class="num">17.29</td>
+          <td><span class="sig sig-wait">WAIT</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">CIFR</td>
+          <td class="num">$20.33</td>
+          <td class="num">105.1%</td>
+          <td class="num">99.8%</td>
+          <td class="num">1.053</td>
+          <td class="num">57.7</td>
+          <td class="num">0.9</td>
+          <td class="num">1.92</td>
+          <td><span class="sig sig-watch">WATCH</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">CRCL</td>
+          <td class="num">$114.0</td>
+          <td class="num">91.0%</td>
+          <td class="num">110.2%</td>
+          <td class="num">0.826</td>
+          <td class="num">59.4</td>
+          <td class="num">0.67</td>
+          <td class="num">12.09</td>
+          <td><span class="sig sig-wait">WAIT</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">NBIS</td>
+          <td class="num">$219.94</td>
+          <td class="num">114.2%</td>
+          <td class="num">92.3%</td>
+          <td class="num"><span class="high">1.237</span></td>
+          <td class="num">74.5</td>
+          <td class="num">1.0</td>
+          <td class="num">18.29</td>
+          <td><span class="sig sig-watch">WATCH</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">SOUN</td>
+          <td class="num">$8.41</td>
+          <td class="num">79.3%</td>
+          <td class="num">86.1%</td>
+          <td class="num">0.921</td>
+          <td class="num">52.3</td>
+          <td class="num"><span class="high">0.21</span></td>
+          <td class="num">0.66</td>
+          <td><span class="sig sig-watch">WATCH</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">BE</td>
+          <td class="num">$275.95</td>
+          <td class="num">111.3%</td>
+          <td class="num">112.7%</td>
+          <td class="num">0.988</td>
+          <td class="num">60.0</td>
+          <td class="num"><span class="warn">2.69</span></td>
+          <td class="num">27.99</td>
+          <td><span class="sig sig-watch">WATCH</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">CRWV</td>
+          <td class="num">$107.3</td>
+          <td class="num">91.1%</td>
+          <td class="num">87.2%</td>
+          <td class="num">1.045</td>
+          <td class="num">47.3</td>
+          <td class="num"><span class="warn">1.73</span></td>
+          <td class="num">9.97</td>
+          <td><span class="sig sig-watch">WATCH</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">ZETA</td>
+          <td class="num">$17.19</td>
+          <td class="num">63.1%</td>
+          <td class="num">50.1%</td>
+          <td class="num"><span class="high">1.260</span></td>
+          <td class="num">40.9</td>
+          <td class="num"><span class="high">0.38</span></td>
+          <td class="num">0.87</td>
+          <td><span class="sig sig-trade">TRADE</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">EOSE</td>
+          <td class="num">$7.87</td>
+          <td class="num">116.6%</td>
+          <td class="num">129.3%</td>
+          <td class="num">0.902</td>
+          <td class="num">56.5</td>
+          <td class="num"><span class="high">0.37</span></td>
+          <td class="num">0.81</td>
+          <td><span class="sig sig-watch">WATCH</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">SNDK</td>
+          <td class="num">$1407.61</td>
+          <td class="num">108.7%</td>
+          <td class="num">93.6%</td>
+          <td class="num">1.161</td>
+          <td class="num">67.3</td>
+          <td class="num"><span class="warn">1.61</span></td>
+          <td class="num">118.18</td>
+          <td><span class="sig sig-watch">WATCH</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">AMR</td>
+          <td class="num">$179.69</td>
+          <td class="num">60.4%</td>
+          <td class="num">52.4%</td>
+          <td class="num">1.152</td>
+          <td class="num">37.0</td>
+          <td class="num">1.31</td>
+          <td class="num">9.73</td>
+          <td><span class="sig sig-watch">WATCH</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">BMNR</td>
+          <td class="num">$19.87</td>
+          <td class="num">71.4%</td>
+          <td class="num">63.1%</td>
+          <td class="num">1.132</td>
+          <td class="num">41.8</td>
+          <td class="num">0.75</td>
+          <td class="num">1.24</td>
+          <td><span class="sig sig-watch">WATCH</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">OPEN</td>
+          <td class="num">$4.38</td>
+          <td class="num">67.6%</td>
+          <td class="num">59.9%</td>
+          <td class="num">1.127</td>
+          <td class="num"><span class="high">26.7</span></td>
+          <td class="num">0.75</td>
+          <td class="num">0.36</td>
+          <td><span class="sig sig-watch">WATCH</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">GRAB</td>
+          <td class="num">$3.55</td>
+          <td class="num">42.6%</td>
+          <td class="num">31.0%</td>
+          <td class="num"><span class="high">1.374</span></td>
+          <td class="num"><span class="high">25.0</span></td>
+          <td class="num"><span class="high">0.48</span></td>
+          <td class="num">0.14</td>
+          <td><span class="sig sig-trade">TRADE</span></td>
+        </tr>
+  </tbody>
+</table>
+
+<h2>Crypto</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Symbol</th><th>Price</th><th>IV</th><th>HV</th><th>IV/HV</th><th>RSI</th><th>P/C</th><th>ATR</th><th>Signal</th>
+    </tr>
+  </thead>
+  <tbody>
+
+        <tr>
+          <td class="sym">BTC-USD</td>
+          <td class="num">$77825.02</td>
+          <td class="num"><span class="na">—</span></td>
+          <td class="num">25.4%</td>
+          <td class="num"><span class="na">—</span></td>
+          <td class="num">47.1</td>
+          <td class="num"><span class="na">—</span></td>
+          <td class="num">2014.53</td>
+          <td><span class="sig sig-wait">WAIT</span></td>
+        </tr>
+
+        <tr>
+          <td class="sym">ETH-USD</td>
+          <td class="num">$2170.26</td>
+          <td class="num"><span class="na">—</span></td>
+          <td class="num">29.3%</td>
+          <td class="num"><span class="na">—</span></td>
+          <td class="num"><span class="high">33.4</span></td>
+          <td class="num"><span class="na">—</span></td>
+          <td class="num">70.86</td>
+          <td><span class="sig sig-wait">WAIT</span></td>
+        </tr>
+  </tbody>
+</table>
+
+</body>
+</html>
